@@ -43,11 +43,11 @@ A web based platform for Makerere University students to log, track, and have th
 
 
 
-Contributors
-  - a
-  - b
-  - c
-  - d
-License ---------------------REQUIRED?
+## Contributors
+  - [Tusiime Mark](https://github.com/Markoshub) - Role in project
+  - [Namuyimbwa Martha](https://github.com/marthakukiriza) - Role in project
+  - [Okure Enock](https://github.com/kulekule2003) - Role in project
+  - [Ssebyala Denis Tendo](https://github.com/denistendo) - Role in project
+## License
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for details
   
