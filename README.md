@@ -25,7 +25,7 @@ A web based platform for Makerere University students to log, track, and have th
    - State Management: Redux
    - Notifications: React Toastify
 3. Hosting and Deployment:
-   - Cloud Platform: Heroku or AWS ----------------> should we PICK ONE
+   - Cloud Platform: Heroku
    - Version Control: Git/HitHub
 4. Testing:
    - Backend: Pytest
