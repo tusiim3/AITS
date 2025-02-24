@@ -1,5 +1,5 @@
-import React from 'react'
-import Select from 'react-select'
+import React from 'react';
+import Select from 'react-select';
 
 const courseunit = [
     {value: 'ist1204', label: 'Ist1204'},
@@ -26,7 +26,7 @@ export const Courseunit = () => (
         <h5>Select Course Unit</h5>
         <Select options={courseunit} />
     </div>
-)
+);
 
 export const Complaints  = () => (
     <div>
@@ -34,11 +34,11 @@ export const Complaints  = () => (
         <Select options={complaints} />
     </div>
     
-)
+);
 
 export const Types = () => (
     <div>
         <h5>Select type</h5>
-        <Select options={types} />
+        <Select options={types}/>
     </div>
-)
+);

@@ -1,0 +1,20 @@
+.bottom-right-corner {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 20px; /* Optional: Add some margin if needed */
+  }
+  
+.bottom-left-corner {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 20px; /* Optional: Add some margin if needed */
+  }
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+}

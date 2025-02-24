@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import App from './student_dashboard/student_dashboard.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <h1> Praise GOD</h1>
-    <p>clone repository and import for each dashboard
-    </p>
+      <App />
   </React.StrictMode>
 )
 
