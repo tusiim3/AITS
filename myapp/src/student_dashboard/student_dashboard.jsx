@@ -1,9 +1,9 @@
 import React from 'react';
-import { Courseunit,Complaints,Types } from './components/select_logs';
-import Simpletextarea from './components/customtext';
+import { Courseunit,Complaints,Types } from './log_issues/components/select_logs';
+import Simpletextarea from './log_issues/components/customtext';
 import './student_dashboard.css';
 
-const App = () => (
+const studentApp = () => (
     <div>
         <div className = "bottom-right-corner">
             <Simpletextarea/>
@@ -16,5 +16,5 @@ const App = () => (
     </div>
 );
 
-export default App;
+export default studentApp;
 
