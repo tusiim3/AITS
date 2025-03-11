@@ -7,7 +7,8 @@ const AuthenticationForms = () => {
 
   const [formData, setFormData] = useState({
     name: '',
-    studentNo: '',
+    numberType: '',
+    personalNumber: '',
     password: '',
     confirmPassword: '',
   });
@@ -30,7 +31,8 @@ const AuthenticationForms = () => {
     setIsSignUp(!isSignUp);
     setFormData({
       name: '',
-      studentNo: '',
+      numberType: '',
+      personalNumber: '',
       password: '',
       confirmPassword: '',
     });
@@ -57,16 +59,27 @@ const AuthenticationForms = () => {
           )}
 
           <select
-            name="studentNo"
-            value={formData.studentNo}
+            name="numberType"
+            value={formData.numberType}
             onChange={handleChange}
             required
           >
-            <option value="">Select Student Number</option>
-            <option value="12345">12345</option>
-            <option value="67890">67890</option>
-            {/* Add more student numbers as needed */}
+            <option value="">Select Number Type</option>
+            <option value="student">Student Number</option>
+            <option value="lecturer">Lecturer Number</option>
+            <option value="registrar">Registrar Number</option>
           </select>
+
+          {formData.numberType && (
+            <input
+              type="text"
+              name="personalNumber"
+              placeholder={`Enter ${formData.numberType.charAt(0).toUpperCase() + formData.numberType.slice(1)} Number`}
+              value={formData.personalNumber}
+              onChange={handleChange}
+              required
+            />
+          )}
 
           <input
             type="password"
@@ -111,3 +124,4 @@ const AuthenticationForms = () => {
 };
 
 export default AuthenticationForms;
+
