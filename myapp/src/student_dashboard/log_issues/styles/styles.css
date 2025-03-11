@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.form-container {
+    background-color: #b0e2e6;
+    text-align: center;
+}
+
+button[type = "submit"] {
+    background-color: red;
+    color: white;
+}

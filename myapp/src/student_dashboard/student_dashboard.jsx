@@ -2,9 +2,10 @@ import React from 'react';
 import { Courseunit,Complaints,Types } from './log_issues/components/select_logs';
 import Simpletextarea from './log_issues/components/customtext';
 import './student_dashboard.css';
+import logo from "./logo/logo.png"
 
-const studentApp = () => (
-    <div>
+const StudentApp = () => (
+    <div className= "body">
         <div className = "bottom-right-corner">
             <Simpletextarea/>
         </div>
@@ -13,8 +14,11 @@ const studentApp = () => (
             <Complaints />
             <Types />
         </div>
+        <div className = "profile-container">
+            <img src={logo} alt="User" className='profile-image' />
+        </div>
     </div>
 );
 
-export default studentApp;
+export default StudentApp;
 
