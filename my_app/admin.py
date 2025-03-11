@@ -3,3 +3,5 @@ from .models import CustomUser, Department, Course, Issues
 
 admin.site.register(CustomUser)
 admin.site.register(Department)
+admin.site.register(Course)
+admin.site.register(Issues)
