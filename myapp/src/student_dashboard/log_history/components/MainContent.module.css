@@ -1,0 +1,12 @@
+/* MainContent.module.css */
+.mainContent {
+    flex: 1; /* Take remaining space */
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .mainContent h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  

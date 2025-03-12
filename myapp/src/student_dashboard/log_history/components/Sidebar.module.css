@@ -1,0 +1,35 @@
+/* Sidebar.module.css */
+.sidebar {
+    width: 200px; /* Adjust as needed */
+    background-color: #f0f0f0; /* Light gray background */
+    padding: 20px;
+    border-radius: 10px;
+    margin-right: 20px;
+  }
+  
+  .profileSection {
+    margin-bottom: 20px;
+  }
+  
+  .profileImage {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #333; /* Dark gray placeholder */
+    margin: 0 auto;
+  }
+  
+  .menuButton {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    background-color: #e0e0e0; /* Lighter gray */
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .menuButton:hover {
+    background-color: #d0d0d0;
+  }
+  

@@ -1,0 +1,9 @@
+/* App.module.css */
+.appContainer {
+    display: flex;
+    height: 100vh; /* Full viewport height */
+    padding: 20px;
+    background-color: #e6f7ff; /* Very light blue background */
+    border-radius: 10px;
+  }
+  

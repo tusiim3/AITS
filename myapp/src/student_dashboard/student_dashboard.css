@@ -1,4 +1,5 @@
 .body {
+  background-color: #b0e2e6;
   height: 100vh;
   width: 100vw;
   margin: 0;
@@ -48,9 +49,34 @@
   background-color: black;
   width:200px;
   height:100px;
+  border-radius: 10px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+
 }
 
 .profile-image {
   width: 50%;
   height: 50%
+}
+
+.leftcontainer {
+  background-color: white;
+  width: 200px;
+  height: 400px;
+  position: absolute;
+  top:10px;
+  left:10px;
+  border-radius: 10px;
+}
+
+.middlecontainer {
+  background-color: white;
+  width: 450px;
+  height: 210px;
+  position: absolute;
+  top: 200px;
+  left: 220px;
+  border-radius: 10px;
 }
