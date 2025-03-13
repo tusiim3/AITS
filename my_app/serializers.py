@@ -6,5 +6,11 @@ class CustomUserSerializer(serializers.ModelSerializer):
         model = CustomUser
         fields = ['id', 'username', 'email', 'role', 'gender', 'year_of_study']
 
+class DepartmentSerializer(serializers.ModelSerializer): 
+    class Meta:
+        model = Department
+        fields = ['id', 'department_name', 'description']
+
+
 
 
