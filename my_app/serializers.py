@@ -11,6 +11,11 @@ class DepartmentSerializer(serializers.ModelSerializer):
         model = Department
         fields = ['id', 'department_name', 'description']
 
+class CourseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Course
+        fields = ['id', 'course_name', 'course_code']
+
 
 
 
