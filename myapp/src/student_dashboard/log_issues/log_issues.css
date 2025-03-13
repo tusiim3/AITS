@@ -47,7 +47,7 @@
   
   .profile-container {
     background-color: black;
-    width:200px;
+    width:21.2%;
     height:100px;
     border-radius: 10px;
     position: absolute;
@@ -57,32 +57,17 @@
   }
   
   .profile-image {
+    background-attachment: white;
     width: 50%;
     height: 50%
   }
   
   .leftcontainer {
     background-color: white;
-    width: 200px;
-    height: 400px;
+    width: 21.2%;
+    height: 100%;
     position: absolute;
     top:10px;
     left:10px;
     border-radius: 10px;
-  }
-  
-  .middlecontainer {
-    background-color: white;
-    width: 450px;
-    height: 240px;
-    position: absolute;
-    top: 170px;
-    left: 220px;
-    border-radius: 10px;
-  }
-
-  .customtext {
-    position: relative;
-    bottom: 120px;
-    left: 280px;
   }

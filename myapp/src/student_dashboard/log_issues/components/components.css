@@ -56,3 +56,25 @@ button {
     width: 20%;
 
 }
+
+.myform {
+    background-color: white;
+    border-radius: 10px;
+    width: 260px;
+    height: 100%;
+    position: absolute;
+    left: 740px;
+    
+    button {
+        padding: 5px 3px;
+        border-radius: 6px;
+        margin:10px;
+        border: none;
+        color: white;
+        cursor: pointer;
+        background-color: red;
+        width: 40%;
+        position: absolute;
+        bottom: 0px;
+    }
+}
