@@ -1,9 +1,58 @@
-h5 {
-    font-size: 10px;
+body {
+    background: rgb(236, 229, 229);
+    text-align: center;
 }
 
-.myoptions {
-    height: 20px;
-    width: 200px;
+.container {
+    background-color: white;
+    border-radius: 10px;
+    text-align: center;
+    width: 500px;
+    height: 350px;
+    position: absolute;
+    right:280px;
+    top: 90px;
+
+}
+
+label {
+    font-size: 15px;
+    display: block;
+    width: 30%;
+    text-align: left;
+    left: 50px;
+}
+
+input[type="radio"] {
+    display: inline;
+    width: 10%;
+}
+
+select {
+    display: block;
+    width: 95%;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    padding: 10px;
+    height: 2px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+textarea {
+    resize: none;
+    width: 95%;
+
+}
+
+button {
+    padding: 5px 3px;
+    border-radius: 6px;
+    margin:10px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    background-color: red;
+    width: 20%;
 
 }
