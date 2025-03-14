@@ -14,3 +14,7 @@ class DepartmentViewSet(viewsets.ModelViewSet):
 class CourseViewSet(viewsets.ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer  
+
+class IssuesViewSet(viewsets.ModelViewSet):
+    queryset = Issues.objects.all()
+    serializer_class = IssuesSerializer    
