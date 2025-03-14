@@ -5,7 +5,7 @@ body {
 
 .container {
     background-color: white;
-    border-radius: 10px;
+    border-radius: 3px;
     text-align: center;
     width: 500px;
     height: 350px;
@@ -36,7 +36,7 @@ select {
     padding: 10px;
     height: 2px;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 3px;
 }
 
 textarea {
@@ -47,7 +47,7 @@ textarea {
 
 button {
     padding: 5px 3px;
-    border-radius: 6px;
+    border-radius: 3px;
     margin:10px;
     border: none;
     color: white;
@@ -59,7 +59,7 @@ button {
 
 .myform {
     background-color: white;
-    border-radius: 10px;
+    border-radius: 3px;
     width: 260px;
     height: 100%;
     position: absolute;
@@ -67,7 +67,7 @@ button {
     
     button {
         padding: 5px 3px;
-        border-radius: 6px;
+        border-radius: 3px;
         margin:10px;
         border: none;
         color: white;

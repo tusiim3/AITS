@@ -1,0 +1,64 @@
+/* App.module.css */
+body {
+    display: flex;
+    height: 100%; /* Full viewport height */
+    padding: 20px;
+    background-color: #b0e2e6; 
+  }
+
+.left_component {
+  background-color: white;
+  width: 20%;
+  height: 100%;
+  position: absolute;
+  border-radius: 3px;
+  left: 1%;
+  top: 1%;
+
+button {
+  background-color: green;
+  border-radius: 5px;
+  position: relative;
+  display: block;
+  cursor: pointer;
+
+}
+.log_history {
+  position: absolute;
+  left: 1%;
+  top: 50%;
+}
+.log_status {
+  position: absolute;
+  left: 1%;
+
+}
+  
+.logout {
+  position: absolute;
+  right: 1%;
+  bottom: 1%;
+
+}
+}
+
+.log_status {
+  background-color: white;
+  width: 46%;
+  height: 80%;
+  position: absolute;
+  left: 22%;
+  top: 20%;
+  border-radius: 3px;
+}
+
+.log_history {
+  background-color: white;
+  width: 30%;
+  height: 100%;
+  position: absolute;
+  top:1%;
+  right:1%;
+  border-radius: 3px;
+}
+

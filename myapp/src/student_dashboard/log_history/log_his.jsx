@@ -1,13 +1,24 @@
 import React from 'react';
-import styles from './App.module.css'; 
-import Sidebar from './components/sidebar.jsx';
-import MainContent from './components/MainContent.jsx';
+import "./log_his.css";
+//import Sidebar from './components/sidebar.jsx';
+//import MainContent from './components/MainContent.jsx';
 
 function App() {
   return (
-    <div className={styles.appContainer}>
-      <Sidebar />
-      <MainContent />
+    <div>
+      <div className='left_component'>
+        
+        <button className='log_issue'>LOG ISSUE</button>
+        <button className='log_history'>LOG HISTORY</button>
+        
+        <img src="" className=''></img>
+        <button className='logout'>log out</button>
+      </div>
+      <div className='log_status'>
+      </div>
+      <div className='log_history'>
+
+      </div>
     </div>
   );
 }
