@@ -16,7 +16,7 @@ class CourseSerializer(serializers.ModelSerializer):
         model = Course
         fields = ['id', 'course_name', 'course_code']
 
-class IssuesSerializers(serializers.ModelSerializer):
+class IssuesSerializer(serializers.ModelSerializer):
     student = CustomUserSerializer(read_only=True)
     lecturer = CustomUserSerializer(read_only=True)
     academic_registrar = CustomUserSerializer(read_only=True)
