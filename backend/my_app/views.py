@@ -3,5 +3,6 @@ from rest_framework import viewsets
 from .models import CustomUser, Department, Course, Issues
 from .serializers import CustomUserSerializer, DepartmentSerializer, CourseSerializer, IssuesSerializer
 
-
-# Create your views here.
+class CustomUserViewSet(viewsets.ModelViewSet):
+    queryset = CustomUser.objects.all()
+    serializer_class = CustomUserSerializer
