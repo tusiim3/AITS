@@ -20,12 +20,12 @@ class IssuesSerializer(serializers.ModelSerializer):
     student = CustomUserSerializer(read_only=True)
     lecturer = CustomUserSerializer(read_only=True)
     academic_registrar = CustomUserSerializer(read_only=True)
-    Department = DepartmentSerializer(read_only=True)
+    department = DepartmentSerializer(read_only=True)
     course = CourseSerializer(read_only=True)
 
     class Meta:
         model = Issues
-        fields = ['id', 'student', 'Issue_type', 'department', 'course', 'description', 'status', 'created_at', 'lecturer', 'academic_registrar']
+        fields = ['id', 'student', 'issue_type', 'department', 'course', 'description', 'status', 'created_at', 'lecturer', 'academic_registrar']
 
 
 

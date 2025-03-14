@@ -63,7 +63,8 @@ class Issues(models.Model):
         Department, on_delete=models.PROTECT, related_name="department_issues"
     )
     course = models.ForeignKey(
-        Course, on_delete=models.PROTECT, related_name="course_issues"
+        Course, on_delete=models.PROTECT, related_name="course_issues",
+        null=True, blank=True
     )
     description = models.TextField()
     status = models.CharField(max_length=100, choices=STATUS_CHOICES, default='pending')
@@ -74,7 +75,8 @@ class Issues(models.Model):
     )
     academic_registrar = models.ForeignKey(
         CustomUser, on_delete=models.PROTECT, 
-        limit_choices_to={'role': 'registrar'}, related_name="registrar_issues"
+        limit_choices_to={'role': 'registrar'}, related_name="registrar_issues",
+        null = True , blank = True
     )
 
     def __str__(self):
