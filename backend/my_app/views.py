@@ -6,3 +6,5 @@ from .serializers import CustomUserSerializer, DepartmentSerializer, CourseSeria
 class CustomUserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
+
+    
