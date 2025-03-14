@@ -9,4 +9,8 @@ class CustomUserViewSet(viewsets.ModelViewSet):
 
 class DepartmentViewSet(viewsets.ModelViewSet):
     queryset = Department.objects.all()
-    serializer_class = DepartmentSerializer    
+    serializer_class = DepartmentSerializer  
+
+class CourseViewSet(viewsets.ModelViewSet):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer  
