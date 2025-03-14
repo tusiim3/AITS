@@ -9,9 +9,8 @@ const StudentApp = () => (
     <div className= "body">
         <Log/>
         <Myform/>
-        <div className = "leftcontainer"></div>
-        <div className = "profile-container">
-            <img src={logo} alt="User" className='profile-image' />
+        <div className = "leftcontainer">
+        <img src={logo} alt="User" className='profile-image' />
         </div>
        
     </div>

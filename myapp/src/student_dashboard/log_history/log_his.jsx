@@ -9,7 +9,7 @@ function App() {
       <div className='left_component'>
         
         <button className='log_issue'>LOG ISSUE</button>
-        <button className='log_history'>LOG HISTORY</button>
+        <button className='log_his'>LOG HISTORY</button>
         
         <img src="" className=''></img>
         <button className='logout'>log out</button>

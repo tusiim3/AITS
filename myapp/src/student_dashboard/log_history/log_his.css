@@ -15,31 +15,38 @@ body {
   left: 1%;
   top: 1%;
 
-button {
-  background-color: green;
-  border-radius: 5px;
-  position: relative;
-  display: block;
-  cursor: pointer;
+  button {
+    padding: 5px 10px;
+    font-size: 10px;
+    background-color: rgb(181, 235, 181);
+    border-radius: 3px;
+    border-color: #f3f8f4;
+    position: relative;
+    display: block;
+    cursor: pointer;
 
-}
-.log_history {
-  position: absolute;
-  left: 1%;
-  top: 50%;
-}
-.log_status {
-  position: absolute;
-  left: 1%;
+  }
+  .log_his {
+    position: absolute;
+    left: 1%;
+    top: 50%;
+    width: 90%;
+    
+  }
+  .log_issue {
+    position: absolute;
+    left: 1%;
+    top: 44%;
+    width: 90%;
 
-}
+  }
   
-.logout {
-  position: absolute;
-  right: 1%;
-  bottom: 1%;
+  .logout {
+    position: absolute;
+    right: 1%;
+    bottom: 1%;
 
-}
+  }
 }
 
 .log_status {
