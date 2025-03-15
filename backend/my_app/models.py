@@ -60,23 +60,25 @@ class Issues(models.Model):
     )
     issue_type = models.CharField(max_length=40, choices=ISSUE_CHOICES)
     department = models.ForeignKey(
-        Department, on_delete=models.PROTECT, related_name="department_issues"
+        Department, on_delete=models.PROTECT, related_name="department_issues",
+        null=True, blank=False
     )
     course = models.ForeignKey(
         Course, on_delete=models.PROTECT, related_name="course_issues",
-        null=True, blank=True
+        null=True, blank=False
     )
     description = models.TextField()
     status = models.CharField(max_length=100, choices=STATUS_CHOICES, default='pending')
     created_at = models.DateTimeField(auto_now_add=True)
     lecturer = models.ForeignKey(
         CustomUser, on_delete=models.PROTECT, 
-        limit_choices_to={'role': 'lecturer'}, related_name="lecturer_issues"
+        limit_choices_to={'role': 'lecturer'}, related_name="lecturer_issues",
+        null = True, blank = False
     )
     academic_registrar = models.ForeignKey(
         CustomUser, on_delete=models.PROTECT, 
         limit_choices_to={'role': 'registrar'}, related_name="registrar_issues",
-        null = True , blank = True
+        null = True , blank = False
     )
 
     def __str__(self):
