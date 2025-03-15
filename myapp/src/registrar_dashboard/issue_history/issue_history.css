@@ -70,5 +70,6 @@ body {
   bottom:0%;
   right:1%;
   border-radius: 3px;
+  overflow-y: auto;
 }
 
