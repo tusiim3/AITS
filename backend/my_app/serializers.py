@@ -17,12 +17,11 @@ class CourseSerializer(serializers.ModelSerializer):
         fields = ['id', 'course_name', 'course_code']
 
 class IssuesSerializer(serializers.ModelSerializer):
-    student = serializers.CharField(source='student.username', read_only=True)
-    lecturer = serializers.CharField(source='lecturer.username', read_only=True)
-    academic_registrar = serializers.CharField(source='academic_registrar.username', read_only=True)
-    department = serializers.CharField(source='department.department_name', read_only=True)
-    course = serializers.CharField(source='course.course_name', read_only=True)
-
+    student = CustomUserSerializer(read_only=True)  
+    lecturer = CustomUserSerializer(read_only=True)  
+    academic_registrar = CustomUserSerializer(read_only=True) 
+    department = DepartmentSerializer(read_only=True)
+    course = CourseSerializer(read_only=True)  
     class Meta:
         model = Issues
         fields = ['id', 'student', 'issue_type', 'department', 'course', 'description', 'status', 'created_at', 'lecturer', 'academic_registrar']
