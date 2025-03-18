@@ -26,7 +26,7 @@ class IssuesSerializer(serializers.ModelSerializer):
     course = CourseSerializer(read_only=True)  
     class Meta:
         model = Issues
-        fields = ['id', 'student', 'issue_type', 'department', 'course', 'description', 'status', 'created_at', 'lecturer', 'academic_registrar']
+        fields = ['id', 'student','issue_type', 'department', 'course', 'description', 'status', 'created_at', 'lecturer', 'academic_registrar']
 
 
     

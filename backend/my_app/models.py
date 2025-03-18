@@ -82,4 +82,4 @@ class Issues(models.Model):
     )
 
     def __str__(self):
-        return f"{self.issue_type} by {self.student.username} created at {self.created_at}"
+        return f"{self.issue_type} by {self.username} created at {self.created_at}"

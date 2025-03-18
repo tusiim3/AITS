@@ -3,6 +3,9 @@ from rest_framework import viewsets
 from .models import CustomUser, Department, Course, Issues
 from .serializers import CustomUserSerializer, DepartmentSerializer, CourseSerializer, IssuesSerializer
 from rest_framework.permissions import IsAuthenticated
+from.permissions import IslecturerOrRegistrar
+from rest_framework.permissions import IsAuthenticated
+
 
 class CustomUserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
@@ -22,4 +25,4 @@ class CourseViewSet(viewsets.ModelViewSet):
 class IssuesViewSet(viewsets.ModelViewSet):
     queryset = Issues.objects.all()
     serializer_class = IssuesSerializer    
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IslecturerOrRegistrar]
