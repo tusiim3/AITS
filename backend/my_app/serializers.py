@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from .models import CustomUser, Department, Course, Issues
+from django.contrib.auth.password_validation import validate_password
+
 
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -26,5 +28,7 @@ class IssuesSerializer(serializers.ModelSerializer):
         model = Issues
         fields = ['id', 'student', 'issue_type', 'department', 'course', 'description', 'status', 'created_at', 'lecturer', 'academic_registrar']
 
-
+class RegisterSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
+    passw
 
