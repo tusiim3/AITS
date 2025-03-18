@@ -28,7 +28,6 @@ class IssuesSerializer(serializers.ModelSerializer):
         model = Issues
         fields = ['id', 'student', 'issue_type', 'department', 'course', 'description', 'status', 'created_at', 'lecturer', 'academic_registrar']
 
-class RegisterSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
-    passw
+
+    
 
