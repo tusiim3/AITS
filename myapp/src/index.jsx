@@ -8,12 +8,13 @@ import Issue from "./registrar_dashboard/issue_history/issue_history.jsx"
 import Pending from './registrar_dashboard/pending_issues/pending.jsx';
 import Notif from './registrar_dashboard/notifications/notification.jsx';
 import Profile from './registrar_dashboard/profile/profile.jsx';
+import NotFoundPage from './notfoundpage.jsx';
 
 const router = createBrowserRouter([
   {
     path:'/',
     element:<AuthenticationForms />,
-    errorElement: <div>Error not found</div>
+    errorElement: <NotFoundPage />
   },
   {
     path:'/student',
