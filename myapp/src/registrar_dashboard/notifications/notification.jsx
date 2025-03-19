@@ -15,6 +15,7 @@ function Notif() {
         <button className='logout'>log out</button>
       </div>
       <div className='pending_issues'>
+        <h1>PENDING ISSUES</h1>
       </div>
     </div>
   );

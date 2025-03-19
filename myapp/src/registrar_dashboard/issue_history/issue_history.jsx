@@ -15,6 +15,7 @@ function Issue() {
         <button className='logout'>log out</button>
       </div>
       <div className='pending_issues'>
+        <h5>pending issues</h5>
       </div>
     </div>
   );
