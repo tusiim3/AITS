@@ -20,6 +20,7 @@ class CustomUser(AbstractUser):
         (4, '4th Year'),
         (5, '5th Year'),
     ]
+    student_number = models.CharField(max_length=10, unique=True, null = False, blank = False )
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='student')
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES, default='male')
     year_of_study = models.IntegerField(choices=YEAR_OF_STUDY_CHOICES, default=1)
@@ -82,4 +83,4 @@ class Issues(models.Model):
     )
 
     def __str__(self):
-        return f"{self.issue_type} by {self.username} created at {self.created_at}"
+        return f"{self.issue_type} by {self.student.username} created at {self.created_at}"
