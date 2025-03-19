@@ -1,9 +1,9 @@
 import React from "react";
-import "./components.css";
+import styles from "./components.module.css";
 
 function Myform() {
     return (
-        <div className="myform">
+        <div className={styles.myform}>
             {/* this one contains the results of the user input */}
             <button type="submit">submit form</button>
         </div>

@@ -1,9 +1,9 @@
 import React from 'react';
-import './components.css';
+import styles from './components.module.css';
 
 function Log() {
     return (
-        <div className='container'>
+        <div className={styles.container}>
             <form>
                 <label htmlFor='courseunit'>course unit</label>
                 <select name="courseunit" id="courseunit">

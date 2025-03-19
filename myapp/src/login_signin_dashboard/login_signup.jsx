@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from "axios";
-import './AuthenticationForms.css'; // Import the CSS file
+import styles from './AuthenticationForms.module.css'; // Import the CSS file
 import logo from "./logo/logo.png"
 
 const AuthenticationForms = () => {
@@ -40,9 +40,9 @@ const AuthenticationForms = () => {
   };
 
   return (
-    <div className="container">
-      <div className="form-container">
-        <img src={logo} alt="University Logo" className="logo" />
+    <div className={styles.container}>
+      <div className={styles.form_container}>
+        <img src={logo} alt="University Logo" className={styles.logo} />
         <h2>{isSignUp ? 'Sign Up' : 'Sign In'}</h2>
 
         <form onSubmit={handleSubmit}>
@@ -105,7 +105,7 @@ const AuthenticationForms = () => {
           <button type="submit">Enter</button>
         </form>
 
-        <div className="form-switch">
+        <div className={styles.form_switch}>
           {isSignUp ? (
             <>
               <p>Already have an account?</p>

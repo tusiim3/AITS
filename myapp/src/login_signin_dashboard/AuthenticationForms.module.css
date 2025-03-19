@@ -17,7 +17,7 @@ body {
     height: 100%;
   }
   
-  .form-container {
+  .form_container {
     background-color: #b0e2e6; /* Light Blue-Green */
     border-radius: 10px;
     padding: 30px;
@@ -76,15 +76,15 @@ body {
   }
   
   /* Form Switch Styles */
-  .form-switch {
+  .form_switch {
     margin-top: 20px;
   }
   
-  .form-switch p {
+  .form_switch p {
     margin-bottom: 5px;
   }
   
-  .form-switch button {
+  .form_switch button {
     background: none;
     border: none;
     color: #007bff;
@@ -92,7 +92,7 @@ body {
     font-size: 16px;
   }
   
-  .form-switch button:hover {
+  .form_switch button:hover {
     text-decoration: underline;
   }
   
