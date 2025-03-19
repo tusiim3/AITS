@@ -5,7 +5,7 @@ function Myform() {
     return (
         <div className={styles.myform}>
             {/* this one contains the results of the user input */}
-            <button type="submit">submit form</button>
+            <button type="submit" className={styles.mybutton}>submit form</button>
         </div>
     );
 }

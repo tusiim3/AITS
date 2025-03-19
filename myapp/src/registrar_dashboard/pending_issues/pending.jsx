@@ -1,20 +1,19 @@
 import React from 'react';
-import "./pending.css";
+import styles from "./pending.module.css";
 
 function Pending() {
   return (
     <div>
-      <div className='left_component'>
+     <div className={styles.left_component}>
+        <button className={styles.log_issue}>PENDING ISSUES</button>
+        <button className={styles.log_his}>ISSUE HISTORY</button>
+        <button className={styles.notification}>NOTIFICATION</button>
+        <button className={styles.profile}>PROFILE</button>
         
-        <button className='log_issue'>PENDING ISSUES</button>
-        <button className='log_his'>ISSUE HISTORY</button>
-        <button className='notification'>NOTIFICATION</button>
-        <button className='profile'>PROFILE</button>
-        
-        <img src="" className=''></img>
-        <button className='logout'>log out</button>
+        <img src=""></img>
+        <button className={styles.logout}>log out</button>
       </div>
-      <div className='pending_issues'>
+      <div className={styles.pending_issues}>
       </div>
     </div>
   );

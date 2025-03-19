@@ -8,11 +8,11 @@ function App() {
     <div>
       <div className={styles.left_component}>
         
-        <button className='log_issue'>LOG ISSUE</button>
-        <button className='log_his'>LOG HISTORY</button>
+        <button className={styles.log_issue}>LOG ISSUE</button>
+        <button className={styles.log_his}>LOG HISTORY</button>
         
         <img src="" className=''></img>
-        <button className='logout'>log out</button>
+        <button className={styles.logout}>log out</button>
       </div>
       <div className={styles.log_status}>
       </div>

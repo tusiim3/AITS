@@ -1,20 +1,18 @@
 import React from 'react';
-import "./profile.css";
+import styles from "./profile.module.css";
 
 function Profile() {
   return (
     <div>
-      <div className='left_component'>
-        
-        <button className='log_issue'>PENDING ISSUES</button>
-        <button className='log_his'>ISSUE HISTORY</button>
-        <button className='notification'>NOTIFICATION</button>
-        <button className='profile'>PROFILE</button>
+      <div className={styles.left_component}>
+              
+        <button className={styles.log_issue}>PENDING ISSUES</button>
+        <button className={styles.log_his}>ISSUE HISTORY</button>
+        <button className={styles.notification}>NOTIFICATION</button>
+        <button className={styles.profile}>PROFILE</button>
         
         <img src="" className=''></img>
-        <button className='logout'>log out</button>
-      </div>
-      <div className='pending_issues'>
+        <button className={styles.logout}>log out</button>
       </div>
     </div>
   );

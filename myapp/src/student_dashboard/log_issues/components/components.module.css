@@ -1,4 +1,4 @@
-body {
+.body {
     background: rgb(236, 229, 229);
     text-align: center;
 }
@@ -7,15 +7,15 @@ body {
     background-color: white;
     border-radius: 3px;
     text-align: center;
-    width: 500px;
-    height: 350px;
+    width: 49%;
+    height: 100%;
     position: absolute;
     right:280px;
-    top: 90px;
+    
 
 }
 
-label {
+.label {
     font-size: 15px;
     display: block;
     width: 30%;
@@ -23,29 +23,29 @@ label {
     left: 50px;
 }
 
-input[type="radio"] {
+.input[type="radio"] {
     display: inline;
     width: 10%;
 }
 
-select {
+.select {
     display: block;
     width: 95%;
     margin-bottom: 5px;
     margin-left: 5px;
     padding: 10px;
-    height: 2px;
+    height: 40px;
     border: 1px solid #ddd;
     border-radius: 3px;
 }
 
-textarea {
+.textarea {
     resize: none;
     width: 95%;
 
 }
 
-button {
+.button {
     padding: 5px 3px;
     border-radius: 3px;
     margin:10px;
@@ -65,7 +65,7 @@ button {
     position: absolute;
     left: 740px;
     
-    button {
+    .mybutton {
         padding: 5px 3px;
         border-radius: 3px;
         margin:10px;
@@ -78,3 +78,4 @@ button {
         bottom: 0px;
     }
 }
+

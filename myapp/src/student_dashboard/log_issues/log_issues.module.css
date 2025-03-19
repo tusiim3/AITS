@@ -1,0 +1,59 @@
+.body {
+    background-color: #b0e2e6;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+  }
+
+
+.profile_image {
+  background-attachment: white;
+  width: 40%;
+  height: 20%;
+  border-radius: 3px;
+  position: absolute;
+  left: 30%;
+}
+
+.left_container {
+  background-color: white;
+  width: 21.2%;
+  height: 100%;
+  position: absolute;
+  left:10px;
+  border-radius: 3px;
+
+  button {
+    padding: 5px 10px;
+    font-size: 10px;
+    background-color: rgb(181, 235, 181);
+    border-radius: 3px;
+    border-color: #f3f8f4;
+    position: relative;
+    display: block;
+    cursor: pointer;
+
+  }
+  .log_his {
+    position: absolute;
+    left: 1%;
+    top: 50%;
+    width: 90%;
+    
+  }
+  .log_issue {
+    position: absolute;
+    left: 1%;
+    top: 44%;
+    width: 90%;
+
+  }
+
+  .logout {
+    position: absolute;
+    right: 1%;
+    bottom: 1%;
+
+  }
+}
