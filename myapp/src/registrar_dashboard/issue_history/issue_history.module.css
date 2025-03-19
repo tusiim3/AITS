@@ -1,5 +1,5 @@
 /* App.module.css */
-body {
+.body {
     display: flex;
     height: 100%; /* Full viewport height */
     padding: 20px;

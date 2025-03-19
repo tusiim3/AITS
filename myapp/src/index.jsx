@@ -12,7 +12,8 @@ import Profile from './registrar_dashboard/profile/profile.jsx';
 const router = createBrowserRouter([
   {
     path:'/',
-    element:<AuthenticationForms />
+    element:<AuthenticationForms />,
+    errorElement: <div>Error not found</div>
   },
   {
     path:'/student',
@@ -33,7 +34,7 @@ const router = createBrowserRouter([
   }
   ,
   {
-    path:'/registrar/',
+    path:'/registrar/pending',
     element: <Pending />
   }
   ,
