@@ -6,7 +6,7 @@ from django.contrib.auth.password_validation import validate_password
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['id', 'username', 'email', 'role', 'gender', 'year_of_study']
+        fields = ['id', 'username', 'student_number', 'email', 'role', 'gender', 'year_of_study']
 
 class DepartmentSerializer(serializers.ModelSerializer): 
     class Meta:
