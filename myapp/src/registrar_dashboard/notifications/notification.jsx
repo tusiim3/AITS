@@ -3,7 +3,7 @@ import styles from "./notification.module.css";
 
 function Notif() {
   return (
-    <div>
+    <div className={styles.body}>
       <div className={styles.left_component}>
         
         <button className={styles.log_issue}>PENDING ISSUES</button>

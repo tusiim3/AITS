@@ -5,7 +5,7 @@ import styles from "./log_his.module.css";
 
 function App() {
   return (
-    <div>
+    <div className={styles.body}>
       <div className={styles.left_component}>
         
         <button className={styles.log_issue}>LOG ISSUE</button>
@@ -14,11 +14,8 @@ function App() {
         <img src="" className=''></img>
         <button className={styles.logout}>log out</button>
       </div>
-      <div className={styles.log_status}>
-      </div>
-      <div className={styles.log_history}>
-
-      </div>
+      <div className={styles.log_status}></div>
+      <div className={styles.log_history}></div>
     </div>
   );
 }

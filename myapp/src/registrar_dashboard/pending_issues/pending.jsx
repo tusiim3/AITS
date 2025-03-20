@@ -3,7 +3,7 @@ import styles from "./pending.module.css";
 
 function Pending() {
   return (
-    <div>
+    <div className={styles.body}>
      <div className={styles.left_component}>
         <button className={styles.log_issue}>PENDING ISSUES</button>
         <button className={styles.log_his}>ISSUE HISTORY</button>

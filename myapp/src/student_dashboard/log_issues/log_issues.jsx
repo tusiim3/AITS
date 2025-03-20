@@ -4,12 +4,10 @@ import styles from './log_issues.module.css';
 import logo from "./logo/logo.png"
 import martha from "../logo/martha.jpg"
 import Log from "./components/select_log.jsx"
-import Myform from "./components/issue_form.jsx"
 
 const StudentApp = () => (
     <div className= {styles.body}>
         <Log/>
-        <Myform/>
         <div className = {styles.left_container}>
             <button className={styles.log_issue}>LOG ISSUE</button>
             <button className={styles.log_his}>LOG HISTORY</button>

@@ -1,7 +1,8 @@
 /* App.module.css */
 .body {
     display: flex;
-    height: 100%; /* Full viewport height */
+    height: 100vh;
+    width: 100vw; /* Full viewport height */
     padding: 20px;
     background-color: #b0e2e6; 
   }

@@ -3,7 +3,7 @@ import classes from "./issue_history.module.css";
 
 function Issue() {
   return (
-    <div>
+    <div className={classes.body}>
       <div className={classes.left_component}>
         
         <button className={classes.log_issue}>PENDING ISSUES</button>

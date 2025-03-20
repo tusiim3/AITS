@@ -40,85 +40,87 @@ const AuthenticationForms = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.form_container}>
-        <img src={logo} alt="University Logo" className={styles.logo} />
-        <h2>{isSignUp ? 'Sign Up' : 'Sign In'}</h2>
+    <div className={styles.body}>
+      <div className={styles.container}>
+        <div className={styles.form_container}>
+          <img src={logo} alt="University Logo" className={styles.logo} />
+          <h2>{isSignUp ? 'Sign Up' : 'Sign In'}</h2>
 
-        <form onSubmit={handleSubmit}>
-          {isSignUp && (
-            <>
+          <form onSubmit={handleSubmit}>
+            {isSignUp && (
+              <>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                />
+              </>
+            )}
+
+            <select
+              name="numberType"
+              value={formData.numberType}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select Number Type</option>
+              <option value="student">Student Number</option>
+              <option value="lecturer">Lecturer Number</option>
+              <option value="registrar">Registrar Number</option>
+            </select>
+
+            {formData.numberType && (
               <input
                 type="text"
-                name="name"
-                placeholder="Name"
-                value={formData.name}
+                name="personalNumber"
+                placeholder={`Enter ${formData.numberType.charAt(0).toUpperCase() + formData.numberType.slice(1)} Number`}
+                value={formData.personalNumber}
                 onChange={handleChange}
                 required
               />
-            </>
-          )}
+            )}
 
-          <select
-            name="numberType"
-            value={formData.numberType}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Select Number Type</option>
-            <option value="student">Student Number</option>
-            <option value="lecturer">Lecturer Number</option>
-            <option value="registrar">Registrar Number</option>
-          </select>
-
-          {formData.numberType && (
-            <input
-              type="text"
-              name="personalNumber"
-              placeholder={`Enter ${formData.numberType.charAt(0).toUpperCase() + formData.numberType.slice(1)} Number`}
-              value={formData.personalNumber}
-              onChange={handleChange}
-              required
-            />
-          )}
-
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-
-          {isSignUp && (
             <input
               type="password"
-              name="confirmPassword"
-              placeholder="Confirm Password"
-              value={formData.confirmPassword}
+              name="password"
+              placeholder="Password"
+              value={formData.password}
               onChange={handleChange}
               required
             />
-          )}
 
-          <button type="submit">Enter</button>
-        </form>
+            {isSignUp && (
+              <input
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirm Password"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                required
+              />
+            )}
 
-        <div className={styles.form_switch}>
-          {isSignUp ? (
-            <>
-              <p>Already have an account?</p>
-              <button type="button" onClick={toggleForm}>Sign In</button>
-            </>
-          ) : (
-            <>
-              <p>Don't have an account?</p>
-              <button type="button" onClick={toggleForm}>Sign Up</button>
-            </>
-          )}
+            <button type="submit">Enter</button>
+          </form>
+
+          <div className={styles.form_switch}>
+            {isSignUp ? (
+              <>
+                <p>Already have an account?</p>
+                <button type="button" onClick={toggleForm}>Sign In</button>
+              </>
+            ) : (
+              <>
+                <p>Don't have an account?</p>
+                <button type="button" onClick={toggleForm}>Sign Up</button>
+              </>
+            )}
+          </div>
+          {!isSignUp && <a href="#">Forgot Password?</a>}
         </div>
-        {!isSignUp && <a href="#">Forgot Password?</a>}
       </div>
     </div>
   );
