@@ -1,5 +1,5 @@
 /* General Styles */
-.body {
+/*.body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     display: flex;
@@ -7,7 +7,7 @@
     align-items: center;
     height: 120vh;
     margin: 0;
-  }
+  }*/
   
   .container {
     display: flex;
@@ -107,4 +107,5 @@
   a:hover {
     text-decoration: underline;
   }
+  
   

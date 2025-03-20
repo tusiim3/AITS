@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './components.module.css';
+import styles from './log_issues.module.css';
 
 function Log() {
     const [select1Value, setSelect1Value] = useState("");
@@ -83,4 +83,4 @@ function Log() {
     );
 }
 
-export default Log
+export default Log;
