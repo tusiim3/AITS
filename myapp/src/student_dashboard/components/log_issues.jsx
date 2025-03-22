@@ -34,6 +34,14 @@ function Log() {
         });
     };
 
+    const handleFormSubmit = (event) => {
+        {/*the values of this event are in variables select1value, select2value
+            select3value, textareaValue. this is the data we need to send to both the lecturer
+            and registrar and the history form of the student through the api
+            the complaints should be stored as a json
+            */}
+    }
+
     return (
         <div>
             <div className={styles.container}>
@@ -70,14 +78,16 @@ function Log() {
                 </form>
             </div>
             <div className={styles.myform}>
-                <h5>issue form</h5>
-                <div className={styles.issue}>
-                    <p>COURSE UNIT:{displayValue.select1}</p>
-                    <p>COMPLAINT:{displayValue.select2}</p>
-                    <p>TYPE:{displayValue.select3}</p>
-                    <p>CUSTOM COMPLAINT:{displayValue.text}</p>
-                </div>
-                <button className={styles.rsubmit_buttons}>submit form</button>
+                <form onSubmit={handleFormSubmit}>
+                    <h5>issue form</h5>
+                    <div className={styles.issue}>
+                        <p>COURSE UNIT:{displayValue.select1}</p>
+                        <p>COMPLAINT:{displayValue.select2}</p>
+                        <p>TYPE:{displayValue.select3}</p>
+                        <p>CUSTOM COMPLAINT:{displayValue.text}</p>
+                    </div>
+                    <button className={styles.rsubmit_buttons}>submit form</button>
+                </form>
             </div>
         </div>
     );
