@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from "axios";
-import styles from './AuthenticationForms.module.css'; // Import the CSS file
+import styles from './AuthenticationForms.module.css';
 import logo from "./logo/logo.png"
 
 const AuthenticationForms = () => {
@@ -24,7 +24,6 @@ const AuthenticationForms = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
     console.log(formData);
   };
 
@@ -65,6 +64,7 @@ const AuthenticationForms = () => {
               value={formData.numberType}
               onChange={handleChange}
               required
+              className={styles.select}
             >
               <option value="">Select Number Type</option>
               <option value="student">Student Number</option>
@@ -103,7 +103,7 @@ const AuthenticationForms = () => {
               />
             )}
 
-            <button type="submit">Enter</button>
+            <button className={styles.lbutton} type="submit">Enter</button>
           </form>
 
           <div className={styles.form_switch}>

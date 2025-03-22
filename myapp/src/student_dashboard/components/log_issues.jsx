@@ -40,44 +40,44 @@ function Log() {
                 <form onSubmit={handleSubmit}>
                     <label htmlFor='courseunit' className={styles.label}>course unit</label>
                     <select value={select1Value} onChange={handleSelect1Change} name="courseunit" id="courseunit" className={styles.select}>
-                        <option value="ist1204">Ist1204</option>
-                        <option value="csc1201">Csc1201</option>
-                        <option value="csc1204">Csc1204</option>
-                        <option value="csc1200">Csc1200</option>
-                        <option value="csc1202">Csc1202</option>
+                        <option className={styles.myoption} value="ist1204">Ist1204</option>
+                        <option className={styles.myoption} value="csc1201">Csc1201</option>
+                        <option className={styles.myoption} value="csc1204">Csc1204</option>
+                        <option className={styles.myoption} value="csc1200">Csc1200</option>
+                        <option className={styles.myoption} value="csc1202">Csc1202</option>
                     </select>
 
                     <label htmlFor='complaint' className={styles.label}>complaint</label>
                     <select value={select2Value} onChange={handleSelect2Change} name="complaint" id="complaint" className={styles.select}>
-                        <option value="missing_marks">missing marks</option>
-                        <option value="incorrect_marks">incorrect marks</option>
-                        <option value="remarking">remarking</option>
+                        <option className={styles.myoption} value="missing_marks">missing marks</option>
+                        <option className={styles.myoption} value="incorrect_marks">incorrect marks</option>
+                        <option className={styles.myoption} value="remarking">remarking</option>
                     </select>
 
                     <label htmlFor='type' className={styles.label}>type</label>
                     <select value={select3Value} onChange={handleSelect3Change} name="type" id="type" className={styles.select}>
-                        <option value="test">test</option>
-                        <option value="coursework">course work</option>
-                        <option value="finals">final exam</option>
+                        <option className={styles.myoption} value="test">test</option>
+                        <option className={styles.myoption} value="coursework">course work</option>
+                        <option className={styles.myoption} value="finals">final exam</option>
 
                     </select>
 
                     <label htmlFor='customcomplaint' className={styles.label}>custom complaint</label>
                     <textarea value={textareaValue} onChange={handleTextareaChange} name="customcomplaint" id="customcomplaint" cols="30" rows="10" className={styles.textarea}></textarea>
 
-                    <button className={styles.button}>clear</button>
-                    <button type="submit" className={styles.button}>Submit</button>
+                    <button className={styles.lclear_button}>clear</button>
+                    <button type="submit" className={styles.lsubmit_button}>Submit</button>
                 </form>
             </div>
             <div className={styles.myform}>
                 <h5>issue form</h5>
-                <div>
+                <div className={styles.issue}>
                     <p>COURSE UNIT:{displayValue.select1}</p>
                     <p>COMPLAINT:{displayValue.select2}</p>
                     <p>TYPE:{displayValue.select3}</p>
                     <p>CUSTOM COMPLAINT:{displayValue.text}</p>
                 </div>
-                <button type="submit" className={styles.mybutton}>submit form</button>
+                <button className={styles.rsubmit_buttons}>submit form</button>
             </div>
         </div>
     );

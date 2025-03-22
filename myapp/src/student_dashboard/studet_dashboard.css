@@ -1,0 +1,28 @@
+.left_container {
+    background-color: white;
+    border-radius: 3px;
+    width: 20vw;
+    height: 100vh;
+    position: absolute;
+    top: 1%;
+    
+}
+
+.right_container {
+    position: absolute;
+    top: 1%;
+    left: 22%;
+    width: 75vw;
+    height: 100vh;
+    border-radius: 3px;
+}
+
+.mybuttons {
+    margin-bottom: 10px;
+    width: 100%;
+    position: relative;
+    top:30% ;
+    background-color: white;
+    border-radius: 3px;
+    border-color: rgb(255, 255, 255)
+}

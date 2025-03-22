@@ -20,15 +20,14 @@ function Student() {
   );
 
   return (
-    <div style={{ display: 'flex' }}>
-      {/* Sidebar with buttons */}
-      <div style={{ marginRight: '20px' }}>
-        <button onClick={() => setCurrentView('logForm')}>Log Issue</button>
-        <button onClick={() => setCurrentView('logHistory')}>Log History</button>
+    <div>
+      <div className='left_container'>
+        <img src=''></img>
+        <button className='mybuttons' onClick={() => setCurrentView('logForm')}>Log Issue</button>
+        <button className='mybuttons' onClick={() => setCurrentView('logHistory')}>Log History</button>
       </div>
 
-      {/* Main content area */}
-      <div style={{ flex: 1 }}>
+      <div className='right_container'>
         {currentView === 'logForm' && <LogForm />}
         {currentView === 'logHistory' && <LogHistory />}
       </div>
