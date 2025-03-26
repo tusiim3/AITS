@@ -5,7 +5,7 @@ from .serializers import CustomUserSerializer, DepartmentSerializer, CourseSeria
 from rest_framework.permissions import IsAuthenticated
 from.permissions import IslecturerOrRegistrar
 from rest_framework.permissions import IsAuthenticated, AllowAny
-from rest_framework.generics import APIView
+from rest_framework.views import APIView
 from rest_framework.response import Response
 
 class RegisterView(APIView):

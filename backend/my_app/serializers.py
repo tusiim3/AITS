@@ -1,7 +1,6 @@
 from rest_framework import serializers
-from .models import CustomUser, Department, Course, Issues
+from my_app.models import CustomUser, Department, Course, Issues
 from django.contrib.auth.password_validation import validate_password
-
 
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
@@ -21,6 +20,8 @@ class RegisterSerializer(serializers.ModelSerializer):
         validated_data.pop('password2')
         user = CustomUser.objects.create_user(**validated_data)
         return user
+                                       
+
         
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:

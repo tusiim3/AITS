@@ -20,6 +20,7 @@ class CustomUser(AbstractUser):
         (4, '4th Year'),
         (5, '5th Year'),
     ]
+    email = models.EmailField(unique=True)
     student_number = models.CharField(max_length=10, unique=True, null = False, blank = False )
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='student')
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES, default='male')
