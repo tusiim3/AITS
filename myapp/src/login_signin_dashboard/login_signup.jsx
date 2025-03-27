@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import axios from "axios";
 import styles from './AuthenticationForms.module.css';
-import logo from "./logo/logo.png"
+import logo from "./logo/logo.png";
+import { useNavigate } from 'react-router-dom';
 
 const AuthenticationForms = () => {
   const [isSignUp, setIsSignUp] = useState(true);
 
   const [formData, setFormData] = useState({
-    name: '',
-    numberType: '',
-    personalNumber: '',
+    username: '',
+    number_type: '', 
+    personal_number: '',
     password: '',
     confirmPassword: '',
   });
@@ -22,17 +23,57 @@ const AuthenticationForms = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    
+    if (isSignUp && formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    const requestPayload = {
+      username: formData.username,
+      number_type: formData.number_type,
+      personal_number: formData.personal_number,
+      password: formData.password,
+      password2: formData.confirmPassword
+    };
+
+    try {
+      const response = await axios.post("http://127.0.0.1:8000/api/register/", requestPayload, {
+        headers: {
+          "Content-Type":"application/json",
+        },
+      });
+
+      if (response.status === 200) {
+        alert("Registration successful!");
+
+        // Redirect based on the number_type
+        if (formData.number_type === 'student') {
+          navigate('/student');
+        } else if (formData.number_type === 'lecturer') {
+          navigate('/lecturer');
+        } else if (formData.number_type === 'registrar') {
+          navigate('/registrar');
+        } else {
+          navigate('/');  // Default route if no match
+        }
+      }
+    } catch (error) {
+      console.error("Error during registration", error);
+      alert("Registration failed. Please try again.");
+    }
   };
 
   const toggleForm = () => {
     setIsSignUp(!isSignUp);
     setFormData({
-      name: '',
-      numberType: '',
-      personalNumber: '',
+      username: '',
+      number_type: '',  // Reset the state here
+      personal_number: '',  // Reset the state here
       password: '',
       confirmPassword: '',
     });
@@ -50,9 +91,9 @@ const AuthenticationForms = () => {
               <>
                 <input
                   type="text"
-                  name="name"
+                  name="username"
                   placeholder="Name"
-                  value={formData.name}
+                  value={formData.username}
                   onChange={handleChange}
                   required
                 />
@@ -60,8 +101,8 @@ const AuthenticationForms = () => {
             )}
 
             <select
-              name="numberType"
-              value={formData.numberType}
+              name="number_type"  // Ensure this matches the state (number_type)
+              value={formData.number_type}  // Ensure this matches the state
               onChange={handleChange}
               required
               className={styles.select}
@@ -72,12 +113,12 @@ const AuthenticationForms = () => {
               <option value="registrar">Registrar Number</option>
             </select>
 
-            {formData.numberType && (
+            {formData.number_type && (
               <input
                 type="text"
-                name="personalNumber"
-                placeholder={`Enter ${formData.numberType.charAt(0).toUpperCase() + formData.numberType.slice(1)} Number`}
-                value={formData.personalNumber}
+                name="personal_number"
+                placeholder={`Enter ${formData.number_type.charAt(0).toUpperCase() + formData.number_type.slice(1)} Number`}
+                value={formData.personal_number}
                 onChange={handleChange}
                 required
               />
@@ -127,4 +168,3 @@ const AuthenticationForms = () => {
 };
 
 export default AuthenticationForms;
-
