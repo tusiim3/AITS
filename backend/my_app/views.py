@@ -3,7 +3,6 @@ from rest_framework import viewsets, status
 from .models import CustomUser, Department, Course, Issues
 from .serializers import CustomUserSerializer, DepartmentSerializer, CourseSerializer, IssuesSerializer ,RegisterSerializer
 from .permissions import IsOwnerOrIslecturerOrRegistrar
-from.permissions import IslecturerOrRegistrar
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.views import APIView
 from rest_framework.response import Response
