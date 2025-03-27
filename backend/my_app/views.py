@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework import viewsets, status
 from .models import CustomUser, Department, Course, Issues
 from .serializers import CustomUserSerializer, DepartmentSerializer, CourseSerializer, IssuesSerializer ,RegisterSerializer
-from rest_framework.permissions import IsAuthenticated
+from .permissions import IsOwnerOrIslecturerOrRegistrar
 from.permissions import IslecturerOrRegistrar
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.views import APIView
@@ -50,4 +50,6 @@ class CourseViewSet(viewsets.ModelViewSet):
 class IssuesViewSet(viewsets.ModelViewSet):
     queryset = Issues.objects.all()
     serializer_class = IssuesSerializer    
-    permission_classes = [IsAuthenticated, IslecturerOrRegistrar]
+    permission_classes = [IsAuthenticated, IsOwnerOrIslecturerOrRegistrar]
+
+    
