@@ -1,5 +1,10 @@
 from rest_framework.permissions import BasePermission
 
-class IslecturerOrRegistrar(BasePermission):
-    def has_permission(self, request, view):
-        return request.user.role in ['lecturer','registrar']
+class IsOwnerOrIslecturerOrRegistrar(BasePermission):
+    def has_object_permission(self, request, view, obj):
+        if request.user.role in ['lecturer','registrar']:
+            return True
+        if request.user.role == 'student':
+            return obj.student == request.user
+        return False
+    
