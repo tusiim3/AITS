@@ -45,14 +45,19 @@ class LoginSerializer(serializers.Serializer):
 
     def validate(self, data):
         number_type = data.get('number_type')
-        number = data.get("number")
+        number_value = data.get("number")
         password = data.get("password")
 
-    if not number or not password:
-        raise serializers.ValidationError("Both number and password are required")
+        user = CustomUser.objects.filter(**{number_type: number_value}).first()
+
+        if not user:
+            raise serializers.ValidationError("Invalid credentials")
+
+        if not user.check_password(password):
+            raise serializers.ValidationError("Invalid credentials")
         
-
-
+        data["user"] = user
+        return data
         
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
