@@ -14,6 +14,23 @@ class RegisterSerializer(serializers.ModelSerializer):
     def validate(self, data):
         if data['password'] != data['password2']:
             raise serializers.ValidationError({"password": "Passwords do not match"})
+        prefix_map = {
+            "student_number": "24",
+            "lecturer_number": "30",
+            "registrar_number": "40",
+        }
+
+        number_type = data.get("number_type")
+        number_field = number_type
+        number_value = data.get(number_field)
+
+        if number_value:
+            expected_prefix = prefix_map.get(number_type)
+            if not number_value.startswith(expected_prefix):
+                raise serializers.ValidationError(
+                    {number_type: f"{number_type.replace('_', ' ').title()} must start with '{expected_prefix}'"}
+                )
+
         return data
     
     def create(self, validated_data):

@@ -52,6 +52,10 @@ class CustomUser(AbstractUser):
                     f"{self.number_type} must start with {expected_prefix}"
                 )
         super().clean()
+
+    def save(self, *args, **kwargs):
+        self.clean()  
+        super().save(*args, **kwargs)
         
 
     def __str__(self):
