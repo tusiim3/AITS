@@ -20,7 +20,21 @@ class RegisterSerializer(serializers.ModelSerializer):
         validated_data.pop('password2')
         user = CustomUser.objects.create_user(**validated_data)
         return user
-                                       
+
+class LoginSerializer(serializers.Serializer):
+    number_type = serializers.ChoiceField(choices=CustomUser.NUMBER_TYPE_CHOICES)
+    number = serializers.CharField(max_length=10)
+    password = serializers.CharField(write_only=True)
+
+    def validate(self, data):
+        number_type = data.get('number_type')
+        number = data.get("number")
+        password = data.get("password")
+
+    if not number or not password:
+        raise serializers.ValidationError("Both number and password are required")
+        
+
 
         
 class CustomUserSerializer(serializers.ModelSerializer):

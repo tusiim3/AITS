@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.core.exceptions import ValidationError
 
 class CustomUser(AbstractUser):
     ROLE_CHOICES = [
@@ -27,10 +28,31 @@ class CustomUser(AbstractUser):
     ]
     email = models.EmailField(unique=True)
     number_type = models.CharField(max_length=20, choices = NUMBER_TYPE_CHOICES, default='student_number')
-    student_number = models.CharField(max_length=10, unique=True, null = False, blank = False )
+    student_number = models.CharField(max_length=10, unique=True, null = True, blank = False )
+    Lecturer_number = models.CharField(max_length=10, unique=True, null=True, blank=False)
+    Registrar_number = models.CharField(max_length=10, unique=True, null=True, blank=False)
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='student')
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES, default='male')
     year_of_study = models.IntegerField(choices=YEAR_OF_STUDY_CHOICES, default=1)
+
+    def clean(self):
+        prefix_map = {
+            "student_number": "24",
+            "Lecturer_number": "30",
+            "registrar_number": "40",
+        }
+
+        number_field = f"{self.number_type}"
+        number_value = getattr(self, number_field)
+
+        if number_value:
+            expected_prefix = prefix_map.get(self.number_type)
+            if not number_value.startswith(expected_prefix):
+                raise ValidationError(
+                    f"{self.number_type} must start with {expected_prefix}"
+                )
+        super().clean()
+        
 
     def __str__(self):
         return f"{self.username} ({self.get_role_display()})"
