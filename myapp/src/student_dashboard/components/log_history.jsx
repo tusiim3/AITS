@@ -1,20 +1,34 @@
 import React from "react";
+import style from './log_his.module.css';
+import { useState, useEffect } from "react";
 
 
+export default function Pend() {
+    const [complaints, setComplaints] = useState([]);
 
-const His = ({ complaints }) => (
-    <div>
-        <h2>Complaint History</h2>
-        {/*}
-        {complaints.map(complaint => (
-        <div key={complaint.id}>
-            <p>{complaint.content}</p>
-            <StatusIndicator status={complaint.status} />
-            <small>{new Date(complaint.created_at).toLocaleDateString()}</small>
+    const fetchComplaints = async () => {
+        try {
+            const response = await fetch("#");
+            const data = await response.json();
+            setComplaints(data);
+        } catch (error) {
+            console.error("error fetching data:", error);
+        }
+    };
+
+    useEffect(() => {
+        fetchComplaints();
+    }, []);
+
+    return(
+        <div className={style.container}>
+            <p>Course Unit: {complaints.coursenit}</p>
+            <p>Complaint type: {complaints.complaint_type}</p>
+            <p>Complaint: {complaints.complaint}</p>
+            <p>Lecturer: {complaints.lecturer}</p>
+            <div>
+                status
+            </div>
         </div>
-        ))}
-        */}
-    </div>
     );
-
-export default His;
+}
