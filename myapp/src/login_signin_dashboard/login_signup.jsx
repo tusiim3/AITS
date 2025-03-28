@@ -11,6 +11,7 @@ const AuthenticationForms = () => {
     username: '',
     number_type: '', 
     personal_number: '',
+    email: '',
     password: '',
     confirmPassword: '',
   });
@@ -37,6 +38,7 @@ const AuthenticationForms = () => {
       username: formData.username,
       number_type: formData.number_type,
       personal_number: formData.personal_number,
+      email: formData.email,
       password: formData.password,
       password2: formData.confirmPassword
     };
@@ -49,7 +51,7 @@ const AuthenticationForms = () => {
       });
 
       if (response.status === 200) {
-        alert("Registration successful!");
+        
 
         // Redirect based on the number_type
         if (formData.number_type === 'student') {
@@ -61,6 +63,8 @@ const AuthenticationForms = () => {
         } else {
           navigate('/');  // Default route if no match
         }
+
+        alert("Registration successful!");
       }
     } catch (error) {
       console.error("Error during registration", error);
@@ -72,8 +76,9 @@ const AuthenticationForms = () => {
     setIsSignUp(!isSignUp);
     setFormData({
       username: '',
-      number_type: '',  // Reset the state here
-      personal_number: '',  // Reset the state here
+      number_type: '',  
+      personal_number: '',
+      emial: '',
       password: '',
       confirmPassword: '',
     });
@@ -123,6 +128,17 @@ const AuthenticationForms = () => {
                 required
               />
             )}
+            {isSignUp && (
+              <input
+                type="email"
+                name="email"
+                placeholder='email'
+                value={formData.emial}
+                onChange={handleChange}
+                required
+              />
+
+            )}
 
             <input
               type="password"
@@ -143,6 +159,7 @@ const AuthenticationForms = () => {
                 required
               />
             )}
+
 
             <button className={styles.lbutton} type="submit">Enter</button>
           </form>
