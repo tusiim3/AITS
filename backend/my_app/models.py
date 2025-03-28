@@ -15,8 +15,8 @@ class CustomUser(AbstractUser):
     ]
     NUMBER_TYPE_CHOICES = [
         ('student_number', 'Student Number'),
-        ('Lecturer_number', 'Lecturer Number'),
-        ('Registrar_number', 'Registrar Number'),
+        ('lecturer_number', 'Lecturer Number'),
+        ('registrar_number', 'Registrar Number'),
     ]
 
     YEAR_OF_STUDY_CHOICES = [
@@ -27,8 +27,8 @@ class CustomUser(AbstractUser):
         (5, '5th Year'),
     ]
     email = models.EmailField(unique=True)
-    Number_type = models.CharField(max_length=20, choices = NUMBER_TYPE_CHOICES, default='student_number')
-    student_number = models.CharField(max_length=10, unique=True, null = True, blank = False )
+    number_type = models.CharField(max_length=20, choices = NUMBER_TYPE_CHOICES, default='student_number')
+    student_number = models.CharField(max_length=10, unique=True, null = True, blank = False)
     Lecturer_number = models.CharField(max_length=10, unique=True, null=True, blank=False)
     Registrar_number = models.CharField(max_length=10, unique=True, null=True, blank=False)
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='student')

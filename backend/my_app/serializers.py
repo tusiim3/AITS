@@ -8,7 +8,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CustomUser
-        fields = ['username', 'email', 'Number_type', 'student_number', 'role', 'gender', 'year_of_study', 'password', 'password2']
+        fields = ['username', 'email', 'number_type', 'student_number', 'role', 'gender', 'year_of_study', 'password', 'password2']
         extra_kwargs = {'password': {'write_only': True}}
 
     def validate(self, data):
@@ -62,7 +62,7 @@ class LoginSerializer(serializers.Serializer):
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['id', 'username', 'student_number', 'email', 'role', 'gender', 'year_of_study']
+        fields = ['id', 'username', 'number_type', 'student_number', 'email', 'role', 'gender', 'year_of_study']
 
 class DepartmentSerializer(serializers.ModelSerializer): 
     class Meta:
