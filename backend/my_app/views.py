@@ -24,13 +24,19 @@ class RegisterView(APIView):
                         "role": user.role,
                         "gender": user.gender,
                         "year_of_study": user.year_of_study,
-                        "student_number": user.student_number
+                        "number_type": user.number_type,
+                        "student_number": user.student_number,
+                        "Lecturer_number": user.Lecturer_number,
+                        "Registrar_number": user.Registrar_number,
                     }
                 },
                 status=status.HTTP_201_CREATED
             )
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class LoginView(APIView):
+    permission_classes = [AllowAny]
+    
 class CustomUserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
