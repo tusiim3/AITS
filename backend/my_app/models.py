@@ -12,6 +12,11 @@ class CustomUser(AbstractUser):
         ('male', 'Male'),
         ('female', 'Female'),
     ]
+    NUMBER_TYPE_CHOICES = [
+        ('student_number', 'Student Number'),
+        ('Lecturer_number', 'Lecturer Number'),
+        ('Registrar_number', 'Registrar Number'),
+    ]
 
     YEAR_OF_STUDY_CHOICES = [
         (1, '1st Year'),
@@ -21,6 +26,7 @@ class CustomUser(AbstractUser):
         (5, '5th Year'),
     ]
     email = models.EmailField(unique=True)
+    number_type = models.CharField(max_length=20, choices = NUMBER_TYPE_CHOICES, default='student_number')
     student_number = models.CharField(max_length=10, unique=True, null = False, blank = False )
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='student')
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES, default='male')
