@@ -51,7 +51,7 @@ class IssuesViewSet(viewsets.ModelViewSet):
     serializer_class = IssuesSerializer    
     permission_classes = [IsAuthenticated, IsOwnerOrIslecturerOrRegistrar]
 
-def get_queryset(self):
+    def get_queryset(self):
         user = self.request.user
         if user.role == 'student':
             return Issues.objects.filter(student=user)
