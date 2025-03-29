@@ -26,11 +26,11 @@ class CustomUser(AbstractUser):
         (4, '4th Year'),
         (5, '5th Year'),
     ]
-    email = models.EmailField(unique=True)
-    number_type = models.CharField(max_length=20, choices = NUMBER_TYPE_CHOICES, default='student_number')
+    email = models.EmailField(unique=False)
+    number_type = models.CharField(max_length=20, choices = NUMBER_TYPE_CHOICES, null=False)
     student_number = models.CharField(max_length=10, unique=True, null = True, blank = False)
-    Lecturer_number = models.CharField(max_length=10, unique=True, null=True, blank=False)
-    Registrar_number = models.CharField(max_length=10, unique=True, null=True, blank=False)
+    lecturer_number = models.CharField(max_length=10, unique=True, null=True, blank=False)
+    registrar_number = models.CharField(max_length=10, unique=True, null=True, blank=False)
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='student')
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES, default='male')
     year_of_study = models.IntegerField(choices=YEAR_OF_STUDY_CHOICES, default=1)
@@ -38,7 +38,7 @@ class CustomUser(AbstractUser):
     def clean(self):
         prefix_map = {
             "student_number": "24",
-            "Lecturer_number": "30",
+            "lecturer_number": "30",
             "registrar_number": "40",
         }
 

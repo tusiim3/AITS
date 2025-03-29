@@ -27,8 +27,8 @@ class RegisterView(APIView):
                         "year_of_study": user.year_of_study,
                         "number_type": user.number_type,
                         "student_number": user.student_number,
-                        "Lecturer_number": user.Lecturer_number,
-                        "Registrar_number": user.Registrar_number,
+                        "lecturer_number": user.lecturer_number,
+                        "registrar_number": user.registrar_number,
                     }
                 },
                 status=status.HTTP_201_CREATED
