@@ -92,6 +92,16 @@ const AuthenticationForms = () => {
 
       if (response.status === 200) {
         alert("signin successfull");
+
+        if (formData.number_type === 'student_number') {
+          navigate('/student')
+        } else if ( formData.number_type === 'lecturer_number') {
+          navigate('/lecturer')
+        } else if ( formData.number_type === 'registrar_number') {
+          navigate('/registrar')
+        } else {
+          navigate('/')
+        }
         {/* incase of any data from the back end this is where it will appear */}
       }
 
