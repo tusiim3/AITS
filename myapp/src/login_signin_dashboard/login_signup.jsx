@@ -29,46 +29,75 @@ const AuthenticationForms = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if (isSignUp && formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match");
-      return;
+    if (isSignUp) {
+      if (formData.password !== formData.confirmPassword) {
+        alert("Passwords do not match");
+        return;
+      }
+
+      const requestPayload = {
+        username: formData.username,
+        number_type: formData.number_type,
+        [formData.number_type]: formData.personal_number,
+        email: formData.email,
+        password: formData.password,
+        password2: formData.confirmPassword
+      };
+
+      try {
+        const response = await axios.post("http://127.0.0.1:8000/api/register/", requestPayload, {
+          headers: {
+            "Content-Type":"application/json",
+          },
+        });
+
+        if (response.status === 201) {
+          
+
+          // Redirect based on the number_type
+          if (formData.number_type === 'student_number') {
+            navigate('/student');
+          } else if (formData.number_type === 'lecturer_number') {
+            navigate('/lecturer');
+          } else if (formData.number_type === 'registrar_number') {
+            navigate('/registrar');
+          } else {
+            navigate('/');  // Default route if no match
+          }
+
+          alert("Registration successful!");
+        }
+      } catch (error) {
+        console.error("Error during registration", error);
+        alert("Registration failed. Please try again.");
+      } 
+    } else {
+      handleSignIn(e);
     }
+  };
 
-    const requestPayload = {
-      username: formData.username,
-      number_type: formData.number_type,
-      personal_number: formData.personal_number,
-      email: formData.email,
-      password: formData.password,
-      password2: formData.confirmPassword
-    };
-
+  const handleSignIn = async (e) => {
     try {
-      const response = await axios.post("http://127.0.0.1:8000/api/register/", requestPayload, {
+      const signInPayLoad = {
+        number_type: formData.number_type,
+        [formData.number_type]: formData.personal_number,
+        password: formData.password
+      };
+
+      const response = await axios.post("http://127.0.0.1:8000/api/login/", signInPayLoad, {
         headers: {
           "Content-Type":"application/json",
         },
       });
 
       if (response.status === 200) {
-        
-
-        // Redirect based on the number_type
-        if (formData.number_type === 'student') {
-          navigate('/student');
-        } else if (formData.number_type === 'lecturer') {
-          navigate('/lecturer');
-        } else if (formData.number_type === 'registrar') {
-          navigate('/registrar');
-        } else {
-          navigate('/');  // Default route if no match
-        }
-
-        alert("Registration successful!");
+        alert("signin successfull");
+        {/* incase of any data from the back end this is where it will appear */}
       }
+
     } catch (error) {
-      console.error("Error during registration", error);
-      alert("Registration failed. Please try again.");
+      console.error("Error during signin", error);
+      alert("Signin failed. Please try again.");
     }
   };
 
@@ -78,7 +107,7 @@ const AuthenticationForms = () => {
       username: '',
       number_type: '',  
       personal_number: '',
-      emial: '',
+      email: '',
       password: '',
       confirmPassword: '',
     });
@@ -113,16 +142,16 @@ const AuthenticationForms = () => {
               className={styles.select}
             >
               <option value="">Select Number Type</option>
-              <option value="student">Student Number</option>
-              <option value="lecturer">Lecturer Number</option>
-              <option value="registrar">Registrar Number</option>
+              <option value="student_number">Student Number</option>
+              <option value="lecturer_number">Lecturer Number</option>
+              <option value="registrar_number">Registrar Number</option>
             </select>
 
             {formData.number_type && (
               <input
                 type="text"
                 name="personal_number"
-                placeholder={`Enter ${formData.number_type.charAt(0).toUpperCase() + formData.number_type.slice(1)} Number`}
+                placeholder={`Enter ${formData.number_type.charAt(0).toUpperCase() + formData.number_type.slice(1)}`}
                 value={formData.personal_number}
                 onChange={handleChange}
                 required
@@ -133,7 +162,7 @@ const AuthenticationForms = () => {
                 type="email"
                 name="email"
                 placeholder='email'
-                value={formData.emial}
+                value={formData.email}
                 onChange={handleChange}
                 required
               />
