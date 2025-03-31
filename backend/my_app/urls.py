@@ -12,7 +12,7 @@ router.register(r'issues', IssuesViewSet)
 urlpatterns = [
     path('', include(router.urls)),  
     path('register/', RegisterView.as_view(), name='register'),  
-    path('Login/', LoginView.as_view(), name='Login'),
+    path('login/', LoginView.as_view(), name='login'),
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),  
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'), 
 ]

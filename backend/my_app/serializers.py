@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from my_app.models import CustomUser, Department, Course, Issues
 from django.contrib.auth.password_validation import validate_password
+from django.contrib.auth import authenticate
+
 
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
@@ -66,30 +68,45 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         validated_data.pop('password2')
+        number_type = validated_data['number_type']
+        username = validated_data[number_type]
+        validated_data['username'] = username
         user = CustomUser.objects.create_user(**validated_data)
         return user
 
 class LoginSerializer(serializers.Serializer):
-    number_type = serializers.ChoiceField(choices=CustomUser.NUMBER_TYPE_CHOICES)
-    number = serializers.CharField(max_length=10)
-    password = serializers.CharField(write_only=True)
+    
+    number_type = serializers.ChoiceField(
+        choices=[
+            ("student_number", "student"),
+            ("lecturer_number","lecturer"),
+            ("registrar_number", "registrar"),
+        ],
+        required=True
+    )
+
+    password = serializers.CharField(write_only=True, required=True)
 
     def validate(self, data):
-        number_type = data.get('number_type')
-        number_value = data.get("number")
+        number_type = data.get("number_type")
         password = data.get("password")
 
-        user = CustomUser.objects.filter(**{number_type: number_value}).first()
+        number = self.initial_data.get(number_type)
+
+        if not number:
+            raise serializers.ValidationError({number_type: "this field is required."})
+        
+        user = authenticate(username=number, password = password)
 
         if not user:
-            raise serializers.ValidationError("Invalid credentials")
-
-        if not user.check_password(password):
-            raise serializers.ValidationError("Invalid credentials")
+            raise serializers.ValidationError("invalid credentials")
         
         data["user"] = user
         return data
-        
+
+
+
+
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
