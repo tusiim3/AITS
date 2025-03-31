@@ -26,7 +26,6 @@
     width: 100%;
     position: relative;
     top:30% ;
-    background-color: white;
     border-radius: 3px;
-    border-color: rgb(255, 255, 255)
+    border: none;
 }

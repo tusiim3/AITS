@@ -1,92 +1,122 @@
 import React, { useState } from 'react';
 import styles from './log_issues.module.css';
+import axios from 'axios';
 
 function Log() {
-    const [select1Value, setSelect1Value] = useState("");
-    const [select2Value, setSelect2Value] = useState("");
-    const [select3Value, setSelect3Value] = useState("");
-    const [textareaValue, setTextareaValue] = useState("");
-    const [displayValue, setDisplayValue] = useState({ select1:"", select2:"",select3:"",text:"" });
+    const [formData, setFormData] = useState({
+        select1: "",
+        select2: "",
+        select3: "",
+        text: ""
+    });
 
-    const handleSelect1Change = (event) => {
-        setSelect1Value(event.target.value);
-    };
+    const [displayValue, setDisplayValue] = useState({
+        select1: "",
+        select2: "",
+        select3: "",
+        text: ""
+    });
+    const [IsSubmitting, setIsSubmitting] = useState(false);
 
-    const handleSelect2Change = (event) => {
-        setSelect2Value(event.target.value);
-    };
-
-    const handleSelect3Change = (event) => {
-        setSelect3Value(event.target.value);
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
     const handleTextareaChange = (event) => {
-        setTextareaValue(event.target.value);
+        setFormData((prev) => ({ ...prev, text: event.target.value }));
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        setDisplayValue({
-            select1: select1Value,
-            select2: select2Value,
-            select3: select3Value,
-            text: textareaValue,
-        });
+        setDisplayValue(formData);
     };
 
-    const handleFormSubmit = (event) => {
-        {/*the values of this event are in variables select1value, select2value
-            select3value, textareaValue. this is the data we need to send to both the lecturer
-            and registrar and the history form of the student through the api
-            the complaints should be stored as a json
-            */}
-    }
+    const handleClear = () => {
+        setFormData({ select1: "", select2: "", select3: "", text: "" });
+    };
+
+    const handleFormSubmit = async(e) => {
+        e.preventDefault(); //prevents page refresh
+        setIsSubmitting(true); // disablle button and show 'submitting'
+
+    
+        const submitPayload = {
+            select1: displayValue.select1 || "N/A",
+            select2: displayValue.select2 || "N/A",
+            select3: displayValue.select3 || "N/A",
+            text: displayValue.text || "N/A"
+        };
+
+        try {
+            const response = await axios.post("#", submitPayload,{
+                headers: {"Content-Type":"application/json",}
+            });
+            
+            alert("issue submitted successfully!");
+        } catch(error) { 
+                console.error("error during submission", error);
+                alert("submission failed, try again");
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
     return (
         <div>
             <div className={styles.container}>
                 <form onSubmit={handleSubmit}>
-                    <label htmlFor='courseunit' className={styles.label}>course unit</label>
-                    <select value={select1Value} onChange={handleSelect1Change} name="courseunit" id="courseunit" className={styles.select}>
-                        <option className={styles.myoption} value="ist1204">Ist1204</option>
-                        <option className={styles.myoption} value="csc1201">Csc1201</option>
-                        <option className={styles.myoption} value="csc1204">Csc1204</option>
-                        <option className={styles.myoption} value="csc1200">Csc1200</option>
-                        <option className={styles.myoption} value="csc1202">Csc1202</option>
+                    <label htmlFor="courseunit" className={styles.label}>Course Unit</label>
+                    <select name="select1" id="courseunit" value={formData.select1} onChange={handleChange} className={styles.select}>
+                        <option value="">Select Course</option>
+                        <option value="ist1204">Ist1204</option>
+                        <option value="csc1201">Csc1201</option>
+                        <option value="csc1204">Csc1204</option>
+                        <option value="csc1200">Csc1200</option>
+                        <option value="csc1202">Csc1202</option>
                     </select>
 
-                    <label htmlFor='complaint' className={styles.label}>complaint</label>
-                    <select value={select2Value} onChange={handleSelect2Change} name="complaint" id="complaint" className={styles.select}>
-                        <option className={styles.myoption} value="missing_marks">missing marks</option>
-                        <option className={styles.myoption} value="incorrect_marks">incorrect marks</option>
-                        <option className={styles.myoption} value="remarking">remarking</option>
+                    <label htmlFor="complaint" className={styles.label}>Complaint</label>
+                    <select name="select2" id="complaint" value={formData.select2} onChange={handleChange} className={styles.select}>
+                        <option value="">Select Complaint</option>
+                        <option value="missing_marks">Missing Marks</option>
+                        <option value="incorrect_marks">Incorrect Marks</option>
+                        <option value="remarking">Remarking</option>
                     </select>
 
-                    <label htmlFor='type' className={styles.label}>type</label>
-                    <select value={select3Value} onChange={handleSelect3Change} name="type" id="type" className={styles.select}>
-                        <option className={styles.myoption} value="test">test</option>
-                        <option className={styles.myoption} value="coursework">course work</option>
-                        <option className={styles.myoption} value="finals">final exam</option>
-
+                    <label htmlFor="type" className={styles.label}>Type</label>
+                    <select name="select3" id="type" value={formData.select3} onChange={handleChange} className={styles.select}>
+                        <option value="">Select Type</option>
+                        <option value="test">Test</option>
+                        <option value="coursework">Course Work</option>
+                        <option value="finals">Final Exam</option>
                     </select>
 
-                    <label htmlFor='customcomplaint' className={styles.label}>custom complaint</label>
-                    <textarea value={textareaValue} onChange={handleTextareaChange} name="customcomplaint" id="customcomplaint" cols="30" rows="10" className={styles.textarea}></textarea>
+                    <label htmlFor="customcomplaint" className={styles.label}>Custom Complaint</label>
+                    <textarea
+                        name="text"
+                        id="customcomplaint"
+                        cols="30"
+                        rows="10"
+                        value={formData.text}
+                        onChange={handleTextareaChange}
+                        className={styles.textarea}
+                    ></textarea>
 
-                    <button className={styles.lclear_button}>clear</button>
+                    <button type="button" onClick={handleClear} className={styles.lclear_button}>Clear</button>
                     <button type="submit" className={styles.lsubmit_button}>Submit</button>
                 </form>
             </div>
             <div className={styles.myform}>
                 <form onSubmit={handleFormSubmit}>
-                    <h5>issue form</h5>
+                    <h5>Issue Form</h5>
                     <div className={styles.issue}>
-                        <p>COURSE UNIT:{displayValue.select1}</p>
-                        <p>COMPLAINT:{displayValue.select2}</p>
-                        <p>TYPE:{displayValue.select3}</p>
-                        <p>CUSTOM COMPLAINT:{displayValue.text}</p>
+                        <p>COURSE UNIT: {displayValue.select1 || "N/A"}</p>
+                        <p>COMPLAINT: {displayValue.select2 || "N/A"}</p>
+                        <p>TYPE: {displayValue.select3 || "N/A"}</p>
+                        <p>CUSTOM COMPLAINT: {displayValue.text || "N/A"}</p>
                     </div>
-                    <button className={styles.rsubmit_buttons}>submit form</button>
+                    <button type="submit" className={styles.rsubmit_buttons}>Submit Form</button>
                 </form>
             </div>
         </div>
