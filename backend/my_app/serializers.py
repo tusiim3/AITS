@@ -105,7 +105,12 @@ class LoginSerializer(serializers.Serializer):
         return data
 
 class LogoutSerializer(serializers.Serializer):
-    
+    refresh_token = serializers.Charfield()
+
+    def Validate(self, data):
+        if not value:
+            raise serializers.ValidationError("refresh token is required")
+        return value
 
 
 class CustomUserSerializer(serializers.ModelSerializer):
