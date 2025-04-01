@@ -29,7 +29,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         }
 
         if number_type not in number_field_map:
-            raise serializers.ValidationError({"number_":"invalid number type"})
+            raise serializers.ValidationError({"number_type":"invalid number type"})
         required_field = number_field_map[number_type]
         number_value = data.get(required_field)
 
@@ -104,7 +104,8 @@ class LoginSerializer(serializers.Serializer):
         data["user"] = user
         return data
 
-
+class LogoutSerializer(serializers.Serializer):
+    
 
 
 class CustomUserSerializer(serializers.ModelSerializer):
