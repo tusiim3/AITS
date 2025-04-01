@@ -105,7 +105,7 @@ class LoginSerializer(serializers.Serializer):
         return data
 
 class LogoutSerializer(serializers.Serializer):
-    refresh_token = serializers.Charfield()
+    refresh_token = serializers.CharField()
 
     def Validate(self, data):
         if not value:
