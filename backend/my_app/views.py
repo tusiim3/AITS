@@ -111,4 +111,8 @@ class CreateIssueView(generics.CreateAPIView):
 
 class RegistrarIssueListView(generics.ListAPIView):
     permission_classes = [IsAuthenticated, IsRegistrar]
+    serializer_class = IssuesSerializer
+
+    def get_queryset(self):
+        return Issues.objects.filter(status='pending', academic_registrar=None)
  
