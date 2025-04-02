@@ -53,8 +53,8 @@ class LoginView(APIView):
                         "role": user.role,
                         "number_type": user.number_type,
                     },
-                    "access_token": str(refresh.access_token),
-                    "refresh_token": str(refresh)
+                    "accessToken": str(refresh.access_token),
+                    "refreshToken": str(refresh)
                 },
                 status=status.HTTP_200_OK
             )
