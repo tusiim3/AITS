@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import CustomUserViewSet, DepartmentViewSet, CourseViewSet, IssuesViewSet, RegisterView, LoginView, LogoutView
+from .views import CustomUserViewSet, DepartmentViewSet, CourseViewSet, IssuesViewSet, RegisterView, LoginView, LogoutView,CreateIssueView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 router = DefaultRouter()
@@ -16,4 +16,6 @@ urlpatterns = [
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),  
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('Logout/', LogoutView.as_view(), name='Logout'), 
+    path('issues/', CreateIssueView.as_view(), name='create-issue'),
+    
 ]

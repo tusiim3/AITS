@@ -139,5 +139,36 @@ class IssuesSerializer(serializers.ModelSerializer):
         fields = ['id', 'student','issue_type', 'department', 'course', 'description', 'status', 'created_at', 'lecturer', 'academic_registrar']
 
 
-    
+class CreateIssue(serializers.Serializer):
+    course = serializers.CharField(max_length = 10)
+    complaint = serializers.CharField(max_length = 20)
+    complaint_type = serializers.CharField(max_length=20)
+    custom_complaint = serializers.CharField(max_length = 500)
+
+    def create(self, validated_data):
+        #map the input fields to model fields
+        course_code = validated_data['course']
+
+        try:
+            course = Course.objects.get(course_code=course_code)
+        except Course.DoesNotExist:
+            raise serializers.ValidationError({"course":"course not found"})
+        
+        complaint_map = {
+            'missing marks': 'missing marks',
+            'correction': 'correction',
+            'appeal': 'appeal'
+        }
+
+        issue_type = complaint_map.get(validated_data['complaint'])
+
+        issue = Issues.objects.create(
+            course=course,
+            complaint=issue_type,
+            complaint_type=validated_data['complaint_type'],
+            custom_complaint=validated_data['custom_complaint'],
+            student=self.context['request'].user,
+            status='pending'
+        )
+        return issue
 

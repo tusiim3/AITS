@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, generics
 from .models import CustomUser, Department, Course, Issues
-from .serializers import CustomUserSerializer, DepartmentSerializer, CourseSerializer, IssuesSerializer ,RegisterSerializer, LoginSerializer, LogoutSerializer
-from .permissions import IsOwnerOrIslecturerOrRegistrar
+from .serializers import CustomUserSerializer, DepartmentSerializer, CourseSerializer, IssuesSerializer ,RegisterSerializer, LoginSerializer, LogoutSerializer, CreateIssue
+from .permissions import IsOwnerOrIslecturerOrRegistrar,IsIssueOwner,IsRegistrar,IsLecturer,IsStudent
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -101,3 +101,10 @@ class IssuesViewSet(viewsets.ModelViewSet):
         if user.role == 'student':
             return Issues.objects.filter(student=user)
         return Issues.objects.all()   
+    
+class CreateIssueView(generics.CreateAPIView):
+    serializer_class = CreateIssue
+    permission_classes = [IsStudent]
+
+    def perform_create(self, serializer):
+        serializer.save(student=self.request.user)

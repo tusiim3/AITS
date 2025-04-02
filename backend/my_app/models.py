@@ -71,6 +71,7 @@ class Department(models.Model):
 class Course(models.Model):
     course_name = models.CharField(max_length=50, unique=True)
     course_code = models.CharField(max_length=10, unique=True)
+    lecturer = models.CharField(max_length=100, unique=False)
 
     def __str__(self):
         return f"{self.course_name} - {self.course_code}"
@@ -80,6 +81,11 @@ class Issues(models.Model):
         ('correction', 'Correction'),
         ('missing marks', 'Missing marks'),
         ('appeal', 'Appeal'),
+    ]
+    ISSUE_TYPES = [
+        ('test', 'Test'),
+        ('course work','Course work'),
+        ('final exam','Final exam')
     ]
 
     STATUS_CHOICES = [
@@ -92,7 +98,12 @@ class Issues(models.Model):
         CustomUser, on_delete=models.SET_NULL, null=True, 
         limit_choices_to={'role': 'student'}, related_name="student_issues"
     )
-    issue_type = models.CharField(max_length=40, choices=ISSUE_CHOICES)
+    complaint = models.CharField(max_length=40, choices=ISSUE_CHOICES)
+    complaint_type = models.CharField(max_length=40, choices=ISSUE_TYPES, null=True)
+    
+
+    
+    
     department = models.ForeignKey(
         Department, on_delete=models.PROTECT, related_name="department_issues",
         null=True, blank=False
@@ -101,7 +112,7 @@ class Issues(models.Model):
         Course, on_delete=models.PROTECT, related_name="course_issues",
         null=True, blank=False
     )
-    description = models.TextField()
+    custom_complaint = models.TextField(null=True)
     status = models.CharField(max_length=100, choices=STATUS_CHOICES, default='pending')
     created_at = models.DateTimeField(auto_now_add=True)
     lecturer = models.ForeignKey(
