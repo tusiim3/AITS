@@ -110,5 +110,5 @@ class CreateIssueView(generics.CreateAPIView):
         serializer.save(student=self.request.user)
 
 class RegistrarIssueListView(generics.ListAPIView):
-    
-    
+    permission_classes = [IsAuthenticated, IsRegistrar]
+ 
