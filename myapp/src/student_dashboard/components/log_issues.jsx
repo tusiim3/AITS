@@ -92,17 +92,17 @@ function Log() {
                     <label htmlFor="complaint" className={styles.label}>Complaint</label>
                     <select name="select2" id="complaint" value={formData.select2} onChange={handleChange} className={styles.select}>
                         <option value="">Select Complaint</option>
-                        <option value="missing_marks">Missing Marks</option>
-                        <option value="incorrect_marks">Incorrect Marks</option>
-                        <option value="remarking">Remarking</option>
+                        <option value="missing marks">Missing Marks</option>
+                        <option value="correction">Correction</option>
+                        <option value="appeal">Appeal</option>
                     </select>
 
                     <label htmlFor="type" className={styles.label}>Type</label>
                     <select name="select3" id="type" value={formData.select3} onChange={handleChange} className={styles.select}>
                         <option value="">Select Type</option>
                         <option value="test">Test</option>
-                        <option value="coursework">Course Work</option>
-                        <option value="finals">Final Exam</option>
+                        <option value="course work">Course Work</option>
+                        <option value="final exam">Final Exam</option>
                     </select>
 
                     <label htmlFor="customcomplaint" className={styles.label}>Custom Complaint</label>
