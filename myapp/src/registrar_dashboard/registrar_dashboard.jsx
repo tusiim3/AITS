@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "./registrar_dashboard.css";
-import Pend from './components/issue_history.jsx';
-import His from './components/pending_issues.jsx';
+import His from './components/issue_history.jsx';
+import Pend from './components/pending_issues.jsx';
 import Prof from './components/profile.jsx';
 import Notif from './components/notification.jsx';
 

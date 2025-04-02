@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './log_issues.module.css';
 import axios from 'axios';
+import axiosInstance from '../../axioscomponent';
 
 function Log() {
     const [formData, setFormData] = useState({
@@ -42,24 +43,36 @@ function Log() {
 
     
         const submitPayload = {
-            select1: displayValue.select1 || "N/A",
-            select2: displayValue.select2 || "N/A",
-            select3: displayValue.select3 || "N/A",
-            text: displayValue.text || "N/A"
+            course: displayValue.select1 || "N/A",
+            complaint: displayValue.select2 || "N/A",
+            complaint_type: displayValue.select3 || "N/A",
+            custom_complaint: displayValue.text || "N/A"
         };
 
         try {
-            const response = await axios.post("#", submitPayload,{
-                headers: {"Content-Type":"application/json",}
+            //acessing the access token stored in the storage
+
+
+            {/* this is where the log issues api is going to go */}
+            const response = await axiosInstance.post("/issues/", submitPayload,{
             });
-            
-            alert("issue submitted successfully!");
+            if (response.status === 201) {
+                alert("issue submitted successfully!");
+                setDisplayValue({
+                    select1: "",
+                    select2: "",
+                    select3: "",
+                    text:""
+                });
+            }
+    
         } catch(error) { 
                 console.error("error during submission", error);
                 alert("submission failed, try again");
         } finally {
             setIsSubmitting(false);
         }
+    
     };
 
     return (

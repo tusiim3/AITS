@@ -52,19 +52,7 @@ const AuthenticationForms = () => {
         });
 
         if (response.status === 201) {
-          
-
-          // Redirect based on the number_type
-          if (formData.number_type === 'student_number') {
-            navigate('/student');
-          } else if (formData.number_type === 'lecturer_number') {
-            navigate('/lecturer');
-          } else if (formData.number_type === 'registrar_number') {
-            navigate('/registrar');
-          } else {
-            navigate('/');  // Default route if no match
-          }
-
+          navigate('/'); 
           alert("Registration successful!");
         }
       } catch (error) {
@@ -91,18 +79,12 @@ const AuthenticationForms = () => {
       });
 
       if (response.status === 200) {
-        alert("signin successfull");
-
-        if (formData.number_type === 'student_number') {
-          navigate('/student')
-        } else if ( formData.number_type === 'lecturer_number') {
-          navigate('/lecturer')
-        } else if ( formData.number_type === 'registrar_number') {
-          navigate('/registrar')
-        } else {
-          navigate('/')
-        }
-        {/* incase of any data from the back end this is where it will appear */}
+        //store the tokens from the backend in local storage
+        localStorage.setItem("accessToken", response.data.accessToken);
+        localStorage.setItem("refreshToken", response.data.refreshToken);
+       
+        alert("signin successfull,");
+        navigateBasedOnRole(formData.number_type)
       }
 
     } catch (error) {
@@ -111,6 +93,12 @@ const AuthenticationForms = () => {
     }
   };
 
+  const navigateBasedOnRole = (role) => {
+    if (role === 'student_number') navigate('/student');
+    else if (role === 'lecturer_number') navigate('/lecturer');
+    else if (role === 'registrar_number') navigate('/registrar');
+    else navigate('/');
+  }
   const toggleForm = () => {
     setIsSignUp(!isSignUp);
     setFormData({
