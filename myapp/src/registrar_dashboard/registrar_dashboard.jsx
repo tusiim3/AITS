@@ -37,18 +37,22 @@ function Student() {
   return (
     <div>
       <div  className='leftcontainer'>
-        <div className='profile_picture_container'>
-          <img
-          src=''
-          alt='Registrar Profile'
-          className='profile_picture'
-          />
+        <div className='profile_section'>
+          <div className='profile_picture_container'>
+            <img
+            src=''
+            className='profile_picture'
+            />
+          </div>
         </div>
-        <button className='mybuttons' onClick={() => setCurrentView('Pending')}>Pending Issues</button>
-        <button className='mybuttons' onClick={() => setCurrentView('IssueHistory')}>Issue History</button>
-        <button className='mybuttons' onClick={() => setCurrentView('Notification')}>Notification</button>
-        <button className='mybuttons' onClick={() => setCurrentView('Profile')}>Profile</button>
+        <div className='nav_section'>
+          <button className='mybuttons' onClick={() => setCurrentView('Pending')}>Pending Issues</button>
+          <button className='mybuttons' onClick={() => setCurrentView('IssueHistory')}>Issue History</button>
+          <button className='mybuttons' onClick={() => setCurrentView('Notification')}>Notification</button>
+          <button className='mybuttons' onClick={() => setCurrentView('Profile')}>Profile</button>
+        </div>
       </div>
+
       <div className='rightcontainer'>
         {currentView === 'Pending' && <Pend />}
         {currentView === 'IssueHistory' && <His />}
