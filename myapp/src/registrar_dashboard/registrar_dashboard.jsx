@@ -37,6 +37,13 @@ function Student() {
   return (
     <div>
       <div  className='left_container'>
+        <div className='profile_picture_container'>
+          <img
+          src=''
+          alt='Registrar Profile'
+          className='profile_picture'
+          />
+        </div>
         <button className='mybuttons' onClick={() => setCurrentView('Pending')}>Pending Issues</button>
         <button className='mybuttons' onClick={() => setCurrentView('IssueHistory')}>Issue History</button>
         <button className='mybuttons' onClick={() => setCurrentView('Notification')}>Notification</button>

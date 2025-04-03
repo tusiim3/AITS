@@ -42,6 +42,10 @@ export default function Pend() {
                             <p>Complaint: {complaint.complaint}</p>
                             <p>Lecturer: {complaint.lecturer}</p>
                             <button onClick={() => handleForward(complaint.id)}>Forward to Lecturer</button>
+                            <div className={style.dynamic_text_box}>
+                                <p>Issue Details:</p>
+                                <p>{complaint.complaint}</p>
+                            </div>
                         </div>
                     )) 
                 ):(
