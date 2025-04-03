@@ -95,14 +95,18 @@ class LoginSerializer(serializers.Serializer):
 
         if not number:
             raise serializers.ValidationError({number_type: "this field is required."})
+        try:
+            user = CustomUser.objects.get(**{number_type: number})
+        except CustomUser.DoesNotExist:
+            raise serializers.ValidationError("Invalid credentials")
         
-        user = authenticate(username=number, password = password)
+        if not user.check_password(password):
+            raise serializers.ValidationError("Invalid credentials")
 
-        if not user:
-            raise serializers.ValidationError("invalid credentials")
-        
+        # If authentication is successful, add user to the data
         data["user"] = user
         return data
+       
 
 class LogoutSerializer(serializers.Serializer):
     refresh_token = serializers.CharField()
@@ -148,26 +152,30 @@ class IssuesSerializer(serializers.ModelSerializer):
         model = Issues
         fields = ['id', 'student','issue_type', 'department', 'course', 'description', 'status', 'created_at', 'lecturer', 'academic_registrar']
 
-        def update(self, instance, validated_data):
-            request = self.context['request']
-            if request.user.role != 'registrar':
-                raise serializers.ValidationError("Only registrars can assign Lecturers")
+    def update(self, instance, validated_data):
+        request = self.context['request']
+        if request.user.role != 'registrar':
+            raise serializers.ValidationError("Only registrars can assign Lecturers")
 
-            lecturer_id = validated_data.pop('lecturer_id', None)
-            if lecturer_id:
-                try:
-                    lecturer = CustomUser.objects.get(id=lecturer_id, role='lecturer')
-                    instance.lecturer = lecturer
-                except CustomUser.DoesNotExist:
-                    raise serializers.ValidationError({"lecturer_id": "Invalid lecturer ID"})
-            return super().update(instance, validated_data)                
+        lecturer_id = validated_data.pop('lecturer_id', None)
+        if lecturer_id:
+            try:
+                lecturer = CustomUser.objects.get(id=lecturer_id, role='lecturer')
+                instance.lecturer = lecturer
+            except CustomUser.DoesNotExist:
+                raise serializers.ValidationError({"lecturer_id": "Invalid lecturer ID"})
+        return super().update(instance, validated_data)                
 
 
-class CreateIssue(serializers.Serializer):
+class CreateIssue(serializers.ModelSerializer):
     course = serializers.CharField(max_length = 10)
     complaint = serializers.CharField(max_length = 20)
     complaint_type = serializers.CharField(max_length=20)
     custom_complaint = serializers.CharField(max_length = 500)
+    
+    class Meta:
+        model = Issues
+        fields = ['course', 'complaint', 'complaint_type', 'custom_complaint']
      
     def create(self, validated_data):
         #map the input fields to model fields
@@ -185,7 +193,8 @@ class CreateIssue(serializers.Serializer):
         }
 
         issue_type = complaint_map.get(validated_data['complaint'])
-
+        if not issue_type:
+            raise serializers.ValidationError({"complaint":"invalid complaint type"})
         issue = Issues.objects.create(
             course=course,
             complaint=issue_type,
