@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from rest_framework import viewsets, status, generics
 from .models import CustomUser, Department, Course, Issues
 from .serializers import CustomUserSerializer, DepartmentSerializer, CourseSerializer, IssuesSerializer ,RegisterSerializer, LoginSerializer, LogoutSerializer, CreateIssue
@@ -128,27 +128,22 @@ class AssignIssueView(APIView):
     permission_classes = [IsAuthenticated, IsRegistrar]
 
     def patch(self, request, pk):
-        try:
-            issue = Issues.objects.get(pk=pk)
-        except Issues.DoesNotExist:
-            return Response({"error": "Issue not found"}, status=status.HTTP_404_NOT_FOUND)
-        
-        lecturer_username = request.data.get('lecturer_username')
+        lecturer_username = request.data.get("lecturer_username")  # Get username first
         if not lecturer_username:
-            return Response({"error": "lecturer_username is required"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"error": "Lecturer username is required"}, status=status.HTTP_400_BAD_REQUEST)
 
-            try:
-                lecturer_username = CustomUser.objects.get(username=lecturer_username, role='lecturer')
-            except CustomUser.DoesNotExist:
-                return Response({"error": "Lecturer not found"}, status=status.HTTP_404_NOT_FOUND)
-            
+        lecturer = get_object_or_404(CustomUser, username=lecturer_username, role="lecturer")
 
-        serializer = IssuesSerializer(issue, data=request.data, partial=True, context={"request": request})
-        if serializer.is_valid():
-            serializer.save()
-            return Response({"Message": "Issue assigned successfully", "issue": serializer.data}, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)            
-        
+        issue = get_object_or_404(Issues, pk=pk)
+        issue.lecturer = lecturer  # Assign lecturer using username
+        issue.save()
+
+        return Response({
+            "Message": "Issue assigned successfully",
+            "issue": IssuesSerializer(issue).data
+        }, status=status.HTTP_200_OK)   
+
+       
 
 class StudentIssueHistoryView(generics.ListAPIView):
     serializer_class = IssuesSerializer
