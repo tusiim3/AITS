@@ -140,5 +140,12 @@ class AssignIssueView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)            
         
 
+class StudentIssueHistoryView(generics.ListAPIView):
+    serializer_class = IssuesSerializer
+    permission_classes = [IsAuthenticated, IsStudent]  
+
+    def get_queryset(self):
+        return Issues.objects.filter(student=self.request.user).order_by('-created_at')
+
 
  
