@@ -115,4 +115,22 @@ class RegistrarIssueListView(generics.ListAPIView):
 
     def get_queryset(self):
         return Issues.objects.filter(status='pending', academic_registrar=None)
+
+class AssignIssueView(APIView):
+    permission_classes = [IsAuthenticated, IsRegistrar]
+
+    def patch(self, request, pk):
+        try:
+            issue = Issues.objects.get(pk=pk)
+        except Issues.DoesNotExist:
+            return Response({"error": "Issue not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = IssuesSerializer(issue, data=request.data, partial=True, context={"request": request})
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"Message": "Issue assigned successfully", "issue": serializer.data}, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)            
+        
+
+
  
