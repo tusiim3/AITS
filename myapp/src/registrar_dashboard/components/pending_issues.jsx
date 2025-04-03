@@ -2,15 +2,15 @@ import React from "react";
 import style from './pending.module.css';
 import { useState, useEffect } from "react";
 import axios from "axios";
+import axiosInstance from "../../axioscomponent";
 
 export default function Pend() {
     const [complaints, setComplaints] = useState([]);
 
     const fetchComplaints = async () => {
         try {
-            const response = await fetch("#"); // this is where we get our api for the pending issues,all issues with a status of pending are viewed on this page*/}
-            const data = await response.json();
-            setComplaints(data);
+            const response = await axiosInstance.get("/registrar/issues/") // this is where we get our api for the pending issues,all issues with a status of pending are viewed on this page*/}
+            setComplaints(response.data);
         } catch (error) {
             console.error("error fetching data:", error);
         }
@@ -37,15 +37,12 @@ export default function Pend() {
                 {complaints.length > 0 ? (
                     complaints.map((complaint, index) => (
                         <div className={style.output_box}>
-                            <p>Course Unit: {complaint.coursenit}</p>
-                            <p>Complaint type: {complaint.complaint_type}</p>
-                            <p>Complaint: {complaint.complaint}</p>
-                            <p>Lecturer: {complaint.lecturer}</p>
-                            <button onClick={() => handleForward(complaint.id)}>Forward to Lecturer</button>
-                            <div className={style.dynamic_text_box}>
-                                <p>Issue Details:</p>
-                                <p>{complaint.complaint}</p>
-                            </div>
+                            <p className={style.pe}>Course Unit: {complaint.course.course_code}</p>
+                            <p className={style.pe}>Complaint type: {complaint.complaint_type}</p>
+                            <p className={style.pe}>Complaint: {complaint.complaint}</p>
+                            <p className={style.pe}>Lecturer: {complaint.lecturer}</p>
+                            <p className={style.pe}>description:{complaint.custom_complaint}</p>
+                            <button className={style.thebut} onClick={() => handleForward(complaint.id)}>Forward to Lecturer</button>
                         </div>
                     )) 
                 ):(

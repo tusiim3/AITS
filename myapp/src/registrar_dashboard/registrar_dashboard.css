@@ -26,3 +26,20 @@
     border-radius: 3px;
     border-color: rgb(255, 255, 255)
 }
+
+.circlecontainer {
+    width: 100px;  /* Set the container size */
+    height: 100px;
+    position: absolute;
+    left :50px;
+    overflow: hidden;
+    border-radius: 50%; /* Makes it circular */
+    border: 1px solid black; /*Optional border */
+    top: 10px;
+  }
+  
+  .circlecontainer img {
+    width: 100%;  /* Ensures image covers the container */
+    height: 100%;
+    object-fit: cover; /* Ensures image fills the circle */
+  }

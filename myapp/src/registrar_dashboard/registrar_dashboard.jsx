@@ -37,10 +37,10 @@ function Student() {
   return (
     <div>
       <div  className='left_container'>
-        <div className='profile_picture_container'>
+        <div className='circlecontainer'>
           <img
           src=''
-          alt='Registrar Profile'
+          alt='pic'
           className='profile_picture'
           />
         </div>
