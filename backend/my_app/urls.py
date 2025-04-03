@@ -20,4 +20,5 @@ urlpatterns = [
     path('Logout/', LogoutView.as_view(), name='Logout'), 
     path('issues/', CreateIssueView.as_view(), name='create-issue'),
     path('registrar/issues/', RegistrarIssueListView.as_view(), name='registrar-issue-list'),
+    path('issues/<int:pk>/assign/', AssignIssueView.as_view(), name='assign-issue'),
 ]
