@@ -45,7 +45,7 @@ A web based platform for Makerere University students to log, track, and have th
 
 ## Contributors
   - [Tusiime Mark](https://github.com/tusiim3) - Team Lead
-  - [Namuyimbwa Martha](https://github.com/marthakukiriza) - Tester
+  - [Namuyimbwa Martha](https://github.com/marthakukiriza) - Backend Developer
   - [Okure Enock](https://github.com/kulekule2003) - Frontend Developer
   - [Ssebyala Denis Tendo](https://github.com/denistendo) - Backend Developer
 ## License
