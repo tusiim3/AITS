@@ -13,7 +13,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CustomUser
-        fields = ['username', 'email', 'number_type', 'student_number','lecturer_number','registrar_number', 'role', 'gender', 'year_of_study', 'password', 'password2']
+        fields = ['username', 'email', 'number_type', 'student_number','lecturer_number','registrar_number', 'role', 'year_of_study', 'password', 'password2']
         extra_kwargs = {'password': {'write_only': True},
                         'number_type': {'required':True}}
 
@@ -38,7 +38,7 @@ class RegisterSerializer(serializers.ModelSerializer):
                 required_field: f"this field is required for {number_type}"
             })
 
-        #checking uniqueness
+        
         if CustomUser.objects.filter(email=data['email']).exists():
             raise serializers.ValidationError({"email":"email already exists"})
 
@@ -59,28 +59,41 @@ class RegisterSerializer(serializers.ModelSerializer):
                 required_field: f"Must start with '{expected_prefix}'"
         })
 
-        #remove unused number fields
+        
         for field in ['student_number','lecturer_number', 'registrar_number']:
             if field != required_field:
-                data.pop(field, None) # this prevents saving other numbers
+                data.pop(field, None)
         return data
     
 
     def create(self, validated_data):
-        validated_data.pop('password2')
+        validated_data.pop('password2')  
+
         number_type = validated_data['number_type']
-        username = validated_data['username']
-        validated_data['username'] = username
+
+        role_mapping = {
+            'student_number': 'student',
+            'lecturer_number': 'lecturer',
+            'registrar_number': 'registrar'
+    }
+
+        role = role_mapping.get(number_type)
+
+        if not role:
+            raise serializers.ValidationError("Invalid number type provided.")
+    
+        validated_data['role'] = role
         user = CustomUser.objects.create_user(**validated_data)
         return user
+
 
 class LoginSerializer(serializers.Serializer):
     
     number_type = serializers.ChoiceField(
         choices=[
-            ("student_number", "student"),
-            ("lecturer_number","lecturer"),
-            ("registrar_number", "registrar"),
+            ("student_number", "student Number"),
+            ("lecturer_number","lecturer Number"),
+            ("registrar_number", "registrar Number"),
         ],
         required=True
     )
@@ -103,7 +116,6 @@ class LoginSerializer(serializers.Serializer):
         if not user.check_password(password):
             raise serializers.ValidationError("Invalid credentials")
 
-        # If authentication is successful, add user to the data
         data["user"] = user
         return data
        
@@ -178,7 +190,6 @@ class CreateIssue(serializers.ModelSerializer):
         fields = ['course', 'complaint', 'complaint_type', 'custom_complaint']
      
     def create(self, validated_data):
-        #map the input fields to model fields
         course_code = validated_data['course']
 
         try:

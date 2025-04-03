@@ -32,9 +32,20 @@ class CustomUser(AbstractUser):
     lecturer_number = models.CharField(max_length=10, unique=True, null=True, blank=False)
     registrar_number = models.CharField(max_length=10, unique=True, null=True, blank=False)
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, null=True, blank=True)
-    gender = models.CharField(max_length=10, choices=GENDER_CHOICES, default='male')
     year_of_study = models.IntegerField(choices=YEAR_OF_STUDY_CHOICES, null=True, blank=True)
-
+    
+    def save(self, *args, **kwargs):
+        if self.number_type == 'student_number':
+            self.role = 'student'
+        elif self.number_type == 'lecturer_number':
+            self.role = 'lecturer'
+        elif self.number_type == 'registrar_number':
+            self.role = 'registrar'
+        else:
+            self.role = None
+        self.clean()      
+        super().save(*args, **kwargs)
+    
     def clean(self):
         prefix_map = {
             "student_number": "24",
