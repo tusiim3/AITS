@@ -8,6 +8,8 @@ export default function Pend() {
 
     const fetchComplaints = async () => {
         try {
+            {/* this is where the student's issues api, this will contain all the issues of a particular student
+                 */}
             const response = await fetch("#");
             const data = await response.json();
             setComplaints(data);
