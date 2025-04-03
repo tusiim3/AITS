@@ -137,6 +137,12 @@ class AssignIssueView(APIView):
         if not lecturer_username:
             return Response({"error": "lecturer_username is required"}, status=status.HTTP_400_BAD_REQUEST)
 
+            try:
+                lecturer_username = CustomUser.objects.get(username=lecturer_username, role='lecturer')
+            except CustomUser.DoesNotExist:
+                return Response({"error": "Lecturer not found"}, status=status.HTTP_404_NOT_FOUND)
+            
+
         serializer = IssuesSerializer(issue, data=request.data, partial=True, context={"request": request})
         if serializer.is_valid():
             serializer.save()
