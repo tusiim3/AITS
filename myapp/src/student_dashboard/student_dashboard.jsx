@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import Log from './components/log_issues.jsx';
 import His from './components/log_history.jsx';
+import styles from './studet_dashboard.css';
 
 function Student() {
   // State to track which component to render
   const [currentView, setCurrentView] = useState('logForm'); // Default view is 'logForm'
-
+  const [clickeButton, setClickedButton] = useState('logForm');
   // Components to display
   const LogForm = () => (
     <div>
@@ -22,9 +23,18 @@ function Student() {
   return (
     <div>
       <div className='left_container'>
-        <img src=''></img>
-        <button className='mybuttons' onClick={() => setCurrentView('logForm')}>Log Issue</button>
-        <button className='mybuttons' onClick={() => setCurrentView('logHistory')}>Log History</button>
+        <div className='image-container'><img src=''></img></div>
+        
+        <button className={`mybuttons ${clickeButton === 'logForm' ? 'clicked': ''}`} 
+        onClick={() => {
+          setCurrentView('logForm');
+          setClickedButton('logForm');
+          }}>Log Issue</button>
+        <button className={`mybuttons ${clickeButton === 'logHistory' ? 'clicked': ''}`}
+        onClick={() => {
+          setCurrentView('logHistory');
+          setClickedButton('logHistory');
+          }}>Log History</button>
       </div>
 
       <div className='right_container'>
