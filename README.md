@@ -33,7 +33,7 @@ A web based platform for Makerere University students to log, track, and have th
 5. Security:
    - Role based access control
    - Input validation and sanitation
-## Development Methodology -----------------> REQUIRED?
+## Development Methodology
    - Agile Methodology
 
 
