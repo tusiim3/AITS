@@ -34,7 +34,7 @@ body {
     margin-bottom: 10px;
     width: 50%;
     position: absolute;
-    top:30% ;
+    top:10% ;
     height: 25px;
     border-radius: 3px;
     background-color: white;
@@ -49,15 +49,13 @@ body {
 }
 
 .circle-container {
-    width: 150px;  /* Set the container size */
-    height: 150px;
+    width: 100px;  /* Set the container size */
+    height: 100px;
+    position: absolute;
+    left :50px;
+    overflow: hidden;
     border-radius: 50%; /* Makes it circular */
-    overflow: hidden; /* Ensures image stays inside the circle */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 3px solid #fff; /* Optional border */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow */
+    border: 1px solid black; /*Optional border */
   }
   
   .circle-container img {
@@ -65,4 +63,5 @@ body {
     height: 100%;
     object-fit: cover; /* Ensures image fills the circle */
   }
+  
   

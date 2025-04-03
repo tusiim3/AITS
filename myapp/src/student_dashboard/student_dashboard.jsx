@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Log from './components/log_issues.jsx';
 import His from './components/log_history.jsx';
 import './studet_dashboard.css';
+import './logo/martha.jpg';
 
 function Student() {
   // State to track which component to render
@@ -23,7 +24,7 @@ function Student() {
   return (
     <div>
       <div className='left_container'>
-        <div className='image-container'><img src=''></img></div>
+        <div className='circle-container'><img src='./logo/martha.jpg'></img></div>
         
         <button className={`mybuttons ${clickeButton === 'logForm' ? 'clicked': ''}`} 
         onClick={() => {

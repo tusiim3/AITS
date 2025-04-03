@@ -124,10 +124,14 @@ function Log() {
                 <form onSubmit={handleFormSubmit}>
                     <h5>Issue Form</h5>
                     <div className={styles.issue}>
-                        <p>COURSE UNIT: {displayValue.select1 || "N/A"}</p>
-                        <p>COMPLAINT: {displayValue.select2 || "N/A"}</p>
-                        <p>TYPE: {displayValue.select3 || "N/A"}</p>
-                        <p>CUSTOM COMPLAINT: {displayValue.text || "N/A"}</p>
+                        <h3 className={styles.label2}>COURSE UNIT:</h3>
+                        <p className={styles.par}>{displayValue.select1 || "N/A"}</p>
+                        <h3 className={styles.label2}>COMPLAINT:</h3>
+                        <p className={styles.par}>{displayValue.select2 || "N/A"}</p>
+                        <h3 className={styles.label2}>TYPE:</h3>
+                        <p className={styles.par}>{displayValue.select3 || "N/A"}</p>
+                        <h3 className={styles.label2}>CUSTOM COMPLAINT:</h3>
+                        <p className={styles.par}>{displayValue.text || "N/A"}</p>
                     </div>
                     <button type="submit" className={styles.rsubmit_buttons}>Submit Form</button>
                 </form>
