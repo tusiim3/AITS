@@ -142,9 +142,25 @@ class IssuesSerializer(serializers.ModelSerializer):
     academic_registrar = CustomUserSerializer(read_only=True) 
     department = DepartmentSerializer(read_only=True)
     course = CourseSerializer(read_only=True)  
+    lecture_id = serializers.IntegerField(write_only=True, required=False)
+
     class Meta:
         model = Issues
         fields = ['id', 'student','issue_type', 'department', 'course', 'description', 'status', 'created_at', 'lecturer', 'academic_registrar']
+
+        def update(self, instance, validated_data):
+            request = self.context['request']
+            if request.user.role != 'registrar':
+                raise serializers.ValidationError("Only registrars can assign Lecturers")
+
+            lecturer_id = validated_data.pop('lecturer_id', None)
+            if lecturer_id:
+                try:
+                    lecturer = CustomUser.objects.get(id=lecturer_id, role='lecturer')
+                    instance.lecturer = lecturer
+                except CustomUser.DoesNotExist:
+                    raise serializers.ValidationError({"lecturer_id": "Invalid lecturer ID"})
+            return super().update(instance, validated_data)                
 
 
 class CreateIssue(serializers.Serializer):
@@ -152,7 +168,7 @@ class CreateIssue(serializers.Serializer):
     complaint = serializers.CharField(max_length = 20)
     complaint_type = serializers.CharField(max_length=20)
     custom_complaint = serializers.CharField(max_length = 500)
-
+     
     def create(self, validated_data):
         #map the input fields to model fields
         course_code = validated_data['course']
