@@ -128,14 +128,14 @@ class AssignIssueView(APIView):
     permission_classes = [IsAuthenticated, IsRegistrar]
 
     def patch(self, request, pk):
-        lecturer_username = request.data.get("lecturer_username")  # Get username first
+        lecturer_username = request.data.get("lecturer_username")  
         if not lecturer_username:
             return Response({"error": "Lecturer username is required"}, status=status.HTTP_400_BAD_REQUEST)
 
         lecturer = get_object_or_404(CustomUser, username=lecturer_username, role="lecturer")
 
         issue = get_object_or_404(Issues, pk=pk)
-        issue.lecturer = lecturer  # Assign lecturer using username
+        issue.lecturer = lecturer  
         issue.save()
 
         return Response({

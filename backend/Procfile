@@ -1,0 +1,3 @@
+
+web: gunicorn my_app.wsgi:application --log-file -
+worker: python manage.py celery -A my_app worker --loglevel=info
