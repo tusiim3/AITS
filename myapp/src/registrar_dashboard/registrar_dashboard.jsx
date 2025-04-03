@@ -36,7 +36,7 @@ function Student() {
 
   return (
     <div>
-      <div  className='left_container'>
+      <div  className='leftcontainer'>
         <div className='profile_picture_container'>
           <img
           src=''
@@ -49,7 +49,7 @@ function Student() {
         <button className='mybuttons' onClick={() => setCurrentView('Notification')}>Notification</button>
         <button className='mybuttons' onClick={() => setCurrentView('Profile')}>Profile</button>
       </div>
-      <div className='right_container'>
+      <div className='rightcontainer'>
         {currentView === 'Pending' && <Pend />}
         {currentView === 'IssueHistory' && <His />}
         {currentView === 'Notification' && <Notif />}

@@ -1,5 +1,5 @@
 .container {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.8);
     position: absolute;
     box-shadow: 0px 10px 20px #718c8e;
     z-index: 10; 
