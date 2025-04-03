@@ -1,20 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import style from './log_his.module.css';
-import { useState, useEffect } from "react";
-
+import axiosInstance from "../../axioscomponent";
 
 export default function Pend() {
     const [complaints, setComplaints] = useState([]);
 
     const fetchComplaints = async () => {
         try {
-            {/* this is where the student's issues api, this will contain all the issues of a particular student
-                 */}
-            const response = await fetch("#");
-            const data = await response.json();
-            setComplaints(data);
+            const response = await axiosInstance.get("/issues/history/");
+            setComplaints(response.data); // Assuming response.data is an array
         } catch (error) {
-            console.error("error fetching data:", error);
+            console.error("Error fetching data:", error);
         }
     };
 
@@ -22,15 +18,21 @@ export default function Pend() {
         fetchComplaints();
     }, []);
 
-    return(
+    return (
         <div className={style.container}>
-            <p>Course Unit: {complaints.coursenit}</p>
-            <p>Complaint type: {complaints.complaint_type}</p>
-            <p>Complaint: {complaints.complaint}</p>
-            <p>Lecturer: {complaints.lecturer}</p>
-            <div>
-                status
-            </div>
+            {complaints.length > 0 ? (
+                complaints.map((complaint, index) => (
+                    <div key={index} className={style.complaint}>
+                        <p className={style.pe}>Course Unit: {complaint.course?.course_code || "N/A"}</p>
+                        <p className={style.pe}>Complaint Type: {complaint.complaint_type || "N/A"}</p>
+                        <p className={style.pe}>Complaint: {complaint.custom_complaint || "N/A"}</p>
+                        <p className={style.pe}>Lecturer: {complaint.lecturer || "N/A"}</p>
+                        <p className={style.pe}>Status: {complaint.status || "N/A"}</p>
+                    </div>
+                ))
+            ) : (
+                <p>No complaints found.</p>
+            )}
         </div>
     );
 }
