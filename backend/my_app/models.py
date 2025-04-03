@@ -33,7 +33,7 @@ class CustomUser(AbstractUser):
     registrar_number = models.CharField(max_length=10, unique=True, null=True, blank=False)
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='student')
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES, default='male')
-    year_of_study = models.IntegerField(choices=YEAR_OF_STUDY_CHOICES, default=1)
+    year_of_study = models.IntegerField(choices=YEAR_OF_STUDY_CHOICES, null=True, blank=True)
 
     def clean(self):
         prefix_map = {
