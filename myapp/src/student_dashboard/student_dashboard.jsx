@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Log from './components/log_issues.jsx';
 import His from './components/log_history.jsx';
-import styles from './studet_dashboard.css';
+import './studet_dashboard.css';
 
 function Student() {
   // State to track which component to render

@@ -1,3 +1,12 @@
+body {
+    background-image: url('../images/background.png'); /* Relative path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+  }
+  
+
 .left_container {
     background-color: white;
     border-radius: 3px;
@@ -39,8 +48,21 @@
     background-color: rgb(114, 197, 114);
 }
 
-.imagecontainer {
-    background-color:black;
-    position: absolute;
-    top: 0%;
-}
+.circle-container {
+    width: 150px;  /* Set the container size */
+    height: 150px;
+    border-radius: 50%; /* Makes it circular */
+    overflow: hidden; /* Ensures image stays inside the circle */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #fff; /* Optional border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow */
+  }
+  
+  .circle-container img {
+    width: 100%;  /* Ensures image covers the container */
+    height: 100%;
+    object-fit: cover; /* Ensures image fills the circle */
+  }
+  
