@@ -36,31 +36,25 @@ function Student() {
 
   return (
     <div>
-      <>
-        <div className='left_container'>
-          <div className='profile_section'>
-            <div className='profile_picture_container'>
-              <img
-                src=''
-                alt='Registrar Profile'
-                className='profile_picture'
-              />
-            </div>  
-          </div>
-          <div className='nav_section'>
-            <button className='mybuttons' onClick={() => setCurrentView('Pending')}>Pending Issues</button>
-            <button className='mybuttons' onClick={() => setCurrentView('IssueHistory')}>Issue History</button>
-            <button className='mybuttons' onClick={() => setCurrentView('Notification')}>Notification</button>
-            <button className='mybuttons' onClick={() => setCurrentView('Profile')}>Profile</button>
-          </div>
+      <div  className='left_container'>
+        <div className='profile_picture_container'>
+          <img
+          src=''
+          alt='Registrar Profile'
+          className='profile_picture'
+          />
         </div>
-        <div className='right_container'>
-          {currentView === 'Pending' && <Pend />}
-          {currentView === 'IssueHistory' && <His />}
-          {currentView === 'Notification' && <Notif />}
-          {currentView === 'Profile' && <Prof />}
-        </div>
-      </>
+        <button className='mybuttons' onClick={() => setCurrentView('Pending')}>Pending Issues</button>
+        <button className='mybuttons' onClick={() => setCurrentView('IssueHistory')}>Issue History</button>
+        <button className='mybuttons' onClick={() => setCurrentView('Notification')}>Notification</button>
+        <button className='mybuttons' onClick={() => setCurrentView('Profile')}>Profile</button>
+      </div>
+      <div className='right_container'>
+        {currentView === 'Pending' && <Pend />}
+        {currentView === 'IssueHistory' && <His />}
+        {currentView === 'Notification' && <Notif />}
+        {currentView === 'Profile' && <Prof />}
+      </div>
     </div>
   );
 }
