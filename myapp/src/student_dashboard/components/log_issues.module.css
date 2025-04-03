@@ -72,9 +72,11 @@
   position: relative;
   display: flex;
   height: 25px;
-  width: 250px;
+  width: 360px;
   font-size: 10px;
+  left: 10px;
   border-radius: 5px;
+  border: 1.5px solid black;
 }
 .myoption{
     font-size: 15px ;
@@ -93,5 +95,43 @@ h5 {
 
 .issue {
   position: absolute;
-  top: 30px;
+  top: 50px;
+  width: 95%;
+  height: 80%;
+  border-radius: 3px;
+  border: 1.5px solid black;
+  left: 10px;
+
+}
+.label {
+  font-family: Arial, sans-serif;  /* Sets the font family */
+  font-size: 10px;                 /* Sets the font size */
+  font-weight: bold;               /* Makes the text bold */
+  color: #333;                     /* Sets the text color */
+  text-align: center;              /* Centers the text horizontally */
+  line-height: 1.5;                /* Adjusts the line height for readability */
+  text-transform: uppercase;       /* Transforms text to uppercase */
+  letter-spacing: 1px;             /* Adjusts space between letters */
+  text-decoration:wavy;  /* Underlines the text */
+  position: relative;
+  left: 10px;
+  
+}
+
+.label2 {
+  font-family: Arial, sans-serif;  /* Sets the font family */
+  font-size: 10px;                 /* Sets the font size */
+  font-weight: bold;               /* Makes the text bold */
+  color: #333;                     /* Sets the text color */
+  line-height: 1.5;                /* Adjusts the line height for readability */
+  text-transform: uppercase;       /* Transforms text to uppercase */
+  letter-spacing: 1px;             /* Adjusts space between letters */
+  text-decoration:wavy;  /* Underlines the text */
+  position: relative;
+  left: 10px;
+  
+}
+.par {
+  position: relative;
+  left: 10px;
 }
