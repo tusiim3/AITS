@@ -28,6 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'aitrack.netlify.app',
+    'aits-groupl.onrender.com'
 ]
 
 
@@ -153,6 +154,7 @@ SIMPLE_JWT = {
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     'https://aitrack.netlify.app',
+    'https://aits-groupl.onrender.com'
 ]
 
 # CORS_ALLOW_ALL_ORIGINS = True
