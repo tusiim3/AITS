@@ -1,0 +1,137 @@
+.container {
+  background-color: white;
+  width: 50%;
+  position: relative;
+  top: 20vh;
+  height: 80vh;
+  border-radius: 3px;
+  box-shadow: 0px 10px 20px #718c8e;
+  z-index: 10; 
+}
+
+.profile_image {
+  background-attachment: white;
+  width: 40%;
+  height: 20%;
+  border-radius: 3px;
+  position: absolute;
+  left: 30%;
+  top:2%
+}
+
+.myform {
+  background-color: white;
+  width: 51%;
+  height: 100vh;
+  position: absolute;
+  left: 51%;
+  top: 0px;
+  border-radius: 3px;
+  box-shadow: 0px 10px 20px #718c8e;
+  z-index: 10; 
+}
+
+.lsubmit_button {
+  background-color: red;
+  color: white;
+  border-radius: 3px;
+  border-bottom: 5px;
+  position: absolute;
+  width: 45%;
+  bottom: 10px;
+  left: 50%;
+  border:none;
+
+}
+
+.lclear_button {
+  background-color: black;
+  color: white;
+  border-radius: 3px;
+  border-bottom: 5px;
+  position: absolute;
+  bottom: 10px;
+  left: 2%;
+  width: 45%;
+  border: none;
+}
+
+.rsubmit_buttons {
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  border-bottom: 5px;
+  position: absolute;
+  width: 95%;
+  right: 2.5%;
+  bottom: 10px;
+}
+
+.select {
+  position: relative;
+  display: flex;
+  height: 25px;
+  width: 360px;
+  font-size: 10px;
+  left: 10px;
+  border-radius: 5px;
+  border: 1.5px solid black;
+}
+.myoption{
+    font-size: 15px ;
+  }
+.textarea {
+  position: absolute;
+  left: 10px;
+  bottom: 34px;
+  width: 350px;
+}
+
+h5 {
+  position:absolute;
+  right: 10px;
+}
+
+.issue {
+  position: absolute;
+  top: 50px;
+  width: 95%;
+  height: 80%;
+  border-radius: 3px;
+  border: 1.5px solid black;
+  left: 10px;
+
+}
+.label {
+  font-family: Arial, sans-serif;  /* Sets the font family */
+  font-size: 10px;                 /* Sets the font size */
+  font-weight: bold;               /* Makes the text bold */
+  color: #333;                     /* Sets the text color */
+  text-align: center;              /* Centers the text horizontally */
+  line-height: 1.5;                /* Adjusts the line height for readability */
+  text-transform: uppercase;       /* Transforms text to uppercase */
+  letter-spacing: 1px;             /* Adjusts space between letters */
+  text-decoration:wavy;  /* Underlines the text */
+  position: relative;
+  left: 10px;
+  
+}
+
+.label2 {
+  font-family: Arial, sans-serif;  /* Sets the font family */
+  font-size: 10px;                 /* Sets the font size */
+  font-weight: bold;               /* Makes the text bold */
+  color: #333;                     /* Sets the text color */
+  line-height: 1.5;                /* Adjusts the line height for readability */
+  text-transform: uppercase;       /* Transforms text to uppercase */
+  letter-spacing: 1px;             /* Adjusts space between letters */
+  text-decoration:wavy;  /* Underlines the text */
+  position: relative;
+  left: 10px;
+  
+}
+.par {
+  position: relative;
+  left: 10px;
+}

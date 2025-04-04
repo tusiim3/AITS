@@ -1,0 +1,73 @@
+.leftcontainer {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 3px;
+    width: 20vw;
+    height: 100vh;
+    position: absolute;
+    top: 1%;
+    font-size: 1.5rem;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1); /* Optional: Adds shadow for separation */
+}
+
+.profile_section {
+    text-align: center;
+    margin-bottom: 20px; /* Space between profile and navigation buttons */
+    padding-bottom: 20px;
+    border-bottom: 2px solid #f0f0f0; /* Adds a divider line between profile and nav buttons */
+    display: flex; /* Enable Flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 170px; /* Set a height to center the content vertically */
+}
+
+.profile_picture_container {
+    width: 135px;
+    height: 135px;
+    border-radius: 50%;
+    background-color: #ccc; /* Placeholder background */
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+}
+
+.profile_picture {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.nav_section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.rightcontainer {
+    
+    position: absolute;
+    top: 1%;
+    left: 22%;
+    width: 75vw;
+    height: 100vh;
+    border-radius: 3px;
+}
+
+.mybuttons {
+    margin-bottom: 10px;
+    width: 100%;
+    position: relative;
+    top:30% ;
+    background-color: white;
+    border-radius: 3px;
+    border-color: rgb(255, 255, 255);
+    text-align: left;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
