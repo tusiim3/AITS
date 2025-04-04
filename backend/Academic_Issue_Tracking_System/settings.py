@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure-jipb*-tiv#05l7pwp85pt3@mql@le=7w5ss-@1*t&uyoi&dot^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'aitrack.netlify.app',
+]
 
 
 # Application definition
@@ -148,13 +150,10 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',), 
 }
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    'https://aitrack.netlify.app',
+]
 
-import dj_database_url
-import os
+# CORS_ALLOW_ALL_ORIGINS = True
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL', 'sqlite:///db.sqlite3')
-    )
-}
