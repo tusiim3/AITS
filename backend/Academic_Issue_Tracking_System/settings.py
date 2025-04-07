@@ -26,8 +26,7 @@ SECRET_KEY = 'django-insecure-jipb*-tiv#05l7pwp85pt3@mql@le=7w5ss-@1*t&uyoi&dot^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    'aitrack.netlify.app',
+ALLOWED_HOSTS = ['localhost',
     'aits-groupl.onrender.com'
 ]
 
