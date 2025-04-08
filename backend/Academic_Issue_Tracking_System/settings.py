@@ -27,7 +27,8 @@ SECRET_KEY = 'django-insecure-jipb*-tiv#05l7pwp85pt3@mql@le=7w5ss-@1*t&uyoi&dot^
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost',
-    'aits-groupl.onrender.com'
+    'aits-groupl.onrender.com',
+    '127.0.0.1'
 ]
 
 
@@ -153,7 +154,7 @@ SIMPLE_JWT = {
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     'https://aitrack.netlify.app',
-    'https://aits-groupl.onrender.com'
+    'https://aits-groupl.onrender.com',
 ]
 
 # CORS_ALLOW_ALL_ORIGINS = True

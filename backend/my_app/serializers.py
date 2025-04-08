@@ -132,7 +132,7 @@ class LogoutSerializer(serializers.Serializer):
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['id', 'username', 'number_type', 'student_number', 'email', 'role', 'gender', 'year_of_study']
+        fields = ['id', 'username', 'number_type', 'student_number', 'email', 'role','year_of_study']
 
         def validate(self, data):
             role = data.get('role')
@@ -162,7 +162,7 @@ class IssuesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Issues
-        fields = ['id', 'student','issue_type', 'department', 'course', 'description', 'status', 'created_at', 'lecturer', 'academic_registrar' 'lecturer_id']
+        fields = ['id', 'student','complaint_type','complaint', 'department', 'course', 'custom_complaint', 'status', 'created_at', 'lecturer', 'academic_registrar', 'lecturer_id']
 
     def update(self, instance, validated_data):
         request = self.context['request']
