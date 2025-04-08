@@ -27,7 +27,12 @@ export default function Pend() {
                         <p className={style.pe}>Complaint Type: {complaint.complaint_type || "N/A"}</p>
                         <p className={style.pe}>Complaint: {complaint.custom_complaint || "N/A"}</p>
                         <p className={style.pe}>Lecturer: {complaint.lecturer || "N/A"}</p>
-                        <p className={style.pe}>Status: {complaint.status || "N/A"}</p>
+                        <p className={style.pe}
+                            style={{backgroundColor:
+                                complaint.status.toLowerCase() === 'pending'?'grey':
+                                complaint.status.toLowerCase() === 'resolved'?'green':'transparent'
+                            }}>
+                            Status: {complaint.status || "N/A"}</p>
                     </div>
                 ))
             ) : (
