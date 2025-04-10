@@ -156,7 +156,7 @@ class IssuesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Issues
-        fields = ['id', 'student','complaint_type','complaint', 'department', 'course', 'custom_complaint', 'status', 'created_at', 'lecturer', 'academic_registrar', 'lecturer_id']
+        fields = ['id', 'student','complaint_type','complaint', 'course', 'custom_complaint', 'status', 'created_at', 'lecturer', 'academic_registrar', 'lecturer_id']
 
     def update(self, instance, validated_data):
         request = self.context['request']
