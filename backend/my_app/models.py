@@ -24,8 +24,7 @@ class CustomUser(AbstractUser):
         (2, '2nd Year'),
         (3, '3rd Year'),
         (4, '4th Year'),
-        (5, '5th Year'),
-    ]
+        (5, '5th Year'),]
     email = models.EmailField(unique=False)
     number_type = models.CharField(max_length=20, choices = NUMBER_TYPE_CHOICES, null=False)
     student_number = models.CharField(max_length=10, unique=True, null = True, blank = False)
