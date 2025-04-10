@@ -106,13 +106,7 @@ class Issues(models.Model):
     complaint = models.CharField(max_length=40, choices=ISSUE_CHOICES)
     complaint_type = models.CharField(max_length=40, choices=ISSUE_TYPES, null=True)
     
-
     
-    
-    department = models.ForeignKey(
-        Department, on_delete=models.PROTECT, related_name="department_issues",
-        null=True, blank=False
-    )
     course = models.ForeignKey(
         Course, on_delete=models.PROTECT, related_name="course_issues",
         null=True, blank=False

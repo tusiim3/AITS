@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from my_app.models import CustomUser, Department, Course, Issues
+from my_app.models import CustomUser, Course, Issues
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth import authenticate
 
@@ -151,7 +151,6 @@ class IssuesSerializer(serializers.ModelSerializer):
     student = CustomUserSerializer(read_only=True)  
     lecturer = CustomUserSerializer(read_only=True)  
     academic_registrar = CustomUserSerializer(read_only=True) 
-    department = DepartmentSerializer(read_only=True)
     course = CourseSerializer(read_only=True)  
     lecturer_id = serializers.IntegerField(write_only=True, required=False)
 

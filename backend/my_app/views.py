@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from rest_framework import viewsets, status, generics
-from .models import CustomUser, Department, Course, Issues
-from .serializers import CustomUserSerializer, DepartmentSerializer, CourseSerializer, IssuesSerializer ,RegisterSerializer, LoginSerializer, LogoutSerializer, CreateIssue
+from .models import CustomUser, Course, Issues
+from .serializers import CustomUserSerializer, CourseSerializer, IssuesSerializer ,RegisterSerializer, LoginSerializer, LogoutSerializer, CreateIssue
 from .permissions import IsOwnerOrIslecturerOrRegistrar,IsIssueOwner,IsRegistrar,IsLecturer,IsStudent
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.views import APIView
@@ -87,10 +87,6 @@ class LogoutView(APIView):
 class CustomUserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
-    permission_classes = [IsAuthenticated]
-
-    queryset = Department.objects.all()
-    serializer_class = DepartmentSerializer     
     permission_classes = [IsAuthenticated]
 
 class CourseViewSet(viewsets.ModelViewSet):
