@@ -3,6 +3,7 @@ import Log from './components/log_issues.jsx';
 import His from './components/log_history.jsx';
 import './studet_dashboard.css';
 import './logo/martha.jpg';
+import axiosInstance from '../axioscomponent.jsx';
 
 function Student() {
   // State to track which component to render
@@ -20,6 +21,17 @@ function Student() {
         <His/>
     </div>
   );
+  const handlelogout = async(e) => {
+    try {
+      const response = await axiosInstance.post("/Logout/");
+      console.log(response.data);
+      localStorage.removeItem("token");
+      window.GeolocationCoordinates.href = '/'
+    } catch (error) {
+      console.error("Error during logout:", error);
+      alert("failed to logout. please try again");
+    }
+  };
 
   return (
     <div>
@@ -36,6 +48,9 @@ function Student() {
           setCurrentView('logHistory');
           setClickedButton('logHistory');
           }}>Log History</button>
+        
+        <button className='logout_button' onClick={handlelogout}>Log out</button>
+
       </div>
 
       <div className='right_container'>
