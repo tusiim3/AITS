@@ -72,12 +72,6 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return f"{self.username} ({self.get_role_display()})"
 
-class Department(models.Model):
-    department_name = models.CharField(max_length=50, unique=True)
-    description = models.TextField(blank=True)# Allows the user to add a description of the department
-
-    def __str__(self):
-        return self.department_name
 
 class Course(models.Model):
     course_name = models.CharField(max_length=50, unique=True)
