@@ -158,7 +158,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     'https://aitrack.netlify.app',
-    'https://aits-groupl.onrender.com',
     'http://localhost:3000'
 ]
 
