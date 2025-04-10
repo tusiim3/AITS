@@ -89,7 +89,6 @@ class CustomUserViewSet(viewsets.ModelViewSet):
     serializer_class = CustomUserSerializer
     permission_classes = [IsAuthenticated]
 
-class DepartmentViewSet(viewsets.ModelViewSet):
     queryset = Department.objects.all()
     serializer_class = DepartmentSerializer     
     permission_classes = [IsAuthenticated]
