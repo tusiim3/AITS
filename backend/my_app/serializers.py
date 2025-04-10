@@ -142,11 +142,6 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
             return data    
 
-class DepartmentSerializer(serializers.ModelSerializer): 
-    class Meta:
-        model = Department
-        fields = ['id', 'department_name', 'description']
-
 class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
