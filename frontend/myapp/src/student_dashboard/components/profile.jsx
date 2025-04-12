@@ -1,5 +1,7 @@
 import React from 'react';
 import ImageUploading from 'react-images-uploading';
+import style from './profile.module.css';
+
 
 export default function Profile() {
   const [images, setImages] = React.useState([]);
@@ -12,7 +14,7 @@ export default function Profile() {
   };
 
   return (
-    <div className="App">
+    <div className={style.App}>
       <ImageUploading
         multiple
         value={images}
