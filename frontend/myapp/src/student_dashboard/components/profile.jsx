@@ -54,6 +54,9 @@ export default function Profile() {
           </div>
         )}
       </ImageUploading>
+      <p>EMAIL</p>
+      <p>PERSONAL NUMBER</p>
+      <p>ROLE</p>
     </div>
   );
 }
