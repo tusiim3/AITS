@@ -21,7 +21,7 @@ export default function Pend() {
             } catch (error) {
                 console.error("Error fetching complaints:", error);
             }
-        }, 30000);
+        }, 5000);
 
         return () => clearInterval(intervalId);
 
