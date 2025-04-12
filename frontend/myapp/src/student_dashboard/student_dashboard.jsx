@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Log from './components/log_issues.jsx';
 import His from './components/log_history.jsx';
+import Profile from './components/profile.jsx';
 import './studet_dashboard.css';
 import './logo/martha.jpg';
 import axiosInstance from '../axioscomponent.jsx';
@@ -21,6 +22,13 @@ function Student() {
         <His/>
     </div>
   );
+
+  const Profileform = () => (
+    <div>
+      <Profile />
+    </div>
+  )
+
   const handlelogout = async(e) => {
     try {
       const response = await axiosInstance.post("/Logout/");
@@ -48,7 +56,8 @@ function Student() {
           setCurrentView('logHistory');
           setClickedButton('logHistory');
           }}>Log History</button>
-        
+        <button className={`mybuttons ${clickeButton === 'Profileform' ? 'clicked': ''}`}>Profile</button>
+
         <button className='logout_button' onClick={handlelogout}>Log out</button>
 
       </div>
