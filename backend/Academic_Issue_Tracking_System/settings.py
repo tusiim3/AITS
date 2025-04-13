@@ -29,6 +29,7 @@ SECRET_KEY = 'django-insecure-jipb*-tiv#05l7pwp85pt3@mql@le=7w5ss-@1*t&uyoi&dot^
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost',
+    'aits-groupl-90wo.onrender.com
     'aits-groupl.onrender.com',
     '127.0.0.1'
 ]
