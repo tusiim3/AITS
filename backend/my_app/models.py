@@ -110,7 +110,7 @@ class Issues(models.Model):
         Course, on_delete=models.PROTECT, related_name="course_issues",
         null=True, blank=False
     )
-    custom_complaint = models.TextField(null=True)
+    custom_complaint = models.TextField(null=True) 
     status = models.CharField(max_length=100, choices=STATUS_CHOICES, default='pending')
     created_at = models.DateTimeField(auto_now_add=True)
     lecturer = models.ForeignKey(
