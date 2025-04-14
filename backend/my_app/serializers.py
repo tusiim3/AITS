@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from my_app.models import CustomUser, Department, Course, Issues
+from my_app.models import CustomUser, Course, Issues
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth import authenticate
 
@@ -132,7 +132,7 @@ class LogoutSerializer(serializers.Serializer):
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['id', 'username', 'number_type', 'student_number', 'email', 'role', 'gender', 'year_of_study']
+        fields = ['id', 'username', 'number_type', 'student_number', 'email', 'role','year_of_study']
 
         def validate(self, data):
             role = data.get('role')
@@ -141,11 +141,6 @@ class CustomUserSerializer(serializers.ModelSerializer):
                 data.pop("year_of_study", None)
 
             return data    
-
-class DepartmentSerializer(serializers.ModelSerializer): 
-    class Meta:
-        model = Department
-        fields = ['id', 'department_name', 'description']
 
 class CourseSerializer(serializers.ModelSerializer):
     class Meta:
@@ -156,13 +151,12 @@ class IssuesSerializer(serializers.ModelSerializer):
     student = CustomUserSerializer(read_only=True)  
     lecturer = CustomUserSerializer(read_only=True)  
     academic_registrar = CustomUserSerializer(read_only=True) 
-    department = DepartmentSerializer(read_only=True)
     course = CourseSerializer(read_only=True)  
     lecturer_id = serializers.IntegerField(write_only=True, required=False)
 
     class Meta:
         model = Issues
-        fields = ['id', 'student','issue_type', 'department', 'course', 'description', 'status', 'created_at', 'lecturer', 'academic_registrar' 'lecturer_id']
+        fields = ['id', 'student','complaint_type','complaint', 'course', 'custom_complaint', 'status', 'created_at', 'lecturer', 'academic_registrar', 'lecturer_id']
 
     def update(self, instance, validated_data):
         request = self.context['request']

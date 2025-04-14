@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,9 +28,10 @@ SECRET_KEY = 'django-insecure-jipb*-tiv#05l7pwp85pt3@mql@le=7w5ss-@1*t&uyoi&dot^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
+ALLOWED_HOSTS = ['localhost',
+    'aits-groupl-90wo.onrender.com',
     'aitrack.netlify.app',
-    'aits-groupl.onrender.com'
+    '127.0.0.1',
 ]
 
 
@@ -126,6 +129,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
+
+
 STATIC_URL = 'static/'
 
 # Default primary key field type
@@ -151,11 +156,16 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',), 
 }
 
+#CORS_ALLOW_ALL_ORIGINS = True
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     'https://aitrack.netlify.app',
-    'https://aits-groupl.onrender.com'
+    'http://localhost:3000'
 ]
 
 # CORS_ALLOW_ALL_ORIGINS = True
+
 

@@ -24,8 +24,7 @@ class CustomUser(AbstractUser):
         (2, '2nd Year'),
         (3, '3rd Year'),
         (4, '4th Year'),
-        (5, '5th Year'),
-    ]
+        (5, '5th Year'),]
     email = models.EmailField(unique=False)
     number_type = models.CharField(max_length=20, choices = NUMBER_TYPE_CHOICES, null=False)
     student_number = models.CharField(max_length=10, unique=True, null = True, blank = False)
@@ -72,12 +71,6 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return f"{self.username} ({self.get_role_display()})"
 
-class Department(models.Model):
-    department_name = models.CharField(max_length=50, unique=True)
-    description = models.TextField(blank=True)
-
-    def __str__(self):
-        return self.department_name
 
 class Course(models.Model):
     course_name = models.CharField(max_length=50, unique=True)
@@ -112,13 +105,7 @@ class Issues(models.Model):
     complaint = models.CharField(max_length=40, choices=ISSUE_CHOICES)
     complaint_type = models.CharField(max_length=40, choices=ISSUE_TYPES, null=True)
     
-
     
-    
-    department = models.ForeignKey(
-        Department, on_delete=models.PROTECT, related_name="department_issues",
-        null=True, blank=False
-    )
     course = models.ForeignKey(
         Course, on_delete=models.PROTECT, related_name="course_issues",
         null=True, blank=False
