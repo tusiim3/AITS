@@ -26,7 +26,7 @@ def home(request):
     return HttpResponse("Welcome to the Academic Issue Tracking System!")
 
 urlpatterns = [
-    path('', home, name='home'),  # Root URL handler
+    path('', home, name='home'),  
     path('admin/', admin.site.urls),
     path('api/', include('my_app.urls')),  # Include the API URLs
 ]
