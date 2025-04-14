@@ -54,9 +54,9 @@ export default function Profile() {
           </div>
         )}
       </ImageUploading>
-      <p className={style.label}>EMAIL:<textarea className={style.text}></textarea></p>
-      <p className={style.label}>PERSONAL NUMBER:<textarea className={style.text}></textarea></p>
-      <p className={style.label}>ROLE:<textarea className={style.text}></textarea></p>
+      <p className={style.label}>EMAIL:</p><textarea className={style.text}></textarea>
+      <p className={style.label}>PERSONAL NUMBER:</p><textarea className={style.text}></textarea>
+      <p className={style.label}>ROLE:</p><textarea className={style.text}></textarea>
     </div>
   );
 }

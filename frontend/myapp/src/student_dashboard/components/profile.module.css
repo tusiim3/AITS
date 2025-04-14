@@ -20,4 +20,14 @@
     left: 2%;
     
   }
+
+.text{
+    height: 4%;
+    width: 40%;
+    position: relative;
+    left: 2%;
+    border-color: black;
+    border: 2px solid;
+    border-radius: 3px;
+}
   
