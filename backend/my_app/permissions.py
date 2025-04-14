@@ -10,7 +10,7 @@ class IsOwnerOrIslecturerOrRegistrar(BasePermission):
     
 class IsStudent(BasePermission):
     def has_permission(self, request, view):
-        return request.user.role == 'student' # returns True if the user is a student
+        return request.user.role == 'student' 
 
 class IsLecturer(BasePermission):
     def has_permission(self, request, view):
