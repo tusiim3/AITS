@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create an Axios instance
 const axiosInstance = axios.create({
-  baseURL: 'https://aits-groupl.onrender.com/api/', // Replace with your API base URL
+  baseURL: 'https://aits-groupl-90wo.onrender.com/api/', // Replace with your API base URL
   headers: { 'Content-Type': 'application/json' },
 });
 
@@ -35,7 +35,7 @@ axiosInstance.interceptors.response.use(
       originalRequest._retry = true;
       const refreshToken = localStorage.getItem('refreshToken');
       try {
-        const { data } = await axios.post('https://aits-groupl.onrender.com/api/token/refresh/', { refresh: refreshToken });
+        const { data } = await axios.post('https://aits-groupl-90wo.onrender.com/api/token/refresh/', { refresh: refreshToken });
         localStorage.setItem('accessToken', data.access);
         originalRequest.headers.Authorization = `Bearer ${data.access}`;
         return axiosInstance(originalRequest); // Retry the original request with the new token
