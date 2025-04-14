@@ -29,9 +29,9 @@ SECRET_KEY = 'django-insecure-jipb*-tiv#05l7pwp85pt3@mql@le=7w5ss-@1*t&uyoi&dot^
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost',
-    'aits-groupl-90wo.onrender.com
-    'aits-groupl.onrender.com',
-    '127.0.0.1'
+    'aits-groupl-90wo.onrender.com',
+    'aitrack.netlify.app',
+    '127.0.0.1',
 ]
 
 
@@ -156,7 +156,7 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',), 
 }
 
-CORS_ALLOW_ALL_ORIGINS = True
+#CORS_ALLOW_ALL_ORIGINS = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
