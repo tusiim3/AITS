@@ -14,7 +14,7 @@ export default function Profile() {
   };
 
   return (
-    <div className={style.App}>
+    <div className={style.container}>
       <ImageUploading
         multiple
         value={images}
@@ -54,9 +54,21 @@ export default function Profile() {
           </div>
         )}
       </ImageUploading>
-      <p>EMAIL</p>
-      <p>PERSONAL NUMBER</p>
-      <p>ROLE</p>
+      <p className={style.label}>EMAIL:</p><textarea className={style.text}></textarea>
+      <p className={style.label}>PERSONAL NUMBER:</p><textarea className={style.text}></textarea>
+      <p className={style.label}>CONTACT:</p><textarea className={style.text}></textarea>
+      <div className={style.profileview}>
+        <p className={style.label1}>NAME:</p>
+        <p></p>
+        <p className={style.label1}>STUDENT NUMBER:</p>
+        <p></p>
+        <p className={style.label1}>EMAIL:</p>
+        <p></p>
+        <p className={style.label1}>YEAR OF STUDY:</p>
+        <p></p>
+        <p className={style.label1}>CONTACT:</p>
+        <p></p>
+      </div>
     </div>
   );
 }

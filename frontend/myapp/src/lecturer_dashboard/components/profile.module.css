@@ -1,6 +1,60 @@
-.App{
+.container{
     background-color: white;
     height: 100vh;
     width: 100%;
     border-radius: 3px;
 }
+
+.label {
+    font-family: Arial, sans-serif;  /* Sets the font family */
+    font-size: 12px;                 /* Sets the font size */
+    font-weight: bold;               /* Makes the text bold */
+    color: #333;                     /* Sets the text color */
+    text-align: left;              /* Centers the text horizontally */
+    line-height: 1.5;                /* Adjusts the line height for readability */
+    text-transform: uppercase;       /* Transforms text to uppercase */
+    letter-spacing: 1px;             /* Adjusts space between letters */
+    text-decoration:wavy;  /* Underlines the text */
+    position: relative;
+    padding: 0px;
+    left: 2%;
+    
+  }
+
+.text{
+    height: 4%;
+    width: 40%;
+    position: relative;
+    left: 2%;
+    border-color: black;
+    border: 2px solid;
+    border-radius: 3px;
+}
+
+.profileview{
+    background-color: rgb(178, 211, 179);
+    border-radius: 3px;
+    border-color: black;
+    border: 1px solid;
+    position: absolute;
+    width: 53%;
+    height: 96%;
+    left: 45%;
+    top: 2%;
+}
+
+.label1 {
+    font-family: Arial, sans-serif;  /* Sets the font family */
+    font-size: 12px;                 /* Sets the font size */
+    font-weight: bold;               /* Makes the text bold */
+    color: #aa2424;                     /* Sets the text color */
+    text-align: left;              /* Centers the text horizontally */
+    line-height: 1.5;                /* Adjusts the line height for readability */
+    text-transform: uppercase;       /* Transforms text to uppercase */
+    letter-spacing: 1px;             /* Adjusts space between letters */
+    text-decoration:wavy;  /* Underlines the text */
+    position: relative;
+    padding: 0px;
+    left: 2%;
+    
+  }

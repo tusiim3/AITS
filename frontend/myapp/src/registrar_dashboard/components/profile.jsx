@@ -14,7 +14,7 @@ export default function Profile() {
   };
 
   return (
-    <div className={style.App}>
+    <div className={style.container}>
       <ImageUploading
         multiple
         value={images}
@@ -32,7 +32,7 @@ export default function Profile() {
           dragProps,
         }) => (
           // write your building UI
-          <div className={style.image}>
+          <div className="upload__image-wrapper">
             <button
               style={isDragging ? { color: 'red' } : undefined}
               onClick={onImageUpload}
@@ -45,7 +45,7 @@ export default function Profile() {
             {imageList.map((image, index) => (
               <div key={index} className="image-item">
                 <img src={image['data_url']} alt="" width="100" />
-                <div className={style.image}>
+                <div className="image-item__btn-wrapper">
                   <button onClick={() => onImageUpdate(index)}>Update</button>
                   <button onClick={() => onImageRemove(index)}>Remove</button>
                 </div>
@@ -54,9 +54,21 @@ export default function Profile() {
           </div>
         )}
       </ImageUploading>
-      <p>EMAIL:</p><textarea className={style.text}></textarea>
-      <p>PERSONAL NUMBER</p>
-      <p>ROLE</p>
+      <p className={style.label}>EMAIL:</p><textarea className={style.text}></textarea>
+      <p className={style.label}>PERSONAL NUMBER:</p><textarea className={style.text}></textarea>
+      <p className={style.label}>CONTACT:</p><textarea className={style.text}></textarea>
+      <div className={style.profileview}>
+        <p className={style.label1}>NAME:</p>
+        <p></p>
+        <p className={style.label1}>STUDENT NUMBER:</p>
+        <p></p>
+        <p className={style.label1}>EMAIL:</p>
+        <p></p>
+        <p className={style.label1}>YEAR OF STUDY:</p>
+        <p></p>
+        <p className={style.label1}>CONTACT:</p>
+        <p></p>
+      </div>
     </div>
   );
 }
