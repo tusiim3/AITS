@@ -32,7 +32,7 @@ export default function Profile() {
           dragProps,
         }) => (
           // write your building UI
-          <div className="upload__image-wrapper">
+          <div className={style.image}>
             <button
               style={isDragging ? { color: 'red' } : undefined}
               onClick={onImageUpload}
@@ -45,7 +45,7 @@ export default function Profile() {
             {imageList.map((image, index) => (
               <div key={index} className="image-item">
                 <img src={image['data_url']} alt="" width="100" />
-                <div className="image-item__btn-wrapper">
+                <div className={style.image}>
                   <button onClick={() => onImageUpdate(index)}>Update</button>
                   <button onClick={() => onImageRemove(index)}>Remove</button>
                 </div>
@@ -54,7 +54,7 @@ export default function Profile() {
           </div>
         )}
       </ImageUploading>
-      <p>EMAIL</p>
+      <p>EMAIL:</p><textarea className={style.text}></textarea>
       <p>PERSONAL NUMBER</p>
       <p>ROLE</p>
     </div>

@@ -1,6 +1,23 @@
-.App{
+.container{
     background-color: white;
     height: 100vh;
     width: 100%;
     border-radius: 3px;
 }
+
+.label {
+    font-family: Arial, sans-serif;  /* Sets the font family */
+    font-size: 15px;                 /* Sets the font size */
+    font-weight: bold;               /* Makes the text bold */
+    color: #333;                     /* Sets the text color */
+    text-align: left;              /* Centers the text horizontally */
+    line-height: 1.5;                /* Adjusts the line height for readability */
+    text-transform: uppercase;       /* Transforms text to uppercase */
+    letter-spacing: 1px;             /* Adjusts space between letters */
+    text-decoration:wavy;  /* Underlines the text */
+    position: relative;
+    padding: 0px;
+    left: 2%;
+    
+  }
+  
