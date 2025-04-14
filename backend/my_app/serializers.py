@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate
 
 
 class RegisterSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True) #for password
+    password = serializers.CharField(write_only=True) 
     password2 = serializers.CharField(write_only=True)
     student_number = serializers.CharField(required=False, allow_blank=True)
     lecturer_number = serializers.CharField(required=False, allow_blank=True)
