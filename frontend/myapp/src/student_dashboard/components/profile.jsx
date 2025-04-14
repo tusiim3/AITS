@@ -56,7 +56,13 @@ export default function Profile() {
       </ImageUploading>
       <p className={style.label}>EMAIL:</p><textarea className={style.text}></textarea>
       <p className={style.label}>PERSONAL NUMBER:</p><textarea className={style.text}></textarea>
-      <p className={style.label}>ROLE:</p><textarea className={style.text}></textarea>
+      <div className={style.profileview}>
+        <p className={style.label1}></p>
+        <p className={style.label1}></p>
+        <p className={style.label1}></p>
+        <p className={style.label1}></p>
+        <p className={style.label1}></p>
+      </div>
     </div>
   );
 }
