@@ -1,24 +1,23 @@
 import React, { useState } from 'react';
-import Log from './components/log_issues.jsx';
-import His from './components/log_history.jsx';
-import Profile from './components/profile.jsx';
-import './student_dashboard.css';
-import './logo/martha.jpg';
+import Pend from "./components/pending_issues.jsx";
+import His from "./components/issue_history.jsx";
+import Profile from "./components/profile.jsx";
+import './lecturer_dashboard.css';
 import axiosInstance from '../axioscomponent.jsx';
 
 function Student() {
   // State to track which component to render
-  const [currentView, setCurrentView] = useState('logForm'); // Default view is 'logForm'
-  const [clickedButton, setClickedButton] = useState('logForm');
+  const [currentView, setCurrentView] = useState('PendIssues'); // Default view is 'logForm'
+  const [clickedButton, setClickedButton] = useState('IssueHistory');
 
   // Components to display
-  const LogForm = () => (
+  const PendIssues = () => (
     <div>
-      <Log />
+      <Pend />
     </div>
   );
 
-  const LogHistory = () => (
+  const IssueHistory = () => (
     <div>
       <His />
     </div>
@@ -50,22 +49,22 @@ function Student() {
         </div>
 
         <button
-          className={`mybuttons ${clickedButton === 'logForm' ? 'clicked' : ''}`}
+          className={`mybuttons ${clickedButton === 'PendIssues' ? 'clicked' : ''}`}
           onClick={() => {
-            setCurrentView('logForm');
-            setClickedButton('logForm');
+            setCurrentView('PendIssues');
+            setClickedButton('PendIssues');
           }}
         >
-          Log Issue
+          Pending Issues
         </button>
         <button
-          className={`mybuttons ${clickedButton === 'logHistory' ? 'clicked' : ''}`}
+          className={`mybuttons ${clickedButton === 'IssueHistory' ? 'clicked' : ''}`}
           onClick={() => {
-            setCurrentView('logHistory');
-            setClickedButton('logHistory');
+            setCurrentView('IssueHistory');
+            setClickedButton('IssueHistory');
           }}
         >
-          Log History
+          Issue History
         </button>
         <button
           className={`mybuttons ${clickedButton === 'Profile' ? 'clicked' : ''}`}
@@ -83,8 +82,8 @@ function Student() {
       </div>
 
       <div className='right_container'>
-        {currentView === 'logForm' && <LogForm />}
-        {currentView === 'logHistory' && <LogHistory />}
+        {currentView === 'PendIssues' && <Pend/>}
+        {currentView === 'IssueHistory' && <His />}
         {currentView === 'Profile' && <ProfileForm />}
       </div>
     </div>
