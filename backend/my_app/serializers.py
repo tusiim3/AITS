@@ -223,3 +223,6 @@ class CreateIssue(serializers.ModelSerializer):
         )
         return issue
 
+class LecturerlistSerializer(serializers.ModelSerializer):
+    courses = serializers.SerializerMethodField()
+
