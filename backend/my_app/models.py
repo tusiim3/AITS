@@ -75,8 +75,9 @@ class CustomUser(AbstractUser):
 class Course(models.Model):
     course_name = models.CharField(max_length=50, unique=True)
     course_code = models.CharField(max_length=10, unique=True)
-    lecturer = models.CharField(max_length=100, unique=False)
-
+    lecturer = models.ForeignKey(
+        CustomUser, on_delete=models.PROTECT,
+    )
     def __str__(self):
         return f"{self.course_name} - {self.course_code}"
 
