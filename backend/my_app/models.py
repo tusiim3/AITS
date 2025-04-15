@@ -127,4 +127,5 @@ class Issues(models.Model):
     )
 
     def __str__(self):
+        
         return f"Issue: {self.complaint_type} by {self.student.username} created at {self.created_at}"
