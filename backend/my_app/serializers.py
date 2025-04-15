@@ -145,7 +145,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
 class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
-        fields = ['id', 'course_name', 'course_code']
+        fields = ['course_name', 'course_code', 'lecturer']
 
 class IssuesSerializer(serializers.ModelSerializer):
     student = CustomUserSerializer(read_only=True)  
