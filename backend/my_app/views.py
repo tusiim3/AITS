@@ -160,7 +160,7 @@ class AddCourseView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class LecturerlistView(APIView):
-    permission_classes = [IsAuthenticated, IsRegistrar]
+    permission_classes = [IsAuthenticated, IsRegistrar] #   Only registrars can access this view
 
     def get(self, request):
         lecturers = CustomUser.objects.filter(role='lecturer')
