@@ -142,10 +142,23 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
             return data    
 
+
 class CourseSerializer(serializers.ModelSerializer):
+    lecturer = serializers.CharField()  
+
     class Meta:
         model = Course
         fields = ['course_name', 'course_code', 'lecturer']
+
+    def create(self, validated_data):
+        lecturer_name = validated_data.pop('lecturer') 
+        try:
+            lecturer = CustomUser.objects.get(username=lecturer_name)
+        except CustomUser.DoesNotExist:
+            raise serializers.ValidationError(f"Lecturer with name {lecturer_name} does not exist.")
+        course = Course.objects.create(lecturer=lecturer, **validated_data)
+        return course
+
 
 class IssuesSerializer(serializers.ModelSerializer):
     student = CustomUserSerializer(read_only=True)  
