@@ -147,5 +147,5 @@ class StudentIssueHistoryView(generics.ListAPIView):
     def get_queryset(self):
         return Issues.objects.filter(student=self.request.user).order_by('-created_at')
 
-
- 
+@api_View(['POST']) 
+@permission_classes([IsAuthenticated, Isregistrar])
