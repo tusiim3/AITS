@@ -11,11 +11,6 @@
     flex-direction: column;
     box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1); /* Optional: Adds shadow for separation */
 }
-
-.profile_section {
-
-}
-
 .profile_picture_container {
     width: 135px;
     height: 135px;
