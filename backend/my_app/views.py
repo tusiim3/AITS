@@ -151,3 +151,4 @@ class StudentIssueHistoryView(generics.ListAPIView):
 @permission_classes([IsAuthenticated, Isregistrar])
 def add_course(request):
     serializer = CourseSerializer(data=request.data)
+    if serializer.is_valid():
