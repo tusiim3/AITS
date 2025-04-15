@@ -77,6 +77,7 @@ class Course(models.Model):
     course_code = models.CharField(max_length=10, unique=True)
     lecturer = models.ForeignKey(
         CustomUser, on_delete=models.PROTECT,
+        limit_choices_to={'role': 'lecturer'}, related_name="lecturer_courses"
     )
     def __str__(self):
         return f"{self.course_name} - {self.course_code}"
