@@ -229,5 +229,8 @@ class LecturerlistSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ['id', 'username', 'email', 'lecturer_number', 'courses']
-        
+
+    def get_courses(self, obj):
+        courses = Course.objects.filter(lecturer=obj)
+        return [course.name for course in courses]
 
