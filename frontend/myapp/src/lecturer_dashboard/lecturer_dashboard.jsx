@@ -1,56 +1,91 @@
 import React, { useState } from 'react';
-import "./lecturer_dashboard.css";
-import His from './components/issue_history.jsx';
-import Pend from './components/pending_issues.jsx';
-import Prof from './components/profile.jsx';
+import Log from './components/log_issues.jsx';
+import His from './components/log_history.jsx';
+import Profile from './components/profile.jsx';
+import './student_dashboard.css';
+import './logo/martha.jpg';
+import axiosInstance from '../axioscomponent.jsx';
 
 function Student() {
   // State to track which component to render
-  const [currentView, setCurrentView] = useState('Pending'); // Default view is 'logForm'
+  const [currentView, setCurrentView] = useState('logForm'); // Default view is 'logForm'
+  const [clickedButton, setClickedButton] = useState('logForm');
 
   // Components to display
-  const Pending = () => (
+  const LogForm = () => (
     <div>
-        <Pend/>
+      <Log />
     </div>
   );
 
-  const IssueHistory = () => (
+  const LogHistory = () => (
     <div>
-        <His/>
+      <His />
     </div>
   );
 
-  const Profile = () => (
+  const ProfileForm = () => (
     <div>
-        <Prof />
+      <Profile />
     </div>
   );
 
- 
+  const handleLogout = async (e) => {
+    try {
+      const response = await axiosInstance.post("/Logout/");
+      console.log(response.data);
+      localStorage.removeItem("token");
+      window.location.href = '/'; // Corrected this line
+    } catch (error) {
+      console.error("Error during logout:", error);
+      alert("Failed to logout. Please try again.");
+    }
+  };
 
   return (
     <div>
-      <div  className='leftcontainer'>
-        <div className='profile_section'>
-          <div className='profile_picture_container'>
-            <img
-            src=''
-            className='profile_picture'
-            />
-          </div>
+      <div className='left_container'>
+        <div className='circle-container'>
+          <img src='./logo/martha.jpg' alt="Logo" />
         </div>
-        <div className='nav_section'>
-          <button className='mybuttons' onClick={() => setCurrentView('Pending')}>Pending Issues</button>
-          <button className='mybuttons' onClick={() => setCurrentView('IssueHistory')}>Issue History</button>
-          <button className='mybuttons' onClick={() => setCurrentView('Profile')}>Profile</button>
-        </div>
+
+        <button
+          className={`mybuttons ${clickedButton === 'logForm' ? 'clicked' : ''}`}
+          onClick={() => {
+            setCurrentView('logForm');
+            setClickedButton('logForm');
+          }}
+        >
+          Log Issue
+        </button>
+        <button
+          className={`mybuttons ${clickedButton === 'logHistory' ? 'clicked' : ''}`}
+          onClick={() => {
+            setCurrentView('logHistory');
+            setClickedButton('logHistory');
+          }}
+        >
+          Log History
+        </button>
+        <button
+          className={`mybuttons ${clickedButton === 'Profile' ? 'clicked' : ''}`}
+          onClick={() => {
+            setCurrentView('Profile');
+            setClickedButton('Profile');
+          }}
+        >
+          Profile
+        </button>
+
+        <button className='logout_button' onClick={handleLogout}>
+          Log out
+        </button>
       </div>
 
-      <div className='rightcontainer'>
-        {currentView === 'Pending' && <Pend />}
-        {currentView === 'IssueHistory' && <His />}
-        {currentView === 'Profile' && <Prof />}
+      <div className='right_container'>
+        {currentView === 'logForm' && <LogForm />}
+        {currentView === 'logHistory' && <LogHistory />}
+        {currentView === 'Profile' && <ProfileForm />}
       </div>
     </div>
   );

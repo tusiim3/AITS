@@ -13,14 +13,7 @@
 }
 
 .profile_section {
-    text-align: center;
-    margin-bottom: 20px; /* Space between profile and navigation buttons */
-    padding-bottom: 20px;
-    border-bottom: 2px solid #f0f0f0; /* Adds a divider line between profile and nav buttons */
-    display: flex; /* Enable Flexbox */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    height: 170px; /* Set a height to center the content vertically */
+
 }
 
 .profile_picture_container {
