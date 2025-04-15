@@ -226,3 +226,8 @@ class CreateIssue(serializers.ModelSerializer):
 class LecturerlistSerializer(serializers.ModelSerializer):
     courses = serializers.SerializerMethodField()
 
+    class Meta:
+        model = CustomUser
+        fields = ['id', 'username', 'email', 'lecturer_number', 'courses']
+        
+
