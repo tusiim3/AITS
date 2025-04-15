@@ -149,3 +149,5 @@ class StudentIssueHistoryView(generics.ListAPIView):
 
 @api_View(['POST']) 
 @permission_classes([IsAuthenticated, Isregistrar])
+def add_course(request):
+    serializer = CourseSerializer(data=request.data)
