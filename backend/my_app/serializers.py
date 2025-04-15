@@ -218,7 +218,7 @@ class CreateIssue(serializers.ModelSerializer):
             complaint=issue_type,
             complaint_type=validated_data['complaint_type'],
             custom_complaint=validated_data['custom_complaint'],
-            student=self.context['request'].user,
+            student=self.context['request'].user, #fetching the user from the request context
             status='pending'
         )
         return issue
