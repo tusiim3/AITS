@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate
 
 
 class RegisterSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True)
+    password = serializers.CharField(write_only=True) 
     password2 = serializers.CharField(write_only=True)
     student_number = serializers.CharField(required=False, allow_blank=True)
     lecturer_number = serializers.CharField(required=False, allow_blank=True)
@@ -142,10 +142,23 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
             return data    
 
+
 class CourseSerializer(serializers.ModelSerializer):
+    lecturer = serializers.CharField()  
+
     class Meta:
         model = Course
-        fields = ['id', 'course_name', 'course_code']
+        fields = ['course_name', 'course_code', 'lecturer']
+
+    def create(self, validated_data):
+        lecturer_name = validated_data.pop('lecturer') 
+        try:
+            lecturer = CustomUser.objects.get(username=lecturer_name)
+        except CustomUser.DoesNotExist:
+            raise serializers.ValidationError(f"Lecturer with name {lecturer_name} does not exist.")
+        course = Course.objects.create(lecturer=lecturer, **validated_data)
+        return course
+
 
 class IssuesSerializer(serializers.ModelSerializer):
     student = CustomUserSerializer(read_only=True)  
@@ -205,8 +218,19 @@ class CreateIssue(serializers.ModelSerializer):
             complaint=issue_type,
             complaint_type=validated_data['complaint_type'],
             custom_complaint=validated_data['custom_complaint'],
-            student=self.context['request'].user,
+            student=self.context['request'].user, 
             status='pending'
         )
         return issue
+
+class LecturerlistSerializer(serializers.ModelSerializer):
+    courses = serializers.SerializerMethodField()
+
+    class Meta:
+        model = CustomUser
+        fields = ['id', 'username', 'email', 'lecturer_number', 'courses']
+
+    def get_courses(self, obj):
+        courses = Course.objects.filter(lecturer=obj)
+        return [course.name for course in courses]
 

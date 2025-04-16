@@ -75,8 +75,10 @@ class CustomUser(AbstractUser):
 class Course(models.Model):
     course_name = models.CharField(max_length=50, unique=True)
     course_code = models.CharField(max_length=10, unique=True)
-    lecturer = models.CharField(max_length=100, unique=False)
-
+    lecturer = models.ForeignKey(
+        CustomUser, on_delete=models.PROTECT,
+        limit_choices_to={'role': 'lecturer'}, related_name="lecturer_courses"
+    )
     def __str__(self):
         return f"{self.course_name} - {self.course_code}"
 
@@ -110,7 +112,7 @@ class Issues(models.Model):
         Course, on_delete=models.PROTECT, related_name="course_issues",
         null=True, blank=False
     )
-    custom_complaint = models.TextField(null=True)
+    custom_complaint = models.TextField(null=True) 
     status = models.CharField(max_length=100, choices=STATUS_CHOICES, default='pending')
     created_at = models.DateTimeField(auto_now_add=True)
     lecturer = models.ForeignKey(
@@ -125,4 +127,5 @@ class Issues(models.Model):
     )
 
     def __str__(self):
-        return f"{self.issue_type} by {self.student.username} created at {self.created_at}"
+        
+        return f"Issue: {self.complaint_type} by {self.student.username} created at {self.created_at}"

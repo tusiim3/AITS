@@ -8,6 +8,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 
+
+
 class RegisterView(APIView):
     permission_classes = [AllowAny]
     
@@ -147,5 +149,20 @@ class StudentIssueHistoryView(generics.ListAPIView):
     def get_queryset(self):
         return Issues.objects.filter(student=self.request.user).order_by('-created_at')
 
+class AddCourseView(APIView):
+    permission_classes = [IsAuthenticated, IsRegistrar]
 
- 
+    def post(self, request):
+        serializer = CourseSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class LecturerlistView(APIView):
+    permission_classes = [IsAuthenticated, IsRegistrar] 
+
+    def get(self, request):
+        lecturers = CustomUser.objects.filter(role='lecturer')
+        serializer = LecturerlistSerializer(lecturers, many=True)
+        return Response(serializer.data)

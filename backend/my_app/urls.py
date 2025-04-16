@@ -22,5 +22,8 @@ urlpatterns = [
     path('registrar/issues/', RegistrarIssueListView.as_view(), name='registrar-issue-list'),
     path('issues/<int:pk>/assign/', AssignIssueView.as_view(), name='assign-issue'),
     path('issues/history/', StudentIssueHistoryView.as_view(), name='student-issue-history'),
+    path('registrar/courses/', CourseViewSet.as_view({'get': 'list', 'post': 'create'}), name='registrar-course-list'),
+    path('Lecturerlist/', CustomUserViewSet.as_view({'get': 'list'}), name='lecturer-list'),
 ]
+
 
