@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./manage.module.css";
 import axiosInstance from "../../axioscomponent";
 
 export default function Manage() {
+    const [lecturers, getLecturer] = useState([]);
+    const [lecturer, postLecturer] = useState([]);
+
     const addLecturer = async(e) => {
         try{
             const response = await axiosInstance.post("#")

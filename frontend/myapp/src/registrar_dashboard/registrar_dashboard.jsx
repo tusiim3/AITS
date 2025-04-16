@@ -4,10 +4,23 @@ import His from './components/issue_history.jsx';
 import Pend from './components/pending_issues.jsx';
 import Prof from './components/profile.jsx';
 import Manage from './components/manage.jsx';
+import axiosInstance from '../axioscomponent.jsx';
 
 function Student() {
   // State to track which component to render
   const [currentView, setCurrentView] = useState('Pending'); // Default view is 'Pending'
+
+  const handleLogout = async (e) => {
+    try {
+      const response = await axiosInstance.post("/Logout/");
+      console.log(response.data);
+      localStorage.removeItem("token");
+      window.location.href = '/'; // Corrected this line
+    } catch (error) {
+      console.error("Error during logout:", error);
+      alert("Failed to logout. Please try again.");
+    }
+  };
 
   return (
     <div>
@@ -25,6 +38,9 @@ function Student() {
           <button className='mybuttons' onClick={() => setCurrentView('Manage')}>Manage college</button>
           <button className='mybuttons' onClick={() => setCurrentView('Profile')}>Profile</button>
         </div>
+        <button className='logout_button' onClick={handleLogout}>
+        Log out
+        </button>
       </div>
 
       <div className='rightcontainer'>
@@ -33,6 +49,7 @@ function Student() {
         {currentView === 'Manage' && <Manage />}
         {currentView === 'Profile' && <Prof />}
       </div>
+      
     </div>
   );
 }

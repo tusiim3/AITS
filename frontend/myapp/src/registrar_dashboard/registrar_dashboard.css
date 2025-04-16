@@ -60,3 +60,19 @@
     font-weight: bold;
     transition: background-color 0.3s;
 }
+.logout_button {
+    position: absolute;
+    left: 35%;
+    bottom: 2%;
+    width: 30%;
+    height: 6%;
+    background-color: white;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+  }
+  .logout_button:hover {
+    background-color: red; 
+  }
