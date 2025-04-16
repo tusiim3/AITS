@@ -17,6 +17,7 @@ export default function Manage() {
     const lecturerList = async(e) => {
         try {
             const response = await axiosInstance.get("#")
+            getLecturer(response.data)
         } catch (error) {
             console.error("Error fetching data", error);
         }
@@ -24,7 +25,9 @@ export default function Manage() {
 
     return(
         <div className={styles.container}>
-            <div>lecturers list</div>
+            <div>lecturers list
+                <div className={styles.lecturers}></div>
+            </div>
             <div>Add Lecturer</div>
         </div>
     )

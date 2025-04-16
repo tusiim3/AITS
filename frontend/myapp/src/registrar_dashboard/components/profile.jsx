@@ -56,6 +56,7 @@ export default function Profile() {
       </ImageUploading>
       <p className={style.label}>EMAIL:</p><textarea className={style.text}></textarea>
       <p className={style.label}>CONTACT:</p><textarea className={style.text}></textarea>
+      <button className={style.save}>save changes</button>
       <div className={style.profileview}>
         <p className={style.label1}>NAME:</p>
         <p></p>

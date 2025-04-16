@@ -58,3 +58,14 @@
     left: 2%;
     
   }
+
+  .save {
+    background-color: rgb(120, 186, 120);
+    color: white;
+    position: absolute;
+    left: 2%;
+    top: 70%;
+    height: 7%;
+    border: none;
+    border-radius: 3px;
+}
