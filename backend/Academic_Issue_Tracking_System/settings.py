@@ -178,4 +178,14 @@ CORS_ALLOWED_ORIGINS = [
 
 # CORS_ALLOW_ALL_ORIGINS = True
 
+from django.core.mail import send_mail
+
+send_mail(
+    'Subject here',
+    "Here's the message.",
+    'from@example.com',
+    ['to@example.com'],
+    fail_silently=False,
+)
+
 
