@@ -164,10 +164,11 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
+
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     'https://aitrack.netlify.app',
-    'http://localhost:3000'
+    
 ]
 
 # CORS_ALLOW_ALL_ORIGINS = True
