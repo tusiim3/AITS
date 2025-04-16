@@ -8,14 +8,23 @@ export default function Pend() {
     const fetchComplaints = async () => {
         try {
             const response = await axiosInstance.get("/issues/history/");
-            setComplaints(response.data); // Assuming response.data is an array
+            setComplaints(response.data);
         } catch (error) {
             console.error("Error fetching data:", error);
         }
     };
 
     useEffect(() => {
-        fetchComplaints();
+        const intervalId = setInterval(async () => {
+            try {
+                await fetchComplaints();
+            } catch (error) {
+                console.error("Error fetching complaints:", error);
+            }
+        }, 5000);
+
+        return () => clearInterval(intervalId);
+
     }, []);
 
     return (
@@ -27,7 +36,12 @@ export default function Pend() {
                         <p className={style.pe}>Complaint Type: {complaint.complaint_type || "N/A"}</p>
                         <p className={style.pe}>Complaint: {complaint.custom_complaint || "N/A"}</p>
                         <p className={style.pe}>Lecturer: {complaint.lecturer || "N/A"}</p>
-                        <p className={style.pe}>Status: {complaint.status || "N/A"}</p>
+                        <p className={style.pe}
+                            style={{backgroundColor:
+                                complaint.status.toLowerCase() === 'pending'?'grey':
+                                complaint.status.toLowerCase() === 'resolved'?'green':'transparent'
+                            }}>
+                            Status: {complaint.status || "N/A"}</p>
                     </div>
                 ))
             ) : (

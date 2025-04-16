@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import axios from "axios";
 import styles from './AuthenticationForms.module.css';
 import logo from "./logo/logo.png";
 import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../axioscomponent';
 
 const AuthenticationForms = () => {
   const [isSignUp, setIsSignUp] = useState(true);
@@ -45,7 +45,7 @@ const AuthenticationForms = () => {
       };
 
       try {
-        const response = await axios.post("http://127.0.0.1:8000/api/register/", requestPayload, {
+        const response = await axiosInstance.post("/register/", requestPayload, {
           headers: {
             "Content-Type":"application/json",
           },
@@ -72,7 +72,7 @@ const AuthenticationForms = () => {
         password: formData.password
       };
 
-      const response = await axios.post("http://127.0.0.1:8000/api/login/", signInPayLoad, {
+      const response = await axiosInstance.post("/login/", signInPayLoad, {
         headers: {
           "Content-Type":"application/json",
         },
