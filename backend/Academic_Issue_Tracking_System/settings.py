@@ -168,7 +168,9 @@ EMAIL_USE_TLS = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     'https://aitrack.netlify.app',
-    
+    'https://aits-groupl-90wo.onrender.com',
+    'http://localhost:3000',
+
     
 ]
 
