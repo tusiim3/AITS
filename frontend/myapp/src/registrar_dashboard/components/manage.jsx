@@ -25,10 +25,24 @@ export default function Manage() {
 
     return(
         <div className={styles.container}>
-            <div>lecturers list
-                <div className={styles.lecturers}></div>
+        
+            <div className={styles.lecturers}>
+                <h4>Lecturers List</h4>
             </div>
-            <div>Add Lecturer</div>
+            <div className={styles.courses}>
+                <h4>Course List</h4>
+            </div>
+            <form>
+                <div className={styles.lecturer}>
+                    <p className={styles.pe}>Add Course </p>
+                    <p className={styles.pe}>Course Name:<input  className={styles.input}></input></p>
+                    
+                    <p className={styles.pe}>Course Code:<input  className={styles.input}></input></p>
+                    
+                    <p className={styles.pe}>Lecturer:<input  className={styles.input}></input></p>
+                    <button>Add Course</button>
+                </div>
+            </form>
         </div>
     )
 }
