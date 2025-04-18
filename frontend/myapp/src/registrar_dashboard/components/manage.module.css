@@ -30,12 +30,35 @@
     text-decoration:wavy;  /* Underlines the text */
     position: relative;
     left: 10px;
+    padding: 5px;
     
     .input {
         width: 70%;
         position: absolute;
-        left: 20%;
-        
+        left: 20%;  
     }
     
+}
+
+.courses{
+    background-color: white;
+    border: 1px solid black;
+    position: absolute;
+    height:96%;
+    border-radius: 3px;
+    top: 1.5%;
+    right: 1%;
+    width: 46%;
+    overflow-y: scroll;
+}
+
+.lecturers{
+    background-color: white;
+    border: 1px solid black;
+    position: absolute;
+    height: 75%;
+    width: 50%;
+    left: 2%;
+    top: 1.5%;
+    overflow-y: scroll;
 }
