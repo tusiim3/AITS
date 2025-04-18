@@ -5,8 +5,37 @@
     border-radius: 3px;
 }
 
-.input {
-    width: 40%;
+
+.lecturer{
+    background-color:white;
+    border-radius: 3px;
+    border: 1px solid black;
     position: absolute;
-    left: 10%;
+    width: 50%;
+    height: 20%;
+    left: 2%;
+    bottom: 2%;
+}
+
+.pe {
+
+    font-family: Arial, sans-serif;  /* Sets the font family */
+    font-size: 9px;                 /* Sets the font size */
+    font-weight: bold;               /* Makes the text bold */
+    color: #333;                     /* Sets the text color */
+    text-align:left;              /* Centers the text horizontally */
+    line-height: 1.5;                /* Adjusts the line height for readability */
+    text-transform: uppercase;       /* Transforms text to uppercase */
+    letter-spacing: 1px;             /* Adjusts space between letters */
+    text-decoration:wavy;  /* Underlines the text */
+    position: relative;
+    left: 10px;
+    
+    .input {
+        width: 70%;
+        position: absolute;
+        left: 20%;
+        
+    }
+    
 }
