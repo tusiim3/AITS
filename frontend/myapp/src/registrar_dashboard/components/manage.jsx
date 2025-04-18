@@ -28,16 +28,18 @@ export default function Manage() {
             <div>lecturers list
                 <div className={styles.lecturers}></div>
             </div>
-            <div>Add Course
-                <div className={styles.lecturer}>
-                    <p>Course Name:</p>
-                    <input type="text"></input>
-                    <p>Course Code:</p>
-                    <input type="text"></input>
-                    <p>Lecturer</p>
-                    <input type ="text"></input>
+            <form>
+                <div>Add Course
+                    <div className={styles.lecturer}>
+                        <p>Course Name:</p>
+                        <input  className={styles.input}></input>
+                        <p>Course Code:</p>
+                        <input  className={styles.input}></input>
+                        <p>Lecturer</p>
+                        <input  className={styles.input}></input>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     )
 }
