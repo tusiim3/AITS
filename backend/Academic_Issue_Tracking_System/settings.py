@@ -202,3 +202,4 @@ email = EmailMessage(
 email.content_subtype = 'html'  # Main content is now text/html
 email.send()
 
+
