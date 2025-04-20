@@ -24,6 +24,9 @@ from django.contrib import admin
 from django.contrib. auth import views as auth_views
 
 
+from .views import dashboard
+
+
 # Simple home view
 def home(request):
     return HttpResponse("Welcome to the Academic Issue Tracking System!")
