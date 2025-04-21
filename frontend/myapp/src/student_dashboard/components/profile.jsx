@@ -16,7 +16,8 @@ export default function Profile() {
   };
 
   return (
-    <div className={style.container}>
+    <div>
+      <div className={style.profedit}>
       <ImageUploading
         multiple
         value={images}
@@ -60,6 +61,7 @@ export default function Profile() {
       <p className={style.label}>EMAIL:</p><textarea className={style.text}></textarea>
       <p className={style.label}>CONTACT:</p><textarea className={style.text}></textarea>
       <button className={style.save}><FaSave size={18}/>save</button>
+    </div>
       <div className={style.green_form}>
         <p className={style.field_label}>NAME:</p>
         <p></p>

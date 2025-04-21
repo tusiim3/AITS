@@ -9,7 +9,7 @@
 .lecturer{
     background-color:white;
     border-radius: 5px;
-    border: 1px solid black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     position: absolute;
     width: 50%;
     height: 30%;
@@ -43,7 +43,6 @@
 
 .courses{
     background-color: white;
-    border: 1px solid black;
     position: absolute;
     height:96%;
     border-radius: 5px;
@@ -51,11 +50,11 @@
     right: 1%;
     width: 46%;
     overflow-y: scroll;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);;
 }
 
 .lecturers{
     background-color: white;
-    border: 1px solid black;
     position: absolute;
     height: 65%;
     width: 50%;
@@ -63,4 +62,5 @@
     top: 1.5%;
     border-radius: 5px;
     overflow-y: scroll;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
