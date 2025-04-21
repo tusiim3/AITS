@@ -63,11 +63,9 @@ export default function Profile() {
       <div className={style.green_form}>
         <p className={style.field_label}>NAME:</p>
         <p></p>
-        <p className={style.field_label}>STUDENT NUMBER:</p>
+        <p className={style.field_label}>REGISTRAR NUMBER:</p>
         <p></p>
         <p className={style.field_label}>EMAIL:</p>
-        <p></p>
-        <p className={style.field_label}>YEAR OF STUDY:</p>
         <p></p>
         <p className={style.field_label}>CONTACT:</p>
         <p></p>
