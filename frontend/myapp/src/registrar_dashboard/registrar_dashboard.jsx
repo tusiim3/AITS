@@ -6,7 +6,7 @@ import Prof from './components/profile.jsx';
 import Manage from './components/manage.jsx';
 import axiosInstance from '../axioscomponent.jsx';
 import Home from './components/Home.jsx';
-import { FiHome } from 'react-icons/fi';
+import { FiHome,FiLogOut } from 'react-icons/fi';
 
 function Student() {
   // State to track which component to render
@@ -42,7 +42,7 @@ function Student() {
           <button className='mybuttons' onClick={() => setCurrentView('Profile')}>Profile</button>
         </div>
         <button className='logout_button' onClick={handleLogout}>
-        Log out
+          <FiLogOut/> Log out
         </button>
       </div>
 
