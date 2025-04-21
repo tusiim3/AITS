@@ -1,78 +1,150 @@
-.left_container {
-    background-color: white;
-    border-radius: 3px;
-    width: 20vw;
-    height: 100vh;
+.profedit{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     position: absolute;
-    top: 1%;
-    font-size: 1.5rem;
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    height: 87%;
+    border-radius: 5px;
+    top: 10%;
 }
 
-.profile_picture_container {
-    width: 135px;
-    height: 135px;
-    border-radius: 50%;
-    background-color: #ccc; /* Placeholder background */
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    
-}
-
-.profile_picture {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-}
-
-.nav_section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-
-.rightcontainer {
-    
-    position: absolute;
-    top: 1%;
-    left: 22%;
-    width: 75vw;
-    height: 100vh;
-    border-radius: 3px;
-}
-
-.mybuttons {
-    margin-bottom: 10px;
-    width: 100%;
+.label {
+    font-family: Arial, sans-serif;  /* Sets the font family */
+    font-size: 12px;                 /* Sets the font size */
+    font-weight: bold;               /* Makes the text bold */
+    color: #333;                     /* Sets the text color */
+    text-align: left;              /* Centers the text horizontally */
+    line-height: 1.5;                /* Adjusts the line height for readability */
+    text-transform: uppercase;       /* Transforms text to uppercase */
+    letter-spacing: 1px;             /* Adjusts space between letters */
+    text-decoration:wavy;  /* Underlines the text */
     position: relative;
-    top:30% ;
-    background-color: white;
+    padding: 0px;
+    left: 2%;
+    
+  }
+
+.text{
+    height: 5%;
+    width: 90%;
+    position: relative;
+    left: 2%;
+    border-color: black;
+    border: 2px solid;
     border-radius: 3px;
-    border-color: rgb(255, 255, 255);
-    text-align: left;
-    font-weight: bold;
-    transition: background-color 0.3s;
 }
-.logout_button {
-    position: absolute;
-    left: 35%;
-    bottom: 2%;
-    width: 30%;
-    height: 6%;
-    background-color: white;
+
+.profileview{
+    background-color: rgb(178, 211, 179);
     border-radius: 3px;
+    border-color: black;
+    border: 1px solid;
+    position: absolute;
+    width: 53%;
+    height: 96%;
+    
+}
+
+.label1 {
+    font-family: Arial, sans-serif;  /* Sets the font family */
+    font-size: 12px;                 /* Sets the font size */
+    font-weight: bold;               /* Makes the text bold */
+    color: #aa2424;                     /* Sets the text color */
+    text-align: left;              /* Centers the text horizontally */
+    line-height: 1.5;                /* Adjusts the line height for readability */
+    text-transform: uppercase;       /* Transforms text to uppercase */
+    letter-spacing: 1px;             /* Adjusts space between letters */
+    text-decoration:wavy;  /* Underlines the text */
+    position: relative;
+    padding: 0px;
+    left: 2%;
+    
+  }
+
+  .green_form {
+    background-color: #e6f5e6; /* soft green */
+    border-left: 6px solid #2e8b57; /* darker green border */
+    border-radius: 5px;
+    padding: 20px 24px;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 100%;
+    max-width: 400px;
+    position: absolute;
+    left: 53%;
+    top: 6%;
+    height: 80%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .green_form .field_label {
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: block;
+    color: #222;
+    font-size: 16px;
+  }
+  
+  .upload__image_wrapper button {
+    position: relative;
+    top: 5%;
+    left: 2%;
+    background-color: #2e8b57;
+    color: white;
     border: none;
+    padding: 4px 10px;
+    margin-right: 10px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    font-size: 14px;
+    transition: background 0.3s ease;
+  }
+  
+  .upload__image_wrapper button:hover {
+    background-color: #256b45;
+  }
+  
+  .image_preview {
+    margin-top: 16px;
 
   }
-  .logout_button:hover {
-    background-color: red; 
+  
+  .image_preview img {
+    position: relative;
+    left: 2%;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .image_buttons {
+    margin-top: 8px;
+  }
+  
+  .image_buttons button {
+    background-color: #444;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    margin-right: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.3s ease;
+  }
+  
+  .image_buttons button:hover {
+    background-color: #222;
+  }
+
+  .save {
+    position: relative;
+    top: 6%;
+    left: 2%;
+    background-color: #56a478;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+    
   }
