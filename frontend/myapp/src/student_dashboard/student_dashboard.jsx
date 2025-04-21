@@ -49,7 +49,7 @@ function Student() {
     <div>
       <div className='left_container'>
         <div className='circle-container'>
-          <FaUserCircle size={30} className='pp'/>
+          <FaUserCircle size={100} className='pp'/>
           <img src='./logo/martha.jpg' />
         </div>
         <button
