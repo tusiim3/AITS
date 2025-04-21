@@ -1,5 +1,5 @@
 .container {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: #f5f5f5;
     height: 100%;
     width: 100%;
     border-radius: 3px;
@@ -8,13 +8,14 @@
 
 .lecturer{
     background-color:white;
-    border-radius: 3px;
-    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     position: absolute;
     width: 50%;
     height: 30%;
     left: 2%;
     bottom: 2%;
+
 }
 
 .pe {
@@ -42,23 +43,24 @@
 
 .courses{
     background-color: white;
-    border: 1px solid black;
     position: absolute;
     height:96%;
-    border-radius: 3px;
+    border-radius: 5px;
     top: 1.5%;
     right: 1%;
     width: 46%;
     overflow-y: scroll;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);;
 }
 
 .lecturers{
     background-color: white;
-    border: 1px solid black;
     position: absolute;
     height: 65%;
     width: 50%;
     left: 2%;
     top: 1.5%;
+    border-radius: 5px;
     overflow-y: scroll;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
