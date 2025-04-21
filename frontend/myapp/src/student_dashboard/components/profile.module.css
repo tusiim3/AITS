@@ -136,3 +136,14 @@
   .image_buttons button:hover {
     background-color: #222;
   }
+
+  .save {
+    position: relative;
+    top: 10%;
+    left: -5%;
+    background-color: #56a478;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+    
+  }

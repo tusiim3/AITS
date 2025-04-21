@@ -2,6 +2,7 @@ import React from 'react';
 import ImageUploading from 'react-images-uploading';
 import style from './profile.module.css';
 import { GrAdd } from "react-icons/gr";
+import { FaSave } from 'react-icons/fa';
 
 
 export default function Profile() {
@@ -57,8 +58,8 @@ export default function Profile() {
         )}
       </ImageUploading>
       <p className={style.label}>EMAIL:</p><textarea className={style.text}></textarea>
-      <p className={style.label}>PERSONAL NUMBER:</p><textarea className={style.text}></textarea>
       <p className={style.label}>CONTACT:</p><textarea className={style.text}></textarea>
+      <button className={style.save}><FaSave size={18}/>save</button>
       <div className={style.green_form}>
         <p className={style.field_label}>NAME:</p>
         <p></p>
