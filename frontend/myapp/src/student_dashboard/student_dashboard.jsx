@@ -8,6 +8,7 @@ import axiosInstance from '../axioscomponent.jsx';
 import { FiLogOut,FiUser,FiClock } from "react-icons/fi";
 import {FaBug, FaUserCircle} from "react-icons/fa";
 
+
 function Student() {
   // State to track which component to render
   const [currentView, setCurrentView] = useState('logForm'); // Default view is 'logForm'
@@ -48,11 +49,9 @@ function Student() {
     <div>
       <div className='left_container'>
         <div className='circle-container'>
-          
-          <img src='./logo/martha.jpg' />
           <FaUserCircle size={30} className='pp'/>
+          <img src='./logo/martha.jpg' />
         </div>
-
         <button
           className={`mybuttons ${clickedButton === 'logForm' ? 'clicked' : ''}`}
           onClick={() => {
