@@ -6,7 +6,8 @@ import Prof from './components/profile.jsx';
 import Manage from './components/manage.jsx';
 import axiosInstance from '../axioscomponent.jsx';
 import Home from './components/Home.jsx';
-import { FiHome,FiLogOut } from 'react-icons/fi';
+import { FiHome,FiLogOut,FiUser } from 'react-icons/fi';
+import { FaBug } from 'react-icons/fa';
 
 function Student() {
   // State to track which component to render
@@ -35,11 +36,11 @@ function Student() {
             />
           </div>
         <div className='nav_section'>
-          <button className='mybuttons' onClick={() => setCurrentView('Home')}> <FiHome size={15}/> Home</button>
-          <button className='mybuttons' onClick={() => setCurrentView('Pending')}>Pending Issues</button>
+          <button className='mybuttons' onClick={() => setCurrentView('Home')}> <FiHome/> Home</button>
+          <button className='mybuttons' onClick={() => setCurrentView('Pending')}><FaBug/>Pending Issues</button>
           <button className='mybuttons' onClick={() => setCurrentView('IssueHistory')}>Issue History</button>
           <button className='mybuttons' onClick={() => setCurrentView('Manage')}>Manage college</button>
-          <button className='mybuttons' onClick={() => setCurrentView('Profile')}>Profile</button>
+          <button className='mybuttons' onClick={() => setCurrentView('Profile')}><FiUser/> Profile</button>
         </div>
         <button className='logout_button' onClick={handleLogout}>
           <FiLogOut/> Log out
