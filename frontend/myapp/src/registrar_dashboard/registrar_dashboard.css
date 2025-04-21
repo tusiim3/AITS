@@ -148,3 +148,23 @@
     cursor: pointer;
     
   }
+
+.pp_container {
+    width: 100px;  /* Set the container size */
+    height: 100px;
+    position: absolute;
+    left :30%;
+    overflow: hidden;
+    border-radius: 50%; /* Makes it circular */
+    border: 1px solid black; /*Optional border */
+  }
+  
+.pp_container img {
+    width: 100%;  /* Ensures image covers the container */
+    height: 100%;
+    object-fit: cover; /* Ensures image fills the circle */
+  }
+.nav {
+  position: absolute;
+  top:30%;
+}

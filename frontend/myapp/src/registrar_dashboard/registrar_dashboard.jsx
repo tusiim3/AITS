@@ -7,7 +7,7 @@ import Manage from './components/manage.jsx';
 import axiosInstance from '../axioscomponent.jsx';
 import Home from './components/Home.jsx';
 import { FiHome,FiLogOut,FiUser, FiClock } from 'react-icons/fi';
-import { FaBug, FaUniversity } from 'react-icons/fa';
+import { FaBug, FaUniversity,FaUserCircle } from 'react-icons/fa';
 
 function Student() {
   // State to track which component to render
@@ -28,14 +28,11 @@ function Student() {
   return (
     <div>
       <div className='left_container'>
-          <div className='profile_picture_container'>
-            <img
-              src=''
-              className='profile_picture'
-              alt="Profile"
-            />
+          <div className='pp_container'>
+            <FaUserCircle size={100} className='pp'/>
+            <img src='./logo/martha.jpg' />
           </div>
-        <div className='nav_section'>
+        <div className='nav'>
           <button className='mybuttons' onClick={() => setCurrentView('Home')}> <FiHome/> Home</button>
           <button className='mybuttons' onClick={() => setCurrentView('Pending')}><FaBug/> Pending Issues</button>
           <button className='mybuttons' onClick={() => setCurrentView('IssueHistory')}><FiClock/> Issue History</button>
