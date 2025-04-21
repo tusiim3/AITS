@@ -5,6 +5,8 @@ import Profile from './components/profile.jsx';
 import './student_dashboard.css';
 import './logo/martha.jpg';
 import axiosInstance from '../axioscomponent.jsx';
+import { FiLogOut,FiUser,FiClock } from "react-icons/fi";
+import {FaBug, FaUserCircle} from "react-icons/fa";
 
 function Student() {
   // State to track which component to render
@@ -46,7 +48,9 @@ function Student() {
     <div>
       <div className='left_container'>
         <div className='circle-container'>
-          <img src='./logo/martha.jpg' alt="Logo" />
+          
+          <img src='./logo/martha.jpg' />
+          <FaUserCircle size={30} className='pp'/>
         </div>
 
         <button
@@ -56,7 +60,7 @@ function Student() {
             setClickedButton('logForm');
           }}
         >
-          Log Issue
+          <FaBug/> Log Issue
         </button>
         <button
           className={`mybuttons ${clickedButton === 'logHistory' ? 'clicked' : ''}`}
@@ -65,7 +69,7 @@ function Student() {
             setClickedButton('logHistory');
           }}
         >
-          Log History
+        <FiClock/> Log History
         </button>
         <button
           className={`mybuttons ${clickedButton === 'Profile' ? 'clicked' : ''}`}
@@ -74,11 +78,11 @@ function Student() {
             setClickedButton('Profile');
           }}
         >
-          Profile
+          <FiUser/> Profile
         </button>
 
         <button className='logout_button' onClick={handleLogout}>
-          Log out
+          <FiLogOut size={15}/>Logout
         </button>
       </div>
 

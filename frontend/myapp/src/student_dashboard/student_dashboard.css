@@ -81,3 +81,6 @@ body {
   .logout_button:hover {
     background-color: red; 
   }
+  .pp {
+    position: absolute
+  }
