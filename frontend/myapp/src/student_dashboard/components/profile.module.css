@@ -1,11 +1,12 @@
 .profedit{
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  position: absolute;
-  width: 50%;
-  height: 87%;
-  border-radius: 5px;
-  top: 10%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    position: absolute;
+    width: 50%;
+    height: 87%;
+    border-radius: 5px;
+    top: 10%;
 }
+
 .label {
     font-family: Arial, sans-serif;  /* Sets the font family */
     font-size: 12px;                 /* Sets the font size */
@@ -23,8 +24,8 @@
   }
 
 .text{
-    height: 4%;
-    width: 40%;
+    height: 5%;
+    width: 90%;
     position: relative;
     left: 2%;
     border-color: black;
@@ -139,8 +140,8 @@
 
   .save {
     position: relative;
-    top: 10%;
-    left: -5%;
+    top: 6%;
+    left: 2%;
     background-color: #56a478;
     color: white;
     border-radius: 3px;
