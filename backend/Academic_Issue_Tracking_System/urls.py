@@ -22,9 +22,9 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.contrib import admin
 from django.contrib. auth import views as auth_views
+from django.conf import settings
+from django.conf.urls.static import static
 
-
-from .views import dashboard
 
 
 # Simple home view
@@ -32,7 +32,10 @@ def home(request):
     return HttpResponse("Welcome to the Academic Issue Tracking System!")
 
 urlpatterns = [
-    path('', home, name='home'),  
+    path('', home, name='home'), 
     path('admin/', admin.site.urls),
-    path('api/', include('my_app.urls')),  
+    path('api/', include('my_app.urls'))
+    path('login/', auth_views.LoginView.as_view(template_name='login.html'))
 ]
+
+
