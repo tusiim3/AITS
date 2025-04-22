@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.exceptions import ValidationError
-
+from django.core.mail import send_mail
+from uuid import uuid4
 class CustomUser(AbstractUser):
     ROLE_CHOICES = [
         ('student', 'Student'),
@@ -26,6 +27,7 @@ class CustomUser(AbstractUser):
         (4, '4th Year'),
         (5, '5th Year'),]
     email = models.EmailField(unique=False)
+    title = models.CharField(max_length=10, null=True, blank=True)
     number_type = models.CharField(max_length=20, choices = NUMBER_TYPE_CHOICES, null=False)
     student_number = models.CharField(max_length=10, unique=True, null = True, blank = False)
     lecturer_number = models.CharField(max_length=10, unique=True, null=True, blank=False)
@@ -65,7 +67,23 @@ class CustomUser(AbstractUser):
 
     def save(self, *args, **kwargs):
         self.clean()  
-        super().save(*args, **kwargs)
+        is_new = self.pk is None
+
+
+if not self.Issue_id: #generate issue id given that it does not exist
+        self.Issue_id = uuid4()
+super().save(*args, **kwargs)
+if is_new: 
+    #we shall then send email notifications to the user
+    send_mail(
+        'Issue Created',
+        f'Your issue "{self.title}"has been created with ID: {self.Issue_id}',
+        from_email=settings.DEFAULT_FROM_EMAIL,
+        recipient_list=[self.email],
+        fail_silently=False,
+    )
+
+        
         
 
     def __str__(self):
@@ -129,3 +147,4 @@ class Issues(models.Model):
     def __str__(self):
         
         return f"Issue: {self.complaint_type} by {self.student.username} created at {self.created_at}"
+    
