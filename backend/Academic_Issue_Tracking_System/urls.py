@@ -35,10 +35,10 @@ urlpatterns = [
     # Redirect root URL to home view
     path('', home, name='home'), 
     path('admin/', admin.site.urls),
-    path('api/', include('my_app.urls'))
-    path('login/', auth_views.LoginView.as_view(template_name='login.html'))
+    path('api/', include('my_app.urls')),
+    path('login/', auth_views.LoginView.as_view(template_name='login.html')),
     path('logout/', auth_views.LogoutView.as_view(template_name='logout.html'), name='logout'),
-    path('dashboard', dashboard)
+    path('dashboard', dashboard),
     path('dashboard/', dashboard, name='dashboard'),
     path('dashboard/send_email/', send_email),
 ]

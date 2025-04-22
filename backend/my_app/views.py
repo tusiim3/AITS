@@ -170,7 +170,3 @@ class LecturerlistView(APIView):
         lecturers = CustomUser.objects.filter(role='lecturer')
         serializer = LecturerlistSerializer(lecturers, many=True)
         return Response(serializer.data)
-    
-
-    def send_email(request):
-        
