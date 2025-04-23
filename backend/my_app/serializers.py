@@ -2,6 +2,7 @@ from rest_framework import serializers
 from my_app.models import CustomUser, Course, Issues
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth import authenticate
+from django.core.mail import send_mail
 
 
 class RegisterSerializer(serializers.ModelSerializer):
