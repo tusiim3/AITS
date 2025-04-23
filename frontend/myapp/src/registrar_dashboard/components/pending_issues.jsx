@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from "react";
 import style from './pending.module.css';
 import axiosInstance from "../../axioscomponent";
+import Select from 'react-select';
 
 export default function Pend() {
   const [complaints, setComplaints] = useState([]);
   const [selectedComplaintId, setSelectedComplaintId] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [lecturers, setLecturer] = useState([]);
+  const [selectedLecturer, setSelectedLecturer] = useState([]);
+
+
+  const lecturerOptions = lecturers.map(lecturer => ({
+    value: lecturer.id,
+    label: lecturer.username
+  }));
 
      {/* retrieve data from the lecturerlist api */}
   const fetchLecturer = async () => {
@@ -47,7 +55,9 @@ export default function Pend() {
 
   const handleForward = async (complaintId) => {
     try {
-      await axiosInstance.post(`/forward-issue/${complaintId}`);
+      await axiosInstance.post(`/forward-issue/${complaintId}`,{
+        lecturer_name: selectedLecturer.label
+      });
       alert("Complaint forwarded successfully!");
       closePopup();
       // Optionally refresh complaints list after forwarding
@@ -57,10 +67,6 @@ export default function Pend() {
       alert("Failed to forward complaint.");
     }
   };
-
- 
-
-
 
   return (
     <div className={style.container}>
@@ -90,15 +96,12 @@ export default function Pend() {
             <div className={style.popupBackdrop} onClick={closePopup}></div>
             <div className={style.popup}>
             <p>select a lecturer</p>
-            { lecturers.length > 0 ? (
-                lecturers.map((lecturer) => (
-                    <div>
-                        <p>{lecturer.username} </p>
-                    </div>
-                ))
-            ):( 
-                <p>loading lecturers .....</p>
-            )}
+            <Select 
+                options={lecturerOptions}
+                onChange={(selected) => setSelectedLecturer(selected)}
+                placeholder="Search Lecturers"
+                className={style.select}
+            />
             <button onClick={() => handleForward(selectedComplaintId)}>Forward</button>
             <button onClick={closePopup}>Cancel</button>
             </div>
