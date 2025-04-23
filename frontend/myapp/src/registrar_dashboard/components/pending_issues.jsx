@@ -6,6 +6,21 @@ export default function Pend() {
   const [complaints, setComplaints] = useState([]);
   const [selectedComplaintId, setSelectedComplaintId] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [lecturers, setLecturer] = useState([]);
+
+     {/* retrieve data from the lecturerlist api */}
+  const fetchLecturer = async () => {
+    try {
+        const response = await axiosInstance.get("/Lecturerlist/")
+        setLecturer(response.data)
+    } catch (error) {
+        console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchLecturer();
+  }, []);
 
   const fetchComplaints = async () => {
     try {
@@ -43,7 +58,9 @@ export default function Pend() {
     }
   };
 
-  {/* retrieve data from the lecturerlist api */}
+ 
+
+
 
   return (
     <div className={style.container}>
@@ -72,7 +89,16 @@ export default function Pend() {
         <>
             <div className={style.popupBackdrop} onClick={closePopup}></div>
             <div className={style.popup}>
-            <p>Are you sure you want to forward this complaint?</p>
+            <p>select a lecturer</p>
+            { lecturers.length > 0 ? (
+                lecturers.map((lecturer) => (
+                    <div>
+                        <p>{lecturer.username} </p>
+                    </div>
+                ))
+            ):( 
+                <p>loading lecturers .....</p>
+            )}
             <button onClick={() => handleForward(selectedComplaintId)}>Forward</button>
             <button onClick={closePopup}>Cancel</button>
             </div>
