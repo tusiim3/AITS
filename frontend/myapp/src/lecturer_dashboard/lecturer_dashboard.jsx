@@ -8,7 +8,7 @@ import axiosInstance from '../axioscomponent.jsx';
 function Student() {
   // State to track which component to render
   const [currentView, setCurrentView] = useState('PendIssues'); // Default view is 'logForm'
-  const [clickedButton, setClickedButton] = useState('IssueHistory');
+  const [clickedButton, setClickedButton] = useState('PendIssues');
 
   // Components to display
   const PendIssues = () => (
