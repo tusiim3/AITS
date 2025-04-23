@@ -74,7 +74,11 @@ export default function Pend() {
                             <p className={style.pe}>Complaint: {complaint.complaint}</p>
                             <p className={style.pe}>Lecturer: {complaint.lecturer}</p>
                             <p className={style.pe}>Description:{complaint.custom_complaint}</p>
-                            <button className={style.thebut} onClick={() => handleForward(complaint.id)}>Forward to Lecturer</button>
+                            <p className={style.pe}>Status: {complaint.status}</p>
+                            <p className={style.pe}>Date: {complaint.date}</p>
+                            <p className={style.pe}>Student Email: {complaint.student_email}</p>  
+                           
+                            <button className={style.thebut} onClick={() => handleResolve(complaint.id, complaint.student_email, complaint.registrar_email)}>Mark as Resolved</button>
                         </div>
                     )) 
                 ):(
