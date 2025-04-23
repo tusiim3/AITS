@@ -88,7 +88,8 @@ class RegisterSerializer(serializers.ModelSerializer):
         send_mail(
             'Welcome to AITS!',
             f"Hello {user.username},\n\nThank you for registering with AITS. Your account has been created successfully.\n\nBest regards,\nAITS Team",
-            [user.email],
+            from_email='AITS <aitrack.netlify.com>',  
+            recipient_list=[user.email],
             fail_silently=False,
         )
         return user
@@ -231,7 +232,8 @@ class CreateIssue(serializers.ModelSerializer):
         send_mail(
             subject='New Issue Created',
             message=f'An issue has been created with the following details:\n\nCourse: {course.name}\nComplaint Type: {issue_type}\nCustom Complaint: {validated_data["custom_complaint"]}',
-            [user.email],
+            from_email='AITS <aitrack.netlify.com>',
+            recipient_list=[self.context['request'].user.email],
             fail_silently=False,    
         )
         return issue

@@ -25,11 +25,13 @@ class CustomUser(AbstractUser):
         (2, '2nd Year'),
         (3, '3rd Year'),
         (4, '4th Year'),
-        (5, '5th Year'),]
+        (5, '5th Year'),
+    ]
+
     email = models.EmailField(unique=False)
     title = models.CharField(max_length=10, null=True, blank=True)
-    number_type = models.CharField(max_length=20, choices = NUMBER_TYPE_CHOICES, null=False)
-    student_number = models.CharField(max_length=10, unique=True, null = True, blank = False)
+    number_type = models.CharField(max_length=20, choices=NUMBER_TYPE_CHOICES, null=False)
+    student_number = models.CharField(max_length=10, unique=True, null=True, blank=False)
     lecturer_number = models.CharField(max_length=10, unique=True, null=True, blank=False)
     registrar_number = models.CharField(max_length=10, unique=True, null=True, blank=False)
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, null=True, blank=True)
@@ -44,9 +46,24 @@ class CustomUser(AbstractUser):
             self.role = 'registrar'
         else:
             self.role = None
-        self.clean()      
-        super().save(*args, **kwargs)
-    
+        
+        self.clean()  
+        is_new = self.pk is None  
+
+        if not self.pk:  
+            self.pk = uuid4()
+
+        super().save(*args, **kwargs)  
+
+        if is_new:  
+            send_mail(
+                'Issue Created',
+                f'Your issue "{self.title}" has been created with ID: {self.pk}',
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[self.email],
+                fail_silently=False,
+            )
+
     def clean(self):
         prefix_map = {
             "student_number": "24",
@@ -65,30 +82,8 @@ class CustomUser(AbstractUser):
                 )
         super().clean()
 
-    def save(self, *args, **kwargs):
-        self.clean()  
-        is_new = self.pk is None
-
-
-if not self.Issue_id: #generate issue id given that it does not exist
-        self.Issue_id = uuid4()
-super().save(*args, **kwargs)
-if is_new: 
-    #we shall then send email notifications to the user
-    send_mail(
-        'Issue Created',
-        f'Your issue "{self.title}"has been created with ID: {self.Issue_id}',
-        from_email=settings.DEFAULT_FROM_EMAIL,
-        recipient_list=[self.email],
-        fail_silently=False,
-    )
-
-        
-        
-
     def __str__(self):
         return f"{self.username} ({self.get_role_display()})"
-
 
 class Course(models.Model):
     course_name = models.CharField(max_length=50, unique=True)
