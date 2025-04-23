@@ -2,7 +2,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.exceptions import ValidationError
 from django.core.mail import send_mail
-from uuid import uuid4
+from django.conf import settings
+
 class CustomUser(AbstractUser):
     ROLE_CHOICES = [
         ('student', 'Student'),
@@ -47,16 +48,11 @@ class CustomUser(AbstractUser):
         else:
             self.role = None
         
-        self.clean()  
-        is_new = self.pk is None  
-
-        if not self.pk:  
-            self.pk = uuid4()
 
         super().save(*args, **kwargs)  
 
-        if is_new:  
-            send_mail(
+         
+        send_mail(
                 'Issue Created',
                 f'Your issue "{self.title}" has been created with ID: {self.pk}',
                 from_email=settings.DEFAULT_FROM_EMAIL,
