@@ -89,6 +89,7 @@ class RegisterSerializer(serializers.ModelSerializer):
             'Welcome to AITS!',
             f"Hello {user.username},\n\nThank you for registering with AITS. Your account has been created successfully.\n\nBest regards,\nAITS Team",
             [user.email],
+            fail_silently=False,
         )
         return user
 
