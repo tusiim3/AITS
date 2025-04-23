@@ -85,6 +85,11 @@ class RegisterSerializer(serializers.ModelSerializer):
     
         validated_data['role'] = role
         user = CustomUser.objects.create_user(**validated_data)
+        send_mail(
+            'Welcome to AITS!',
+            f"Hello {user.username},\n\nThank you for registering with AITS. Your account has been created successfully.\n\nBest regards,\nAITS Team",
+            []
+        )
         return user
 
 
