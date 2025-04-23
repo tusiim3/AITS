@@ -1,0 +1,32 @@
+.pending {  
+    background-color: white;
+    box-shadow: 2cm;
+    position: absolute;
+    height: 30%;
+    width: 30%;
+    border-radius: 5px;
+    left: 1%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.issues {  
+    background-color: white;
+    box-shadow: 2cm;
+    position: absolute;
+    height: 30%;
+    width: 30%;
+    border-radius: 5px;
+    left: 35%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.assigned {  
+    background-color: white;
+    box-shadow: 2cm;
+    position: absolute;
+    height: 30%;
+    width: 30%;
+    border-radius: 5px;
+    left: 70%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
