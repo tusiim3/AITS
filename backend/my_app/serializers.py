@@ -228,6 +228,12 @@ class CreateIssue(serializers.ModelSerializer):
             student=self.context['request'].user, 
             status='pending'
         )
+        send_email(
+            subject='New Issue Created',
+            message=f'An issue has been created with the following details:\n\nCourse: {course.name}\nComplaint Type: {issue_type}\nCustom Complaint: {validated_data["custom_complaint"]}',
+            [user.email],
+            fail_silently=False,    
+        )
         return issue
 
 class LecturerlistSerializer(serializers.ModelSerializer):
