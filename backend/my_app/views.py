@@ -174,3 +174,9 @@ class LecturerlistView(APIView):
         lecturers = CustomUser.objects.filter(role='lecturer')
         serializer = LecturerlistSerializer(lecturers, many=True)
         return Response(serializer.data)
+
+class LecturerIssueListView(generics.ListAPIView):
+    serializer_class = IssuesSerializer
+    permission_classes = [IsAuthenticated, IsLecturer]
+
+    def get_queryset(self):
