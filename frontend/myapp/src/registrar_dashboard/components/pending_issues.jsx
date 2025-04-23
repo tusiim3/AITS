@@ -3,6 +3,8 @@ import style from './pending.module.css';
 import { useState, useEffect } from "react";
 import axios from "axios";
 import axiosInstance from "../../axioscomponent";
+import Popup from "reactjs-popup";
+
 
 export default function Pend() {
     const [complaints, setComplaints] = useState([]);
