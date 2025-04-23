@@ -180,3 +180,7 @@ class LecturerIssueListView(generics.ListAPIView):
     permission_classes = [IsAuthenticated, IsLecturer]
 
     def get_queryset(self):
+        user = self.request.user
+        if user.role == 'lecturer':
+            return Issues.objects.filter(lecturer=user)
+        return Issues.objects.none()    
