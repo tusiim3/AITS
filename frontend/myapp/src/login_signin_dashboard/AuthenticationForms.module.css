@@ -24,6 +24,7 @@ html, body {
   
   
   .form_container {
+    
     background-color: #b0e2e6; /* Light Blue-Green */
     border-radius: 10px;
     padding: 30px;
@@ -36,7 +37,9 @@ html, body {
   .logo {
     width: 80px;
     height: 60px;
-    margin-bottom: -20px;
+    margin: -20px auto 0px;
+    display: block;
+    position: relative; 
   }
   
   h2 {
