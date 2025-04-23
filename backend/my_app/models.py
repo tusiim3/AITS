@@ -52,13 +52,7 @@ class CustomUser(AbstractUser):
         super().save(*args, **kwargs)  
 
          
-        send_mail(
-                'Issue Created',
-                f'Your issue "{self.title}" has been created with ID: {self.pk}',
-                from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=[self.email],
-                fail_silently=False,
-            )
+        
 
     def clean(self):
         prefix_map = {
