@@ -231,7 +231,7 @@ class CreateIssue(serializers.ModelSerializer):
         )
         send_mail(
             subject='New Issue Created',
-            message=f'An issue has been created with the following details:\n\nCourse: {course.name}\nComplaint Type: {issue_type}\nCustom Complaint: {validated_data["custom_complaint"]}',
+            message=f'An issue has been created with the following details:\n\nCourse: {course.course_name}\nComplaint Type: {issue_type}\nCustom Complaint: {validated_data["custom_complaint"]}',
             from_email='AITS <aitrack.netlify.com>',
             recipient_list=[self.context['request'].user.email],
             fail_silently=False,    
