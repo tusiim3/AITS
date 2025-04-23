@@ -25,4 +25,36 @@ function Lecturer() {
     }
   };
 
+  return (
+    <div>
+      <div className='left_container'>
+          <div className='pp_container'>
+            <FaUserCircle size={100} className='pp'/>
+            <img src='./logo/martha.jpg' />
+          </div>
+        <div className='nav'>
+          <button className={`mybuttons ${clickedButton === 'Home' ? 'active' : ''}`} onClick={() => {setCurrentView('Home'); setClickedButton('Home')}}> <FiHome/> Home</button>
+          <button className={`mybuttons ${clickedButton === 'Pending' ? 'active' : ''}`} onClick={() => {setCurrentView('Pending'); setClickedButton('Pending')}}><FaBug/> Pending Issues</button>
+          <button className={`mybuttons ${clickedButton === 'IssueHistory' ? 'active' : ''}`} onClick={() => {setCurrentView('IssueHistory'); setClickedButton('IssueHistory')}}><FiClock/> Issue History</button>
+          <button className={`mybuttons ${clickedButton === 'Manage' ? 'active' : ''}`} onClick={() => {setCurrentView('Manage'); setClickedButton('Manage')}}><FaUniversity/> Manage college</button>
+          <button className={`mybuttons ${clickedButton === 'Profile' ? 'active' : ''}`} onClick={() => {setCurrentView('Profile'); setClickedButton('Profile')}}><FiUser/> Profile</button>
+        </div>
+        <button className='logout_button' onClick={handleLogout}>
+          <FiLogOut/> Log out
+        </button>
+      </div>
+
+      <div className='rightcontainer'>
+        {currentView === 'Home' && <Home />}
+        {currentView === 'Pending' && <Pend />}
+        {currentView === 'IssueHistory' && <His />}
+        {currentView === 'Manage' && <Manage />}
+        {currentView === 'Profile' && <Profile />}
+      </div>
+    </div>
+  );
+}
+
+export default Lecturer;
+
   
