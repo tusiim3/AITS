@@ -21,17 +21,14 @@
 
 .pending {  
   left: 1%;
-  top: 20%;
 }
 
 .resolved {  
   left: 35%;
-  top: 20%;
 }
 
 .average {  
   left: 70%;
-  top: 20%;
 }
 
 .metricValue {
