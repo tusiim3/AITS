@@ -1,21 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styles from "./home.module.css";
 
-//export default function Home() {
-//    return(
-//        <div>
-//           <div className={styles.pending}>Pending issues assigned to you</div>            
-//            <div className={styles.resolved}>Resolved issues count</div>        
-//            <div className={styles.average}>Average issue resolution time</div>
-//        </div>
-//    )
-//}
 
-// components/home.jsx
-// components/home.jsx
-
-
-const MetricCard = ({ title, value, unit }) => {
+const MetricCard = ({ title, value, unit, className }) => {
   const [displayValue, setDisplayValue] = useState(0);
 
   useEffect(() => {
@@ -40,7 +27,7 @@ const MetricCard = ({ title, value, unit }) => {
   }, [value]);
 
   return (
-    <div className={styles.metricCard}>
+    <div className={`${styles.metricCard} ${className}`}>   
       <h3>{title}</h3>
       <div className={styles.metricValue}>
         {displayValue}
