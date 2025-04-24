@@ -24,7 +24,21 @@ const MetricCard = ({ title, value, unit }) => {
     const endValue = value;
     let startTime;
 
-   
+    const animate = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      
+      const currentValue = Math.ceil(progress * endValue);
+      setDisplayValue(currentValue);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [value]);
+
   return (
     <div className={styles.metricCard}>
       <h3>{title}</h3>
