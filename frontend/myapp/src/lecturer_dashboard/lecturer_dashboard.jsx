@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './lecturer_dashboard.css';
 import Home from "./components/home.jsx";
 import Pend from "./components/pending_issues.jsx";
@@ -30,6 +30,27 @@ function Lecturer() {
     }
   };
 
+  // Existing state
+  const [pendingCount, setPendingCount] = useState(0);
+
+  // Fetch pending count
+  useEffect(() => {
+    const fetchPendingCount = async () => {
+      try {
+        const response = await axiosInstance.get('/api/issues/pending-count');
+        setPendingCount(response.data.count);
+      } catch (error) {
+        console.error('Error fetching pending count:', error);
+        setPendingCount(0); // Fallback to 0 on error
+      }
+    };
+
+    fetchPendingCount();
+    const interval = setInterval(fetchPendingCount, 30000); // Refresh every 30 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div>
       <div className='left_container'>
@@ -39,7 +60,7 @@ function Lecturer() {
           </div>
         <div className='nav'>
           <button className={`mybuttons ${clickedButton === 'Home' ? 'active' : ''}`} onClick={() => handleNavigation('Home')}> <FiHome/> Home</button>
-          <button className={`mybuttons ${clickedButton === 'Pending' ? 'active' : ''}`} onClick={() => handleNavigation('Pending')}><FaBug/> Pending Issues</button>
+          <button className={`mybuttons ${clickedButton === 'Pending' ? 'active' : ''}`} onClick={() => handleNavigation('Pending')}><FaBug/> Pending Issues <span className="pending-counter">{pendingCount}</span></button>
           <button className={`mybuttons ${clickedButton === 'IssueHistory' ? 'active' : ''}`} onClick={() => handleNavigation('IssueHistory')}><FiClock/> Issue History</button>
           <button className={`mybuttons ${clickedButton === 'Profile' ? 'active' : ''}`} onClick={() => handleNavigation('Profile')}> <FiUser/> Profile</button>
         </div>
