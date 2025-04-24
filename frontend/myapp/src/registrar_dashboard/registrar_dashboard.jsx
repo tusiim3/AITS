@@ -9,7 +9,7 @@ import Home from './components/Home.jsx';
 import { FiHome,FiLogOut,FiUser, FiClock } from 'react-icons/fi';
 import { FaBug, FaUniversity,FaUserCircle } from 'react-icons/fa';
 
-function Student() {
+function Registrar() {
   // State to track which component to render
   const [currentView, setCurrentView] = useState('Pending'); // Default view is 'Pending'
 
@@ -56,4 +56,4 @@ function Student() {
   );
 }
 
-export default Student;
+export default Registrar;
