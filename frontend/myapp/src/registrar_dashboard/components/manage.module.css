@@ -21,7 +21,7 @@
 .pe {
 
     font-family: Arial, sans-serif;  /* Sets the font family */
-    font-size: 9px;                 /* Sets the font size */
+    font-size: 100%;                 /* Sets the font size */
     font-weight: bold;               /* Makes the text bold */
     color: #333;                     /* Sets the text color */
     text-align:left;              /* Centers the text horizontally */
@@ -31,12 +31,16 @@
     text-decoration:wavy;  /* Underlines the text */
     position: relative;
     left: 10px;
-    padding: 0.1%;
+    padding: 0.7%;
     
     .input {
-        width: 70%;
+        width: 60%;
         position: absolute;
-        left: 20%;  
+        left: 30%; 
+        height: 86%; 
+        background-color: rgb(240, 239, 239);
+        border: none;
+        border-radius: 3px;
     }
     
 }
@@ -63,4 +67,16 @@
     border-radius: 5px;
     overflow-y: scroll;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.sub {
+    position: relative;
+    width: 20%;
+    height: 20%;
+    border-radius: 5px;
+    color: black;
+    background-color: rgb(89, 181, 95);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border: none;
+    cursor: pointer;
+    left: 40%;
 }

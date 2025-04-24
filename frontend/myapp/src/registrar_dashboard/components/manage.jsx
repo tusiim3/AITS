@@ -98,7 +98,7 @@ export default function Manage() {
               required
             />
           </p>
-          <button type="submit">Add Course</button>
+          <button type="submit" className={styles.sub}>Add Course</button>
         </div>
       </form>
     </div>
