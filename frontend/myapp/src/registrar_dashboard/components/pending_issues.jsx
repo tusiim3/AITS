@@ -8,7 +8,7 @@ export default function Pend() {
   const [selectedComplaintId, setSelectedComplaintId] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [lecturers, setLecturer] = useState([]);
-  const [selectedLecturer, setSelectedLecturer] = useState([]);
+  const [selectedLecturer, setSelectedLecturer] = useState(null);
 
 
   const lecturerOptions = lecturers.map(lecturer => ({
@@ -45,18 +45,25 @@ export default function Pend() {
 
   const openPopup = (complaintId) => {
     setSelectedComplaintId(complaintId);
+    setSelectedLecturer(null);
     setIsPopupOpen(true);
   };
 
   const closePopup = () => {
     setIsPopupOpen(false);
     setSelectedComplaintId(null);
+    setSelectedLecturer(null);
   };
 
-  const handleForward = async (complaintId) => {
+  const handleForward = async () => {
+    if (!selectedLecturer) {
+      alert("Please select a lecturer before forwarding!");
+      return;
+    }
+
     try {
-      await axiosInstance.post(`/forward-issue/${complaintId}`,{
-        lecturer_name: selectedLecturer.label
+      await axiosInstance.patch(`/issues/${selectedComplaintId}/assign/`,{
+        lecturer_username: selectedLecturer.label
       });
       alert("Complaint forwarded successfully!");
       closePopup();
