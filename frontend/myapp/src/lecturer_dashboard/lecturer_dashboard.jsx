@@ -29,7 +29,7 @@ function Lecturer() {
       alert("Failed to logout. Please try again.");
     }
   };
-
+  // Live pending issues counter badge
   // Existing state
   const [pendingCount, setPendingCount] = useState(0);
 
