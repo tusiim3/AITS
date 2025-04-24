@@ -1,12 +1,16 @@
 from django.shortcuts import render, get_object_or_404
 from rest_framework import viewsets, status, generics
 from .models import CustomUser, Course, Issues
-from .serializers import CustomUserSerializer, CourseSerializer, IssuesSerializer ,RegisterSerializer, LoginSerializer, LogoutSerializer, CreateIssue
+from .serializers import CustomUserSerializer, CourseSerializer, IssuesSerializer ,RegisterSerializer, LoginSerializer, LogoutSerializer, CreateIssue, AssignIssueSerializer
 from .permissions import IsOwnerOrIslecturerOrRegistrar,IsIssueOwner,IsRegistrar,IsLecturer,IsStudent
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+
+
 
 
 
@@ -125,7 +129,11 @@ class AssignIssueView(APIView):
     permission_classes = [IsAuthenticated, IsRegistrar]
 
     def patch(self, request, pk):
-        lecturer_username = request.data.get("lecturer_username")  
+        serializer = AssignIssueSerializer(data = request.data)
+
+        if serializer.is_valid(raise_exception=True):
+            lecturer_username = serializer.validated_data['lecturer_username']
+
         if not lecturer_username:
             return Response({"error": "Lecturer username is required"}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -166,3 +174,13 @@ class LecturerlistView(APIView):
         lecturers = CustomUser.objects.filter(role='lecturer')
         serializer = LecturerlistSerializer(lecturers, many=True)
         return Response(serializer.data)
+
+class LecturerIssueListView(generics.ListAPIView):
+    serializer_class = IssuesSerializer
+    permission_classes = [IsAuthenticated, IsLecturer]
+
+    def get_queryset(self):
+        user = self.request.user
+        if user.role == 'lecturer':
+            return Issues.objects.filter(lecturer=user)
+        return Issues.objects.none()    

@@ -2,6 +2,7 @@ from rest_framework import serializers
 from my_app.models import CustomUser, Course, Issues
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth import authenticate
+from django.core.mail import send_mail
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -84,6 +85,13 @@ class RegisterSerializer(serializers.ModelSerializer):
     
         validated_data['role'] = role
         user = CustomUser.objects.create_user(**validated_data)
+        send_mail(
+            'Welcome to AITS!',
+            f"Hello {user.username},\n\nThank you for registering with AITS. Your account has been created successfully.\n\nBest regards,\nAITS Team",
+            from_email='AITS <aitrack.netlify.com>',  
+            recipient_list=[user.email],
+            fail_silently=False,
+        )
         return user
 
 
@@ -221,6 +229,13 @@ class CreateIssue(serializers.ModelSerializer):
             student=self.context['request'].user, 
             status='pending'
         )
+        send_mail(
+            subject='New Issue Created',
+            message=f'An issue has been created with the following details:\n\nCourse: {course.course_name}\nComplaint Type: {issue_type}\nCustom Complaint: {validated_data["custom_complaint"]}',
+            from_email='AITS <aitrack.netlify.com>',
+            recipient_list=[self.context['request'].user.email],
+            fail_silently=False,    
+        )
         return issue
 
 class LecturerlistSerializer(serializers.ModelSerializer):
@@ -231,6 +246,8 @@ class LecturerlistSerializer(serializers.ModelSerializer):
         fields = ['id', 'username', 'email', 'lecturer_number', 'courses']
 
     def get_courses(self, obj):
-        courses = Course.objects.filter(lecturer=obj)
+        courses = Course.objects.filter(lecturer=obj) 
         return [course.name for course in courses]
 
+class AssignIssueSerializer(serializers.Serializer):
+    lecturer_username = serializers.CharField(max_length=150)

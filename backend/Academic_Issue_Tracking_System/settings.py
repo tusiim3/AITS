@@ -158,13 +158,13 @@ SIMPLE_JWT = {
 
 #CORS_ALLOW_ALL_ORIGINS = True
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'your_email@gmail.com'
-EMAIL_HOST_PASSWORD = 'your_app_password'  # use an app password, not your real password
+EMAIL_HOST_USER = 'ssebyaladenis18@gmail.com'
+EMAIL_HOST_PASSWORD = 'ljrd budl qvjm prto'  # use an app password, not your real password
 
 
 CORS_ALLOW_CREDENTIALS = True
@@ -178,7 +178,7 @@ CORS_ALLOWED_ORIGINS = [
 
 # CORS_ALLOW_ALL_ORIGINS = True
 
-from django.core.mail import send_mail
+'''from django.core.mail import send_mail
 
 send_mail(
     'Subject here',
@@ -187,5 +187,19 @@ send_mail(
     ['to@example.com'],
     fail_silently=False,
 )
+
+
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
+
+message = render_to_string('emails/welcome.html', {'username': 'Martha'})
+email = EmailMessage(
+    'Welcome!',
+    message,
+    'from@example.com',
+    ['to@example.com'],
+)
+email.content_subtype = 'html'  # Main content is now text/html
+email.send()'''
 
 

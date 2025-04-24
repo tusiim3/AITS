@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.exceptions import ValidationError
+from django.core.mail import send_mail
+from django.conf import settings
 
 class CustomUser(AbstractUser):
     ROLE_CHOICES = [
@@ -24,10 +26,13 @@ class CustomUser(AbstractUser):
         (2, '2nd Year'),
         (3, '3rd Year'),
         (4, '4th Year'),
-        (5, '5th Year'),]
+        (5, '5th Year'),
+    ]
+
     email = models.EmailField(unique=False)
-    number_type = models.CharField(max_length=20, choices = NUMBER_TYPE_CHOICES, null=False)
-    student_number = models.CharField(max_length=10, unique=True, null = True, blank = False)
+    title = models.CharField(max_length=10, null=True, blank=True)
+    number_type = models.CharField(max_length=20, choices=NUMBER_TYPE_CHOICES, null=False)
+    student_number = models.CharField(max_length=10, unique=True, null=True, blank=False)
     lecturer_number = models.CharField(max_length=10, unique=True, null=True, blank=False)
     registrar_number = models.CharField(max_length=10, unique=True, null=True, blank=False)
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, null=True, blank=True)
@@ -42,9 +47,13 @@ class CustomUser(AbstractUser):
             self.role = 'registrar'
         else:
             self.role = None
-        self.clean()      
-        super().save(*args, **kwargs)
-    
+        
+
+        super().save(*args, **kwargs)  
+
+         
+        
+
     def clean(self):
         prefix_map = {
             "student_number": "24",
@@ -63,14 +72,8 @@ class CustomUser(AbstractUser):
                 )
         super().clean()
 
-    def save(self, *args, **kwargs):
-        self.clean()  
-        super().save(*args, **kwargs)
-        
-
     def __str__(self):
         return f"{self.username} ({self.get_role_display()})"
-
 
 class Course(models.Model):
     course_name = models.CharField(max_length=50, unique=True)
@@ -129,3 +132,4 @@ class Issues(models.Model):
     def __str__(self):
         
         return f"Issue: {self.complaint_type} by {self.student.username} created at {self.created_at}"
+    
