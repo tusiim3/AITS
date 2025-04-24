@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import styles from "./home.module.css";
 
 
-const MetricCard = ({ title, value, unit, className, to }) => {
-  const navigate = useNavigate();
+const MetricCard = ({ title, value, unit, className, onClick }) => {
   const [displayValue, setDisplayValue] = useState(0);
 
   useEffect(() => {
@@ -29,7 +27,7 @@ const MetricCard = ({ title, value, unit, className, to }) => {
   }, [value]);
 
   return (
-    <div className={`${styles.metricCard} ${className}`} onClick={() => navigate(to)} style={{ cursor: 'pointer'}}>
+    <div className={`${styles.metricCard} ${className}`} onClick={onClick} style={{ cursor: 'pointer' }}>
       <h3>{title}</h3>
       <div className={styles.metricValue}>
         {displayValue}
@@ -39,7 +37,7 @@ const MetricCard = ({ title, value, unit, className, to }) => {
   );
 };
 
-export default function Home() {
+export default function Home({ onNavigate }) {
   // Mock data - replace with real data from your API
   const [metrics] = useState({
     pending: 8,
@@ -53,13 +51,13 @@ export default function Home() {
         title="Pending issues assigned to you" 
         value={metrics.pending} 
         className={styles.pending}
-        to="/lecturer_dashboard/components/pending_issues"
+        onClick={() => onNavigate('Pending')}
       />
       <MetricCard 
         title="Resolved issues count" 
         value={metrics.resolved}
         className={styles.resolved}
-        to="/lecturer_dashboard/components/issue_history"
+        onClick={() => onNavigate('IssueHistory')}
       />
       <MetricCard 
         title="Average issue resolution time" 
