@@ -71,9 +71,33 @@
     left: 50%;
     transform: translate(-50%, -50%);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height:50%;
+    width:40%;
   }
   
 .blurBackground {
     filter: blur(5px);
     transition: filter 0.3s ease;
   }
+
+/* In your module.css */
+.select {
+  width: 100%;
+  margin: 15px 0;
+}
+
+.react-select__control {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.react-select__menu {
+  z-index: 2; 
+}
+
+.forwardbut {
+  background-color: rgb(92, 173, 92);
+  position: relative;
+  top: 10%;
+  left: 30%;
+}

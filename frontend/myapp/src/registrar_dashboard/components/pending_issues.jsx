@@ -102,8 +102,8 @@ export default function Pend() {
                 placeholder="Search Lecturers"
                 className={style.select}
             />
-            <button onClick={() => handleForward(selectedComplaintId)}>Forward</button>
-            <button onClick={closePopup}>Cancel</button>
+            <button  className={style.forwardbut} onClick={() => handleForward(selectedComplaintId)}>Forward</button>
+            <button className={style.cancelbut} onClick={closePopup}>Cancel</button>
             </div>
         </>
         )}
