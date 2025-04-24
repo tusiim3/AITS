@@ -59,3 +59,10 @@
     font-weight: bold;
     transition: background-color 0.3s;
 }
+
+.mybuttons.active {
+    background-color: rgb(114, 197, 114) !important;
+    font-weight: 600;
+    padding-left: 25px; /* Compensate for border width */
+    margin-left: -3px; /* Prevent layout shift */
+}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import './lecturer_dashboard.css';
 import Home from "./components/home.jsx";
 import Pend from "./components/pending_issues.jsx";
