@@ -1,0 +1,55 @@
+/* home.module.css */
+.container {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+}
+
+.metricCard {  
+  background-color: white;
+  position: absolute;
+  height: 30%;
+  width: 30%;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pending {  
+  left: 1%;
+}
+
+.resolved {  
+  left: 35%;
+}
+
+.average {  
+  left: 70%;
+}
+
+.metricValue {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #1976d2;
+  margin-top: 15px;
+}
+
+.metricUnit {
+  font-size: 1.2rem;
+  color: #666;
+  margin-left: 5px;
+}
+
+.metricCard:hover {
+  transform: translateY(-2px);
+  transition: transform 0.2s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.metricCard {
+  transition: all 0.2s ease;
+}

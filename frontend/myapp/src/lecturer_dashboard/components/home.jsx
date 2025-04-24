@@ -1,21 +1,8 @@
-/*import styles from "./home.module.css";
-
-export default function Home() {
-    return(
-        <div>
-            <div className={styles.assigned}>yet to be assigned issues</div>
-            <div className={styles.issues}>The resolved issues count</div>
-            <div className={styles.pending}>The pending issues count</div>
-        </div>
-    )
-}
-*/
-
 import React, { useState, useEffect } from 'react';
 import styles from "./home.module.css";
 
 
-const MetricCard = ({ title, value, className, onClick }) => {
+const MetricCard = ({ title, value, unit, className, onClick }) => {
   const [displayValue, setDisplayValue] = useState(0);
 
   useEffect(() => {
@@ -44,6 +31,7 @@ const MetricCard = ({ title, value, className, onClick }) => {
       <h3>{title}</h3>
       <div className={styles.metricValue}>
         {displayValue}
+        {unit && <span className={styles.metricUnit}>{unit}</span>}
       </div>
     </div>
   );
@@ -52,22 +40,16 @@ const MetricCard = ({ title, value, className, onClick }) => {
 export default function Home({ onNavigate }) {
   // Mock data - replace with real data from your API
   const [metrics] = useState({
-    unassigned: 8,
-    pending: 24,
-    resolved: 33
+    pending: 8,
+    resolved: 24,
+    average: 3.2
   });
 
   return(
     <div className={styles.container}>
       <MetricCard 
-        title="Yet to be assigned issues" 
-        value={metrics.unassigned} 
-        className={styles.unassigned}
-        onClick={() => onNavigate('Manage')}
-      />
-      <MetricCard 
-        title="Pending issues count" 
-        value={metrics.pending}
+        title="Pending issues assigned to you" 
+        value={metrics.pending} 
         className={styles.pending}
         onClick={() => onNavigate('Pending')}
       />
@@ -76,6 +58,12 @@ export default function Home({ onNavigate }) {
         value={metrics.resolved}
         className={styles.resolved}
         onClick={() => onNavigate('IssueHistory')}
+      />
+      <MetricCard 
+        title="Average issue resolution time" 
+        value={metrics.average}
+        unit="h"
+        className={styles.average}
       />
     </div>
   )

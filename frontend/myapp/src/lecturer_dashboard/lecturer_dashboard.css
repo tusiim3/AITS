@@ -59,3 +59,33 @@
     font-weight: bold;
     transition: background-color 0.3s;
 }
+
+.mybuttons.active {
+    background-color: rgb(114, 197, 114) !important;
+    font-weight: 600;
+    padding-left: 25px; /* Compensate for border width */
+    margin-left: -3px; /* Prevent layout shift */
+}
+
+.pending-counter {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ff4444;
+    color: white;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+
+/* If count is 0 */
+.pending-counter:empty {
+  display: none;
+}
