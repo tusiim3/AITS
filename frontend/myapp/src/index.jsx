@@ -6,7 +6,8 @@ import Student from './student_dashboard/student_dashboard.jsx';
 import Registrar from './registrar_dashboard/registrar_dashboard.jsx';
 import Lecturer from './lecturer_dashboard/lecturer_dashboard.jsx'
 import NotFoundPage from './notfoundpage.jsx';
-import './index.css'
+import './index.css';
+import 'reactjs-popup/dist/index.css';
 
 const router = createBrowserRouter([
   {
