@@ -15,7 +15,7 @@ import React, { useState, useEffect } from 'react';
 import styles from "./home.module.css";
 
 
-const MetricCard = ({ title, value, unit, className, onClick }) => {
+const MetricCard = ({ title, value, className, onClick }) => {
   const [displayValue, setDisplayValue] = useState(0);
 
   useEffect(() => {
@@ -44,7 +44,6 @@ const MetricCard = ({ title, value, unit, className, onClick }) => {
       <h3>{title}</h3>
       <div className={styles.metricValue}>
         {displayValue}
-        {unit && <span className={styles.metricUnit}>{unit}</span>}
       </div>
     </div>
   );
@@ -55,27 +54,27 @@ export default function Home({ onNavigate }) {
   const [metrics] = useState({
     unassigned: 8,
     pending: 24,
-    resolved: 3.2
+    resolved: 33
   });
 
   return(
     <div className={styles.container}>
       <MetricCard 
         title="Yet to be assigned issues" 
-        value={metrics.pending} 
+        value={metrics.unassigned} 
+        className={styles.unassigned}
+        onClick={() => onNavigate('Manage')}
+      />
+      <MetricCard 
+        title="Pending issues count" 
+        value={metrics.pending}
         className={styles.pending}
         onClick={() => onNavigate('Pending')}
       />
       <MetricCard 
-        title="Pending issues count" 
+        title="Resolved issues count" 
         value={metrics.resolved}
         className={styles.resolved}
-        onClick={() => onNavigate('Pending')}
-      />
-      <MetricCard 
-        title="Resolved issues count" 
-        value={metrics.average}
-        className={styles.average}
         onClick={() => onNavigate('IssueHistory')}
       />
     </div>
