@@ -100,4 +100,15 @@
   position: relative;
   top: 10%;
   left: 30%;
+  cursor: pointer;
+  color: white;
+}
+
+.cancelbut {
+  background-color: rgb(236, 113, 113);
+  position: relative;
+  top: 10%;
+  left: 35%;
+  cursor: pointer;
+  color: white;
 }
