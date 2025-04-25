@@ -167,6 +167,7 @@ class AddCourseView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 class LecturerlistView(APIView):
     permission_classes = [IsAuthenticated, IsRegistrar] 
 
@@ -174,6 +175,7 @@ class LecturerlistView(APIView):
         lecturers = CustomUser.objects.filter(role='lecturer')
         serializer = LecturerlistSerializer(lecturers, many=True)
         return Response(serializer.data)
+
 
 class LecturerIssueListView(generics.ListAPIView):
     serializer_class = IssuesSerializer
