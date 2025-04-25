@@ -8,7 +8,7 @@ class CustomUser(AbstractUser):
     ROLE_CHOICES = [
         ('student', 'Student'),
         ('lecturer', 'Lecturer'),
-        ('registrar', 'Registrar'),
+        ('registrar', 'Registrar'), #this is the academic registrar
     ]
 
     GENDER_CHOICES = [
