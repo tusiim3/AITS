@@ -6,8 +6,8 @@ from django.conf import settings
 
 class CustomUser(AbstractUser):
     ROLE_CHOICES = [
-        ('student', 'Student'),
-        ('lecturer', 'Lecturer'),
+        ('student', 'Student'),# this is the student
+        ('lecturer', 'Lecturer'),# this is the course lecturer
         ('registrar', 'Registrar'), #this is the academic registrar
     ]
 
