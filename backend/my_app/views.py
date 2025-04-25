@@ -14,8 +14,8 @@ from django.shortcuts import render
 
 
 
-class RegisterView(APIView): # This view handles user registration
-    permission_classes = [AllowAny] # Allow any user to register
+class RegisterView(APIView): 
+    permission_classes = [AllowAny] 
     
     def post(self, request):
         serializer = RegisterSerializer(data=request.data)
