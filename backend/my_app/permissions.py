@@ -20,10 +20,6 @@ class IsRegistrar(BasePermission):
     def has_permission(self, request, view):
         return request.user.role == 'registrar'
     
-
-
-
-
 class IsIssueOwner(BasePermission):
     def has_object_permission(self, request, view, obj):
-        return obj.student == request.user  # Check if the issue belongs to the user
+        return obj.student == request.user  
