@@ -20,15 +20,18 @@
 }
 
 .pending {  
-  left: 1%;
+  top: 2%;
+  left: 2%;
 }
 
 .resolved {  
+  top: 2%;
   left: 35%;
 }
 
-.average {  
-  left: 70%;
+.average {
+  top: 2%;  
+  left: 68%;
 }
 
 .metricValue {
