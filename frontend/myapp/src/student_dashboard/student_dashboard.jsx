@@ -46,7 +46,7 @@ function Student() {
   };
 
   return (
-    <div>
+    <div className='student-dashboard-container'>
       <div className='left_container'>
         <div className='circle-container'>
           <FaUserCircle size={100} className='pp'/>
