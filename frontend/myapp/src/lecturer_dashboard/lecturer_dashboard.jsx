@@ -44,6 +44,7 @@ function Lecturer() {
         setPendingCount(0); // Fallback to 0 on error
       }
     };
+    
 
     fetchPendingCount();
     const interval = setInterval(fetchPendingCount, 30000); // Refresh every 30 seconds
@@ -52,7 +53,7 @@ function Lecturer() {
   }, []);
 
   return (
-    <div>
+    <div className ='container'>{/* Main container for the dashboard */}
       <div className='left_container'>
           <div className='pp_container'>
             <FaUserCircle size={100} className='pp'/>
