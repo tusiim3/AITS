@@ -9,9 +9,10 @@ import Home from './components/Home.jsx';
 import { FiHome,FiLogOut,FiUser, FiClock } from 'react-icons/fi';
 import { FaBug, FaUniversity,FaUserCircle } from 'react-icons/fa';
 
-function Registrar() {
+function Student() {
   // State to track which component to render
   const [currentView, setCurrentView] = useState('Pending'); // Default view is 'Pending'
+  const [clickedButton, setClickedButton] = useState('Pending');
 
   const handleLogout = async (e) => {
     try {
@@ -26,19 +27,60 @@ function Registrar() {
   };
 
   return (
-    <div>
+    <div className='registrar-dashboard-container'>
       <div className='left_container'>
           <div className='pp_container'>
             <FaUserCircle size={100} className='pp'/>
             <img src='./logo/martha.jpg' />
           </div>
         <div className='nav'>
-          <button className='mybuttons' onClick={() => setCurrentView('Home')}> <FiHome/> Home</button>
-          <button className='mybuttons' onClick={() => setCurrentView('Pending')}><FaBug/> Pending Issues</button>
-          <button className='mybuttons' onClick={() => setCurrentView('IssueHistory')}><FiClock/> Issue History</button>
-          <button className='mybuttons' onClick={() => setCurrentView('Manage')}><FaUniversity/> Manage college</button>
-          <button className='mybuttons' onClick={() => setCurrentView('Profile')}><FiUser/> Profile</button>
+        <button
+                className={`mybuttons ${clickedButton === 'Home' ? 'clicked' : ''}`}
+                onClick={() => {
+                  setCurrentView('Home');
+                  setClickedButton('Home');
+                }}
+              >
+              <FiHome/> Home
+              </button>
+              <button
+                className={`mybuttons ${clickedButton === 'Pending' ? 'clicked' : ''}`}
+                onClick={() => {
+                  setCurrentView('Pending');
+                  setClickedButton('Pending');
+                }}
+              >
+              <FaBug/> Pending Issues
+              </button>
+              <button
+                className={`mybuttons ${clickedButton === 'IssueHistory' ? 'clicked' : ''}`}
+                onClick={() => {
+                  setCurrentView('IssueHistory');
+                  setClickedButton('IssueHistory');
+                }}
+              >
+              <FiClock/> Issue History
+              </button>
+              <button
+                className={`mybuttons ${clickedButton === 'Manage' ? 'clicked' : ''}`}
+                onClick={() => {
+                  setCurrentView('Manage');
+                  setClickedButton('Manage');
+                }}
+              >
+              <FaUniversity/> Manage college
+              </button>
+              <button
+                className={`mybuttons ${clickedButton === 'Profile' ? 'clicked' : ''}`}
+                onClick={() => {
+                  setCurrentView('Profile');
+                  setClickedButton('Profile');
+                }}
+              >
+              <FiUser/> Profile
+              </button>
         </div>
+
         <button className='logout_button' onClick={handleLogout}>
           <FiLogOut/> Log out
         </button>
@@ -56,4 +98,4 @@ function Registrar() {
   );
 }
 
-export default Registrar;
+export default Student;
