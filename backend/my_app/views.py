@@ -179,7 +179,7 @@ class LecturerlistView(APIView):
 
 class LecturerIssueListView(generics.ListAPIView):
     serializer_class = IssuesSerializer
-    permission_classes = [IsAuthenticated, IsLecturer] #this will ensure that only lecturers can access this view
+    permission_classes = [IsAuthenticated, IsLecturer]
 
     def get_queryset(self):
         user = self.request.user
