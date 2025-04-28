@@ -185,4 +185,4 @@ class LecturerIssueListView(generics.ListAPIView):
         user = self.request.user
         if user.role == 'lecturer':
             return Issues.objects.filter(lecturer=user)
-        return Issues.objects.none()    #this will return an empty queryset if the user is not a lecturer
+        return Issues.objects.none()    
