@@ -187,4 +187,5 @@ class LecturerIssueListView(generics.ListAPIView):
             return Issues.objects.filter(lecturer=user) 
         return Issues.objects.none()    
 
-class UpdateIssueStatusView(APIView):         
+class UpdateIssueStatusView(APIView):   
+    permission_classes = [IsAuthenticated, IsLecturer]      
