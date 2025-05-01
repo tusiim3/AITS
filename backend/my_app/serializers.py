@@ -252,4 +252,7 @@ class LecturerlistSerializer(serializers.ModelSerializer):
 class AssignIssueSerializer(serializers.Serializer):
     lecturer_username = serializers.CharField(max_length=150)
 
-class IssueStatusSerializer(serializers.ModelSerializer):    
+class IssueStatusUpdateSerializer(serializers.ModelSerializer):   
+    class Meta:
+        model = Issues
+        fields = ['status'] 
