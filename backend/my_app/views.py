@@ -184,5 +184,5 @@ class LecturerIssueListView(generics.ListAPIView):
     def get_queryset(self):
         user = self.request.user
         if user.role == 'lecturer':
-            return Issues.objects.filter(lecturer=user)
-        return Issues.objects.none()    
+            return Issues.objects.filter(lecturer=user) #this will filter issues assigned to the lecturer
+        return Issues.objects.none()    #this will return an empty queryset if the user is not a lecturer
