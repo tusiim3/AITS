@@ -187,4 +187,4 @@ class LecturerIssueListView(generics.ListAPIView):
             return Issues.objects.filter(lecturer=user) 
         return Issues.objects.none()    
 
-class         
+class UpdateIssueStatusView(APIView):         
