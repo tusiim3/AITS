@@ -191,3 +191,8 @@ class UpdateIssueStatusView(APIView):
     permission_classes = [IsAuthenticated, IsLecturer]   
 
     def patch(self, request, pk):   
+        user = request.user
+        issue = Issues.objects.get(pk=pk)
+
+        if user.role != 'lecturer':
+            return Response({"error": "Only lecturers can update issue status"}, status=403)
