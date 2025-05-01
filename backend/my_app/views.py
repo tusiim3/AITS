@@ -197,4 +197,20 @@ class UpdateIssueStatusView(APIView):
         if user.role != 'lecturer':
             return Response({"error": "Only lecturers can update issue status"}, status=403)
         if issue.lecturer != user:
-            return Response({"error": "You are not assigned to this issue"}, status=403)    
+            return Response({"error": "You are not assigned to this issue"}, status=403)
+
+        serializer = IssuesSerializer(issue, data=request.data, partial=True)
+        if serializer.is_valid():
+            updated_issue = serializer.save()
+            student_email = updated_issue.student.email
+            subject = f"Issue Status Updated: {updated_issue.complaint_type}"
+            message = f"Dear {updated_issue.student.username},\n\n" \
+                      f"The status of your issue regarding '{updated_issue.complaint_type}' has been updated to '{updated_issue.status}'.\n\n" \
+                      f"Thank you,\nAcademic Issue Tracking System"
+            send_mail(
+                subject=subject,
+                message=message,
+                from_email='AITS <aitrack.netlify.com>',
+                recipient_list=[student_email],
+                fail_silently=False,
+            )               
