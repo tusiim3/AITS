@@ -196,3 +196,5 @@ class UpdateIssueStatusView(APIView):
 
         if user.role != 'lecturer':
             return Response({"error": "Only lecturers can update issue status"}, status=403)
+        if issue.lecturer != user:
+            return Response({"error": "You are not assigned to this issue"}, status=403)    
