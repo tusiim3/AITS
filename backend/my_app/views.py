@@ -186,3 +186,5 @@ class LecturerIssueListView(generics.ListAPIView):
         if user.role == 'lecturer':
             return Issues.objects.filter(lecturer=user) 
         return Issues.objects.none()    
+
+class         
