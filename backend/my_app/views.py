@@ -213,4 +213,14 @@ class UpdateIssueStatusView(APIView):
                 from_email='AITS <aitrack.netlify.com>',
                 recipient_list=[student_email],
                 fail_silently=False,
-            )               
+            )
+            return Response({
+                "message": "Issue status updated successfully",
+                "issue": {
+                    "id": updated_issue.id,
+                    "status": updated_issue.status,
+                    "lecturer": updated_issue.lecturer.username,
+                }
+            }, status=200)
+        return Response(serializer.errors, status=400)
+                           
