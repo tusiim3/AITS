@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from "./home.module.css";
-
+import RSSParser from "rss-parser";
 
 const MetricCard = ({ title, value, unit, className, onClick }) => {
   const [displayValue, setDisplayValue] = useState(0);
@@ -68,5 +68,6 @@ export default function Home({ onNavigate }) {
     </div>
   )
 }
+
 
 
