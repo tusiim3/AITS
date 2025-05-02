@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styles from "./home.module.css";
-import RSSParser from "rss-parser";
 
 const MetricCard = ({ title, value, unit, className, onClick }) => {
   const [displayValue, setDisplayValue] = useState(0);
@@ -37,6 +36,19 @@ const MetricCard = ({ title, value, unit, className, onClick }) => {
   );
 };
 
+const NewsFeed = () => {
+  return (
+    <div className={styles.newsSection}>
+      <h3>Happening Around Campus</h3>
+      <iframe
+        src="https://news.mak.ac.ug/"
+        title="University News Feed"
+        className={styles.newsFeedIframe}
+      />
+    </div> 
+  );
+};
+
 export default function Home({ onNavigate }) {
   // Mock data - replace with real data from your API
   const [metrics] = useState({
@@ -65,8 +77,11 @@ export default function Home({ onNavigate }) {
         unit="h"
         className={styles.average}
       />
+
+      {/* News Feed Section */}
+      <NewsFeed />
     </div>
-  )
+  );
 }
 
 
