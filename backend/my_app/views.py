@@ -14,8 +14,8 @@ from django.shortcuts import render
 
 
 
-class RegisterView(APIView):
-    permission_classes = [AllowAny]
+class RegisterView(APIView): 
+    permission_classes = [AllowAny] 
     
     def post(self, request):
         serializer = RegisterSerializer(data=request.data)
@@ -167,6 +167,7 @@ class AddCourseView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 class LecturerlistView(APIView):
     permission_classes = [IsAuthenticated, IsRegistrar] 
 
@@ -175,6 +176,7 @@ class LecturerlistView(APIView):
         serializer = LecturerlistSerializer(lecturers, many=True)
         return Response(serializer.data)
 
+
 class LecturerIssueListView(generics.ListAPIView):
     serializer_class = IssuesSerializer
     permission_classes = [IsAuthenticated, IsLecturer]
@@ -182,5 +184,43 @@ class LecturerIssueListView(generics.ListAPIView):
     def get_queryset(self):
         user = self.request.user
         if user.role == 'lecturer':
-            return Issues.objects.filter(lecturer=user)
+            return Issues.objects.filter(lecturer=user) 
         return Issues.objects.none()    
+
+class UpdateIssueStatusView(APIView):   
+    permission_classes = [IsAuthenticated, IsLecturer]   
+
+    def patch(self, request, pk):   
+        user = request.user
+        issue = Issues.objects.get(pk=pk)
+
+        if user.role != 'lecturer':
+            return Response({"error": "Only lecturers can update issue status"}, status=403)
+        if issue.lecturer != user:
+            return Response({"error": "You are not assigned to this issue"}, status=403)
+
+        serializer = IssuesSerializer(issue, data=request.data, partial=True)
+        if serializer.is_valid():
+            updated_issue = serializer.save()
+            student_email = updated_issue.student.email
+            subject = f"Issue Status Updated: {updated_issue.complaint_type}"
+            message = f"Dear {updated_issue.student.username},\n\n" \
+                      f"The status of your issue regarding '{updated_issue.complaint_type}' has been updated to '{updated_issue.status}'.\n\n" \
+                      f"Thank you,\nAcademic Issue Tracking System"
+            send_mail(
+                subject=subject,
+                message=message,
+                from_email='AITS <aitrack.netlify.com>',
+                recipient_list=[student_email],
+                fail_silently=False,
+            )
+            return Response({
+                "message": "Issue status updated successfully",
+                "issue": {
+                    "id": updated_issue.id,
+                    "status": updated_issue.status,
+                    "lecturer": updated_issue.lecturer.username,
+                }
+            }, status=200)
+        return Response(serializer.errors, status=400)
+                           
