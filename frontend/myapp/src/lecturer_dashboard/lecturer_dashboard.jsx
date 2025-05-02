@@ -5,8 +5,8 @@ import Pend from "./components/pending_issues.jsx";
 import His from "./components/issue_history.jsx";
 import Profile from "./components/profile.jsx";
 import axiosInstance from '../axioscomponent.jsx';
-import { FiHome,FiLogOut,FiUser, FiClock } from 'react-icons/fi';
-import { FaBug, FaUniversity,FaUserCircle } from 'react-icons/fa';
+import { FiHome, FiLogOut, FiUser, FiClock } from 'react-icons/fi';
+import { FaBug, FaUserCircle } from 'react-icons/fa';
 
 function Lecturer() {
   // State to track which component to render

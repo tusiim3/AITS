@@ -12,7 +12,8 @@
     "react-router-dom": "^7.3.0",
     "react-scripts": "^5.0.1",
     "react-select": "^5.10.1",
-    "reactjs-popup": "^2.0.6"
+    "reactjs-popup": "^2.0.6",
+    "rss-parser": "^3.13.0"
   },
   "scripts": {
     "start": "react-scripts start",
