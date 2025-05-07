@@ -3,6 +3,7 @@ import styles from "./manage.module.css";
 import axiosInstance from "../../axioscomponent";
 
 export default function Manage() {
+  const [courses, getCourse] = useState([])
   const [lecturers, getLecturer] = useState([]);
   const [lecturer, postLecturer] = useState([]);
   const [formData, setFormData] = useState({
@@ -42,6 +43,15 @@ export default function Manage() {
     }
   };
 
+  const fetchCourses = async () => {
+    try {
+      const response = await axiosInstance.get("/Courselist/");
+      getCourse(response.data);
+    } catch(error) {
+      console.error("Error fetching data", error)
+    }
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -56,7 +66,7 @@ export default function Manage() {
         <h4>Lecturers List</h4>
         <ul>
           {lecturers.map((lecturer) => (
-            <li key={lecturer.id}>
+            <li key={lecturer.id} className={styles.lectureritem}>
               {lecturer.username} - {lecturer.email}
             </li>
           ))}
@@ -64,6 +74,13 @@ export default function Manage() {
       </div>
       <div className={styles.courses}>
         <h4>Course List</h4>
+        <ul>
+          {courses.map((course) => (
+            <li key={course.id} className={styles.courseitem}>
+              {course.course_name} - {course.course_code}
+            </li>
+          ))}
+        </ul>
       </div>
       <form onSubmit={addLecturer}>
         <div className={styles.lecturer}>

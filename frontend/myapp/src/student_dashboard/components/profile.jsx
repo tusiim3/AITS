@@ -6,6 +6,10 @@ import { FaSave } from 'react-icons/fa';
 
 
 export default function Profile() {
+
+  const [email, setEmail] = React.useState('');
+  const [contact, setContact] = React.useState('');
+
   const [images, setImages] = React.useState([]);
   const maxNumber = 1;
 
@@ -14,6 +18,16 @@ export default function Profile() {
     console.log(imageList, addUpdateIndex);
     setImages(imageList);
   };
+
+  const handleSave = () => {
+    const profileData = {
+      image: images[0]?.data_url || null,
+      email,
+      contact,
+    };
+    console.log("Saviing profile data:", profileData);
+    // add api call to sa e profile data
+  }
 
   return (
     <div>
@@ -58,9 +72,9 @@ export default function Profile() {
           </div>
         )}
       </ImageUploading>
-      <p className={style.label}>EMAIL:</p><textarea className={style.text}></textarea>
-      <p className={style.label}>CONTACT:</p><textarea className={style.text}></textarea>
-      <button className={style.save}><FaSave size={18}/>save</button>
+      <p className={style.label}>EMAIL:</p><textarea className={style.text} value={email} onChange={(e) => setEmail(e.target.value)}></textarea>
+      <p className={style.label}>CONTACT:</p><textarea className={style.text} value={contact} onChange={(e) => setContact(e.target.value)}></textarea>
+      <button className={style.save} onClick={handleSave}><FaSave size={18}/>save</button>
     </div>
       <div className={style.green_form}>
         <p className={style.field_label}>NAME:</p>
