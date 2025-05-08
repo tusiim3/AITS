@@ -5,8 +5,8 @@ import Pend from "./components/pending_issues.jsx";
 import His from "./components/issue_history.jsx";
 import Profile from "./components/profile.jsx";
 import axiosInstance from '../axioscomponent.jsx';
-import { FiHome,FiLogOut,FiUser, FiClock } from 'react-icons/fi';
-import { FaBug, FaUniversity,FaUserCircle } from 'react-icons/fa';
+import { FiHome, FiLogOut, FiUser, FiClock } from 'react-icons/fi';
+import { FaBug, FaUserCircle } from 'react-icons/fa';
 
 function Lecturer() {
   // State to track which component to render
@@ -44,6 +44,7 @@ function Lecturer() {
         setPendingCount(0); // Fallback to 0 on error
       }
     };
+    
 
     fetchPendingCount();
     const interval = setInterval(fetchPendingCount, 30000); // Refresh every 30 seconds
@@ -52,7 +53,7 @@ function Lecturer() {
   }, []);
 
   return (
-    <div>
+    <div className ='container'>{/* Main container for the dashboard */}
       <div className='left_container'>
           <div className='pp_container'>
             <FaUserCircle size={100} className='pp'/>

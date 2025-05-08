@@ -6,6 +6,7 @@
   }
   
   .metricCard {  
+    top: 2%;
     background-color: white;
     position: absolute;
     height: 30%;
@@ -20,7 +21,7 @@
   }
   
   .unassigned {  
-    left: 1%;
+    left: 2%;
   }
   
   .pending {  
@@ -28,7 +29,7 @@
   }
   
   .resolved {  
-    left: 70%;
+    left: 68%;
   }
   
   .metricValue {
