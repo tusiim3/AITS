@@ -59,25 +59,24 @@ export default function Home({ onNavigate }) {
 
   return(
     <div className={styles.container}>
-      <MetricCard 
-        title="Pending issues assigned to you" 
-        value={metrics.pending} 
-        className={styles.pending}
-        onClick={() => onNavigate('Pending')}
-      />
-      <MetricCard 
-        title="Resolved issues count" 
-        value={metrics.resolved}
-        className={styles.resolved}
-        onClick={() => onNavigate('IssueHistory')}
-      />
-      <MetricCard 
-        title="Average issue resolution time" 
-        value={metrics.average}
-        unit="h"
-        className={styles.average}
-      />
-
+      <div className={styles.metricCardsContainer}>
+        <MetricCard 
+          title="Pending issues assigned to you" 
+          value={metrics.pending} 
+          onClick={() => onNavigate('Pending')}
+        />
+        <MetricCard 
+          title="Resolved issues count" 
+          value={metrics.resolved}
+          onClick={() => onNavigate('IssueHistory')}
+        />
+        <MetricCard 
+          title="Average issue resolution time" 
+          value={metrics.average}
+          unit="h"
+        />
+      </div>
+      
       {/* News Feed Section */}
       <NewsFeed />
     </div>
