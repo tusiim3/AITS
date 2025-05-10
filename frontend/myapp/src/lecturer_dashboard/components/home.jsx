@@ -37,21 +37,14 @@ const MetricCard = ({ title, value, unit, className, onClick }) => {
 };
 
 const NewsFeed = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  
   return (
     <div className={styles.newsSection}>
       <h3>Happening Around Campus</h3>
-      <div className={styles.iframeWrapper}>
-        {!isLoaded && <div className={styles.loadingSpinner}></div>}
-        <iframe
-          src="https://news.mak.ac.ug/"
-          title="University News Feed"
-          className={styles.newsFeedIframe}
-          onLoad={() => setIsLoaded(true)}
-          style={{ opacity: isLoaded ? 1 : 0 }}
-        />
-      </div>
+      <iframe
+        src="https://news.mak.ac.ug/"
+        title="University News Feed"
+        className={styles.newsFeedIframe}
+      />
     </div> 
   );
 };

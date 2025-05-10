@@ -1,9 +1,11 @@
 .container {
+    display: flex;
     background-image: url(../assets/background-images/Makerere-Main-Building-15thMar2013.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     height: 100vh;
+    overflow-x: hidden;
     position: relative;
 }
 
