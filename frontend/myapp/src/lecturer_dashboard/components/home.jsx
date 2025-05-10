@@ -63,16 +63,19 @@ export default function Home({ onNavigate }) {
         <MetricCard 
           title="Pending issues assigned to you" 
           value={metrics.pending} 
+          className={styles.pending}
           onClick={() => onNavigate('Pending')}
         />
         <MetricCard 
           title="Resolved issues count" 
           value={metrics.resolved}
+          className={styles.resolved}
           onClick={() => onNavigate('IssueHistory')}
         />
         <MetricCard 
           title="Average issue resolution time" 
           value={metrics.average}
+          className={styles.average}
           unit="h"
         />
       </div>

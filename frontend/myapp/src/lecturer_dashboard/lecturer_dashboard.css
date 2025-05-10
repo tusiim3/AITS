@@ -24,7 +24,7 @@
     z-index: 10;
 }
 .pp_container {
-    width: 100px;  /* Set the container size */
+ width: 100px;  /* Set the container size */
     height: 100px;
     position: absolute;
     left :30%;

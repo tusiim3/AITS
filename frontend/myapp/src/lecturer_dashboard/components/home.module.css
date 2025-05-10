@@ -28,6 +28,9 @@
   justify-content: center;
   align-items: center;
   transition: all 0.2s ease;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .metricValue {
@@ -47,6 +50,18 @@
   transform: translateY(-2px);
   transition: transform 0.2s ease;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.pending {
+  background-image: url('../../assets/background-images/pending.jpg');
+}
+
+.resolved {
+  background-image: url('../../assets/background-images/resolved.jpg');
+}
+
+.average {
+  background-image: url('../../assets/background-images/resolution time.png');
 }
 
 .newsSection {
