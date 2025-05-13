@@ -1,151 +1,232 @@
-.profedit{
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    position: absolute;
-    width: 50%;
-    height: 87%;
-    border-radius: 5px;
-    top: 10%;
+/* Profile Page Styles */
+.profedit {
+  background-color: #ffffff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  width: 46%;
+  height: 90%;
+  border-radius: 12px;
+  top: 5%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.upload__image_wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.upload__image_wrapper h3 {
+  margin-bottom: 10px;
+  color: #333;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.upload__image_wrapper button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin-right: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+}
+
+.upload__image_wrapper button:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+}
+
+.add_icon {
+  margin-right: 5px;
+  font-size: 16px;
+  color: white;
+}
+
+.image_preview {
+  margin-top: 1px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.image_preview img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 3px solid #4CAF50;
+}
+
+.image_buttons {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.image_buttons button {
+  background-color: #555;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.image_buttons button:hover {
+  background-color: #333;
+}
+
+.image_buttons button:first-child {
+  background-color: #2196F3;
+}
+
+.image_buttons button:first-child:hover {
+  background-color: #0b7dda;
 }
 
 .label {
-    font-family: Arial, sans-serif;  /* Sets the font family */
-    font-size: 12px;                 /* Sets the font size */
-    font-weight: bold;               /* Makes the text bold */
-    color: #333;                     /* Sets the text color */
-    text-align: left;              /* Centers the text horizontally */
-    line-height: 1.5;                /* Adjusts the line height for readability */
-    text-transform: uppercase;       /* Transforms text to uppercase */
-    letter-spacing: 1px;             /* Adjusts space between letters */
-    text-decoration:wavy;  /* Underlines the text */
-    position: relative;
-    padding: 0px;
-    left: 2%;
-    
-  }
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
 
-.text{
-    height: 5%;
+.text {
+  height: 30px;
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  resize: none;
+}
+
+.text:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+.save {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  margin-top: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  align-self: flex-start;
+  width: 120px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.save:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+}
+
+.green_form {
+  background-color: #f8fbf8;
+  border-left: 6px solid #4CAF50;
+  border-radius: 12px;
+  padding: 25px;
+  width: 42%;
+  position: absolute;
+  right: 5%;
+  top: 5%;
+  height: 87%;
+  font-family: 'Roboto', sans-serif;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.green_form .field_label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #333;
+  height: 35px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.green_form p:not(.field_label) {
+  background-color: #ffffff;
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #555;
+  border: 1px solid #e0e0e0;
+  min-height: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+  .profedit, .green_form {
     width: 90%;
     position: relative;
-    left: 2%;
-    border-color: black;
-    border: 2px solid;
-    border-radius: 3px;
-    
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 20px auto;
+    height: auto;
+    min-height: 400px;
+  }
 }
 
-.profileview{
-    background-color: rgb(178, 211, 179);
-    border-radius: 3px;
-    border-color: black;
-    border: 1px solid;
-    position: absolute;
-    width: 53%;
-    height: 96%;
-    
+/* Additional styling to match dashboard */
+.profileview {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
+/* Make text displays more consistent */
 .label1 {
-    font-family: Arial, sans-serif;  /* Sets the font family */
-    font-size: 12px;                 /* Sets the font size */
-    font-weight: bold;               /* Makes the text bold */
-    color: #aa2424;                     /* Sets the text color */
-    text-align: left;              /* Centers the text horizontally */
-    line-height: 1.5;                /* Adjusts the line height for readability */
-    text-transform: uppercase;       /* Transforms text to uppercase */
-    letter-spacing: 1px;             /* Adjusts space between letters */
-    text-decoration:wavy;  /* Underlines the text */
-    position: relative;
-    padding: 0px;
-    left: 2%;
-    
-  }
-
-  .green_form {
-    background-color: #e6f5e6; /* soft green */
-    border-left: 6px solid #2e8b57; /* darker green border */
-    border-radius: 5px;
-    padding: 20px 24px;
-    margin-top: 20px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    width: 100%;
-    max-width: 400px;
-    position: absolute;
-    left: 53%;
-    top: 6%;
-    height: 80%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  .green_form .field_label {
-    font-weight: 600;
-    margin-bottom: 10px;
-    display: block;
-    color: #222;
-    font-size: 16px;
-  }
-  
-  .upload__image_wrapper button {
-    position: relative;
-    top: 5%;
-    left: 2%;
-    background-color: #2e8b57;
-    color: white;
-    border: none;
-    padding: 4px 10px;
-    margin-right: 10px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background 0.3s ease;
-  }
-  
-  .upload__image_wrapper button:hover {
-    background-color: #256b45;
-  }
-  
-  .image_preview {
-    margin-top: 16px;
-
-  }
-  
-  .image_preview img {
-    position: relative;
-    left: 2%;
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .image_buttons {
-    margin-top: 8px;
-  }
-  
-  .image_buttons button {
-    background-color: #444;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    margin-right: 8px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 13px;
-    transition: background 0.3s ease;
-  }
-  
-  .image_buttons button:hover {
-    background-color: #222;
-  }
-
-  .save {
-    position: relative;
-    top: 6%;
-    left: 2%;
-    background-color: #56a478;
-    color: white;
-    border-radius: 3px;
-    cursor: pointer;
-    
-  }
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
