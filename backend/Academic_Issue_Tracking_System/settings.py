@@ -10,9 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+
+
 from pathlib import Path
 from datetime import timedelta
-
+from dotenv import load_dotenv
+import os
+from urllib.parse import urlparse
+load_dotenv()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -175,31 +180,20 @@ CORS_ALLOWED_ORIGINS = [
 
     
 ]
-
+DATABASE_URL='postgresql://neondb_owner:npg_iICrJ2ykx9qW@ep-round-leaf-a4qdd6s8-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require'
 # CORS_ALLOW_ALL_ORIGINS = True
+parsed_url = urlparse(DATABASE_URL)
 
-'''from django.core.mail import send_mail
+# Database
+# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-send_mail(
-    'Subject here',
-    "Here's the message.",
-    'from@example.com',
-    ['to@example.com'],
-    fail_silently=False,
-)
-
-
-from django.core.mail import EmailMessage
-from django.template.loader import render_to_string
-
-message = render_to_string('emails/welcome.html', {'username': 'Martha'})
-email = EmailMessage(
-    'Welcome!',
-    message,
-    'from@example.com',
-    ['to@example.com'],
-)
-email.content_subtype = 'html'  # Main content is now text/html
-email.send()'''
-
-
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': parsed_url.path[1:],
+        'USER':parsed_url.username,
+        'PASSWORD':parsed_url.password,
+        'HOST':parsed_url.hostname,
+        'PORT':5432
+    }
+}
