@@ -178,28 +178,3 @@ CORS_ALLOWED_ORIGINS = [
 
 # CORS_ALLOW_ALL_ORIGINS = True
 
-'''from django.core.mail import send_mail
-
-send_mail(
-    'Subject here',
-    "Here's the message.",
-    'from@example.com',
-    ['to@example.com'],
-    fail_silently=False,
-)
-
-
-from django.core.mail import EmailMessage
-from django.template.loader import render_to_string
-
-message = render_to_string('emails/welcome.html', {'username': 'Martha'})
-email = EmailMessage(
-    'Welcome!',
-    message,
-    'from@example.com',
-    ['to@example.com'],
-)
-email.content_subtype = 'html'  # Main content is now text/html
-email.send()'''
-
-
