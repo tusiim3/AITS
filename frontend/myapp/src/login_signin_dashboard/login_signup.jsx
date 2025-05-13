@@ -3,6 +3,7 @@ import styles from './AuthenticationForms.module.css';
 import logo from "./logo/logo.png";
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../axioscomponent';
+import { ToastContainer, toast } from 'react-toastify';
 
 const AuthenticationForms = () => {
   const [isSignUp, setIsSignUp] = useState(true);
@@ -53,11 +54,11 @@ const AuthenticationForms = () => {
 
         if (response.status === 201) {
           navigate('/'); 
-          alert("Registration successful!");
+          toast.success("Registration successful");
         }
       } catch (error) {
         console.error("Error during registration", error);
-        alert("Registration failed. Please try again.");
+        toast.error("Failed to register");
       } 
     } else {
       handleSignIn(e);
@@ -83,13 +84,13 @@ const AuthenticationForms = () => {
         localStorage.setItem("accessToken", response.data.accessToken);
         localStorage.setItem("refreshToken", response.data.refreshToken);
        
-        alert("signin successfull,");
+        toast.success("Signin Successfull")
         navigateBasedOnRole(formData.number_type)
       }
 
     } catch (error) {
       console.error("Error during signin", error);
-      alert("Signin failed. Please try again.");
+      toast.error("Signin failed. Please try again.");
     }
   };
 
@@ -113,6 +114,7 @@ const AuthenticationForms = () => {
 
   return (
     <div className={styles.body}>
+      <ToastContainer position="top-right" autoClose={3000} />
       <div className={styles.container}>
         <div className={styles.form_container}>
           <img src={logo} alt="University Logo" className={styles.logo} />
