@@ -12,7 +12,10 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+from dotenv import load_dotenv
 
+from urllib.parse import urlparse
+load_dotenv()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
