@@ -1,71 +1,120 @@
-.container{
-    background-color: rgba(255, 255, 255, 0.85 v); 
-    height: 100vh;
-    width: 100%;
-    border-radius: 3px;
+.container {
+  background-color: #f9f9f9;
+  padding: 2rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Upload Section */
+.upload__image-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload__image-wrapper button {
+  background-color: #4caf50;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.upload__image-wrapper button:hover {
+  background-color: #388e3c;
+}
+
+.image-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.image-item img {
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.image-item__btn-wrapper button {
+  margin-right: 0.5rem;
+  background-color: #1976d2;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.image-item__btn-wrapper button:last-child {
+  background-color: #e53935;
+}
+
+.image-item__btn-wrapper button:hover {
+  opacity: 0.9;
 }
 
 .label {
-    font-family: Arial, sans-serif;  /* Sets the font family */
-    font-size: 12px;                 /* Sets the font size */
-    font-weight: bold;               /* Makes the text bold */
-    color: #333;                     /* Sets the text color */
-    text-align: left;              /* Centers the text horizontally */
-    line-height: 1.5;                /* Adjusts the line height for readability */
-    text-transform: uppercase;       /* Transforms text to uppercase */
-    letter-spacing: 1px;             /* Adjusts space between letters */
-    text-decoration:wavy;  /* Underlines the text */
-    position: relative;
-    padding: 0px;
-    left: 2%;
-    
-  }
-
-.text{
-    height: 4%;
-    width: 40%;
-    position: relative;
-    left: 2%;
-    border-color: black;
-    border: 2px solid;
-    border-radius: 3px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+  margin-top: 1rem;
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
 }
 
-.profileview{
-    background-color: rgb(178, 211, 179);
-    border-radius: 3px;
-    border-color: black;
-    border: 1px solid;
-    position: absolute;
-    width: 53%;
-    height: 96%;
-    left: 45%;
-    top: 2%;
+.text {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  resize: vertical;
+  font-size: 14px;
+  background-color: #fff;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.save {
+  background-color: #2196f3;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1rem;
+  max-width: 200px;
+  transition: background 0.3s ease;
+}
+
+.save:hover {
+  background-color: #1976d2;
+}
+
+.profileview {
+  background-color: #f1f8e9;
+  border-radius: 10px;
+  border: 1px solid #c5e1a5;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  max-width: 600px;
 }
 
 .label1 {
-    font-family: Arial, sans-serif;  /* Sets the font family */
-    font-size: 12px;                 /* Sets the font size */
-    font-weight: bold;               /* Makes the text bold */
-    color: #aa2424;                     /* Sets the text color */
-    text-align: left;              /* Centers the text horizontally */
-    line-height: 1.5;                /* Adjusts the line height for readability */
-    text-transform: uppercase;       /* Transforms text to uppercase */
-    letter-spacing: 1px;             /* Adjusts space between letters */
-    text-decoration:wavy;  /* Underlines the text */
-    position: relative;
-    padding: 0px;
-    left: 2%;
-    
-  }
-
-.save {
-    background-color: rgb(120, 186, 120);
-    color: white;
-    position: absolute;
-    left: 2%;
-    top: 70%;
-    height: 7%;
-    border: none;
-    border-radius: 3px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2e7d32;
+  margin-top: 1rem;
+  text-transform: uppercase;
 }
