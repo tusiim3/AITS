@@ -190,7 +190,7 @@ parsed_url = urlparse(os.getenv("DATABASE_URL"))
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': parsed_url.path.replace('/',''),
+        'NAME': parsed_url.path[1:],
         'USER':parsed_url.username,
         'PASSWORD':parsed_url.password,
         'HOST':parsed_url.hostname,
