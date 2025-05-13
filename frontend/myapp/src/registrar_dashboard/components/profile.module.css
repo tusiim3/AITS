@@ -1,10 +1,12 @@
 .profedit{
+  background-color: rgba(255, 255, 255, 0.904);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   position: absolute;
   width: 50%;
   height: 87%;
   border-radius: 5px;
-  top: 10%;
+  top: 4%;
+  left: 1%;
 }
 
 .label {
@@ -69,8 +71,8 @@
     width: 100%;
     max-width: 400px;
     position: absolute;
-    left: 51%;
-    top: 6%;
+    left: 52%;
+    top: 0.0%;
     height: 80%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
