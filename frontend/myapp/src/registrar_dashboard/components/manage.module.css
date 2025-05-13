@@ -80,3 +80,14 @@
     cursor: pointer;
     left: 40%;
 }
+
+.lectureritem {
+    background-color: rgba(105, 205, 105, 0.733);
+    border-radius: 2px;
+    margin-bottom: 10px;
+    position: relative;
+    left: 5%;
+    width: 90%;
+    height: 25px;
+
+}
