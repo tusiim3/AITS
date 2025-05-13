@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 from dotenv import load_dotenv
-
+import os
 from urllib.parse import urlparse
 load_dotenv()
 
@@ -180,7 +180,7 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 # CORS_ALLOW_ALL_ORIGINS = True
-tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
+parsed_url = urlparse(os.getenv("DATABASE_URL"))
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
@@ -188,10 +188,10 @@ tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': tmpPostgres.path.replace('/',''),
-        'USER':tmpPostgres.username,
-        'PASSWORD':tmpPostgres.password,
-        'HOST':tmpPostgres.hostname,
+        'NAME': parsed_url.path.replace('/',''),
+        'USER':parsed_url.username,
+        'PASSWORD':parsed_url.password,
+        'HOST':parsed_url.hostname,
         'PORT':5432
     }
 }
