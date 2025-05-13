@@ -180,4 +180,18 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 # CORS_ALLOW_ALL_ORIGINS = True
+tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
 
+# Database
+# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': tmpPostgres.path.replace('/',''),
+        'USER':tmpPostgres.username,
+        'PASSWORD':tmpPostgres.password,
+        'HOST':tmpPostgres.hostname,
+        'PORT':5432
+    }
+}
