@@ -8,6 +8,7 @@ import axiosInstance from '../axioscomponent.jsx';
 import Home from './components/Home.jsx';
 import { FiHome,FiLogOut,FiUser, FiClock } from 'react-icons/fi';
 import { FaBug, FaUniversity,FaUserCircle } from 'react-icons/fa';
+import { ToastContainer } from 'react-toastify';
 
 function Student() {
   // State to track which component to render
@@ -28,6 +29,7 @@ function Student() {
 
   return (
     <div className='registrar-dashboard-container'>
+      <ToastContainer position="top-right" autoClose={3000} />
       <div className='left_container'>
           <div className='pp_container'>
             <FaUserCircle size={100} className='pp'/>

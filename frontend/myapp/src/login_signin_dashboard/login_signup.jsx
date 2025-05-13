@@ -53,8 +53,9 @@ const AuthenticationForms = () => {
         });
 
         if (response.status === 201) {
-          navigate('/'); 
           toast.success("Registration successful");
+          navigate('/'); 
+          
         }
       } catch (error) {
         console.error("Error during registration", error);
@@ -84,8 +85,10 @@ const AuthenticationForms = () => {
         localStorage.setItem("accessToken", response.data.accessToken);
         localStorage.setItem("refreshToken", response.data.refreshToken);
        
-        toast.success("Signin Successfull")
-        navigateBasedOnRole(formData.number_type)
+        toast.success("Signin Successfull", {
+          autoClose: 3000,
+          onClose: () => navigateBasedOnRole(formData.number_type),
+        });
       }
 
     } catch (error) {
@@ -114,7 +117,7 @@ const AuthenticationForms = () => {
 
   return (
     <div className={styles.body}>
-      <ToastContainer position="top-right" autoClose={3000} />
+      <ToastContainer position="top-right"/>
       <div className={styles.container}>
         <div className={styles.form_container}>
           <img src={logo} alt="University Logo" className={styles.logo} />
