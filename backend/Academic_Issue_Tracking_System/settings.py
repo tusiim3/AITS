@@ -180,9 +180,9 @@ CORS_ALLOWED_ORIGINS = [
 
     
 ]
-
+DATABASE_URL='postgresql://neondb_owner:npg_iICrJ2ykx9qW@ep-round-leaf-a4qdd6s8-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require'
 # CORS_ALLOW_ALL_ORIGINS = True
-parsed_url = urlparse(os.getenv("DATABASE_URL"))
+parsed_url = urlparse(DATABASE_URL)
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
