@@ -172,6 +172,7 @@
   transform: translateY(0);
 }
 
+
 /* Media Queries for Responsiveness */
 @media (max-width: 992px) {
   .container {

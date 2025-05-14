@@ -81,7 +81,7 @@ export default function Pend() {
         {complaints.length > 0 ? (
           complaints.map((complaint) => (
             <div key={complaint.id} className={style.output_box}>
-              <p1 className={style.pa}>Course Unit: {complaint.course.course_code}</p1>
+              <p1 className={style.pa} >Course Unit: {complaint.course.course_code}</p1>
               <p1 className={style.pa}>Complaint type: {complaint.complaint_type}</p1>
               <p1 className={style.pa}>Complaint: {complaint.complaint}</p1>
               <p1 className={style.pa}>Description: {complaint.custom_complaint}</p1>
@@ -102,15 +102,15 @@ export default function Pend() {
         <>
             <div className={style.popupBackdrop} onClick={closePopup}></div>
             <div className={style.popup}>
-            <p>select a lecturer</p>
-            <Select 
-                options={lecturerOptions}
-                onChange={(selected) => setSelectedLecturer(selected)}
-                placeholder="Search Lecturers"
-                className={style.select}
-            />
-            <button  className={style.forwardbut} onClick={() => handleForward(selectedComplaintId)}>Forward</button>
-            <button className={style.cancelbut} onClick={closePopup}>Cancel</button>
+              <p2>select a lecturer</p2>
+              <Select 
+                  options={lecturerOptions}
+                  onChange={(selected) => setSelectedLecturer(selected)}
+                  placeholder="Search Lecturers"
+                  className={style.select}
+              />
+              <button  className={style.forwardbut} onClick={() => handleForward(selectedComplaintId)}>Forward</button>
+              <button className={style.cancelbut} onClick={closePopup}>Cancel</button>
             </div>
         </>
         )}

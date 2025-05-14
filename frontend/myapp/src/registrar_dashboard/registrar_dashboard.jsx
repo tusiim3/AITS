@@ -88,7 +88,7 @@ function Student() {
         </button>
       </div>
 
-      <div className='rightcontainer'>
+      <div className='rightcontainerr'>
         {currentView === 'Home' && <Home/>}
         {currentView === 'Pending' && <Pend />}
         {currentView === 'IssueHistory' && <His />}
