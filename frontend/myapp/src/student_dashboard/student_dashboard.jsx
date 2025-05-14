@@ -32,6 +32,7 @@ function Student() {
       console.error('Failed to fetch profile picture',err)
     });
   }, []);
+  
   // Components to display
   const LogForm = () => (
     <div>

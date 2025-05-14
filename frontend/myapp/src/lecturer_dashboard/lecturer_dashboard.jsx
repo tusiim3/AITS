@@ -9,11 +9,30 @@ import { FiHome, FiLogOut, FiUser, FiClock } from 'react-icons/fi';
 import { FaBug, FaUserCircle } from 'react-icons/fa';
 import { ToastContainer } from 'react-toastify';
 
+const BACKEND_URL = "http://127.0.0.1:8000";
+function getProfilePicUrl(path) {
+  if (!path) return "/logo/martha.jpg"; // fallback image
+  return path.startsWith("http") ? path : BACKEND_URL + path;
+}
+
+
 function Lecturer() {
   // State to track which component to render
   const [currentView, setCurrentView] = useState('Home'); // Default view is 'logForm'
   const [clickedButton, setClickedButton] = useState('Home');
+  const [profilePic, setProfilePic] = useState(null);
 
+  useEffect(() =>{
+    axiosInstance.get('/profile/')
+    .then(res => {
+      setProfilePic(res.data.profile_picture);
+    })
+    .catch(err => {
+      console.error('Failed to fetch profile picture',err)
+    });
+  }, []);
+
+  //components to display
   const handleNavigation = (viewName) => {
     setCurrentView(viewName);
     setClickedButton(viewName);
@@ -38,7 +57,7 @@ function Lecturer() {
   useEffect(() => {
     const fetchPendingCount = async () => {
       try {
-        const response = await axiosInstance.get('/api/issues/pending-count');
+        const response = await axiosInstance.get('/issues/pending-count');
         setPendingCount(response.data.count);
       } catch (error) {
         console.error('Error fetching pending count:', error);
@@ -57,10 +76,17 @@ function Lecturer() {
     <div className ='container'>{/* Main container for the dashboard */}
       <ToastContainer position="top-right" autoClose={3000} />
       <div className='left_container'>
-          <div className='pp_container'>
+        <div className='pp_container'>
+          {profilePic ? (
+              <img
+              src={getProfilePicUrl(profilePic)}
+              alt="Profile"
+              className="sidebar-profile-pic"
+              />
+            ) : ( 
             <FaUserCircle size={100} className='pp'/>
-            <img src='./logo/martha.jpg' />
-          </div>
+          )}
+        </div>
         <div className='nav'>
           <button className={`mybuttons ${clickedButton === 'Home' ? 'active' : ''}`} onClick={() => handleNavigation('Home')}> <FiHome/> Home</button>
           <button className={`mybuttons ${clickedButton === 'Pending' ? 'active' : ''}`} onClick={() => handleNavigation('Pending')}><FaBug/> Pending Issues <span className="pending-counter">{pendingCount}</span></button>
