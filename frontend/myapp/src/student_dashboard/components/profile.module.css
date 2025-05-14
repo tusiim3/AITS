@@ -4,13 +4,15 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   position: absolute;
   width: 46%;
-  height: 90%;
+
+  height: auto;
   border-radius: 12px;
   top: 5%;
   padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 15px;
+  overflow-y:auto ;
 }
 
 .upload__image_wrapper {
