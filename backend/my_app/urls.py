@@ -3,13 +3,13 @@ from rest_framework.routers import DefaultRouter
 from .views import CustomUserViewSet, CourseViewSet, IssuesViewSet, RegisterView, LoginView, LogoutView,CreateIssueView, RegistrarIssueListView, AssignIssueView, StudentIssueHistoryView, LecturerIssueListView, UpdateIssueStatusView, UserprofileView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-"""
-router = DefaultRouter()
+
+'''router = DefaultRouter()
 router.register(r'users', CustomUserViewSet)
 router.register(r'departments', DepartmentViewSet)
 router.register(r'courses', CourseViewSet)
-router.register(r'issues', IssuesViewSet) 
-"""
+router.register(r'issues', IssuesViewSet) '''
+
 
 urlpatterns = [
     #path('', include(router.urls)),  
