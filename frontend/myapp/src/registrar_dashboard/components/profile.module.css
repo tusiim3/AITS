@@ -1,20 +1,9 @@
-<<<<<<< HEAD
-.profedit{
-  background-color: rgba(255, 255, 255, 0.904);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-=======
 .profedit {
   background-color: white;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
->>>>>>> newfrontend
   position: absolute;
   width: 45%;
   height: 87%;
-<<<<<<< HEAD
-  border-radius: 5px;
-  top: 4%;
-  left: 1%;
-=======
   border-radius: 12px;
   top: 10%;
   left: 2%;
@@ -118,7 +107,6 @@
 .image_buttons button:hover {
   filter: brightness(0.95);
   transform: translateY(-1px);
->>>>>>> newfrontend
 }
 
 .label {
@@ -231,20 +219,11 @@
   .profedit {
     position: relative;
     width: 100%;
-<<<<<<< HEAD
-    max-width: 400px;
-    position: absolute;
-    left: 52%;
-    top: 0.0%;
-    height: 80%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-=======
     top: 0;
     left: 0;
     margin-bottom: 20px;
     height: auto;
     min-height: 450px;
->>>>>>> newfrontend
   }
   
   .green_form {

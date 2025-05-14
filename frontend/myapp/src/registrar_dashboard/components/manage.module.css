@@ -187,28 +187,6 @@
   
   .lecturer {
     position: relative;
-<<<<<<< HEAD
-    width: 20%;
-    height: 20%;
-    border-radius: 5px;
-    color: black;
-    background-color: rgb(89, 181, 95);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border: none;
-    cursor: pointer;
-    left: 40%;
-}
-
-.lectureritem {
-    background-color: rgba(105, 205, 105, 0.733);
-    border-radius: 2px;
-    margin-bottom: 10px;
-    position: relative;
-    left: 5%;
-    width: 90%;
-    height: 25px;
-
-=======
     order: -1;
     margin-bottom: 24px;
     height: auto;
@@ -257,5 +235,4 @@
   .form-fields {
     gap: 4px;
   }
->>>>>>> newfrontend
 }
