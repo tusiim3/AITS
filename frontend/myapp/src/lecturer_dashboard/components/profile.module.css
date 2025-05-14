@@ -1,120 +1,392 @@
+/* Modern Profile Component Styling */
 .container {
-  background-color: #f9f9f9;
-  padding: 2rem;
+  background-color: #f0f4f8;
+  padding: 3rem 2rem;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  flex-direction: row;
+  gap: 2.5rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
 }
 
-/* Upload Section */
+/* Left Panel - Edit Profile */
+.container > div:first-child {
+  background: linear-gradient(145deg, #ffffff, #f8f9fa);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06), 
+              0 1px 3px rgba(0, 0, 0, 0.1);
+  width: 45%;
+  max-width: 450px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.container > div:first-child::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, #4CAF50, #8BC34A);
+}
+
+/* Right Panel - Profile View */
+.profileview {
+  background: linear-gradient(145deg, #ffffff, #f8f9fa);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06), 
+              0 1px 3px rgba(0, 0, 0, 0.1);
+  width: 45%;
+  max-width: 450px;
+  position: relative;
+  padding: 2.5rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* Blue accent styling */
+.profileview::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 6px;
+  background: linear-gradient(to bottom, #4CAF50, #8BC34A);
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+}
+
+/* Profile Picture Section */
 .upload__image-wrapper {
+  margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  padding: 1rem;
-  border: 2px dashed #ccc;
-  border-radius: 10px;
-  background-color: #fff;
+  align-items: center;
+}
+
+/* Profile Picture Title */
+.upload__image-wrapper::before {
+  content: "Profile Picture";
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+/* Upload Button */
+.upload__image-wrapper button:first-child {
+  background: linear-gradient(135deg, #4CAF50, #8BC34A);
+  color: white;
+  width: 160px;
+  height: 50px;
+  border: none;
+  border-radius: 12px;
+  font-size: 0;
+  cursor: pointer;
+  display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(76, 175, 80, 0.25);
+  position: relative;
+  overflow: hidden;
 }
 
-.upload__image-wrapper button {
-  background-color: #4caf50;
-  color: white;
-  padding: 0.6rem 1.2rem;
+.upload__image-wrapper button:first-child:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(76, 175, 80, 0.35);
+}
+
+.upload__image-wrapper button:first-child:active {
+  transform: translateY(1px);
+}
+
+.upload__image-wrapper button:first-child::before {
+  content: "Upload Image";
+  font-size: 1rem;
+  font-weight: 500;
+  margin-left: 8px;
+}
+
+.upload__image-wrapper button:first-child::after {
+  content: "📷";
+  font-size: 1.1rem;
+  margin-right: 8px;
+}
+
+/* Hide Remove all images button */
+.upload__image-wrapper button:nth-child(2) {
+  background: none;
   border: none;
-  border-radius: 5px;
+  color: #4CAF50;
+  font-size: 0.875rem;
+  margin-top: 0.75rem;
   cursor: pointer;
-  transition: background 0.3s ease;
+  text-decoration: underline;
+  transition: all 0.2s;
 }
 
-.upload__image-wrapper button:hover {
-  background-color: #388e3c;
+.upload__image-wrapper button:nth-child(2):hover {
+  color: #8BC34A;
 }
 
+/* Image item */
 .image-item {
+  margin-top: 1.5rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 1rem;
 }
 
 .image-item img {
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.image-item img:hover {
+  transform: scale(1.05);
+}
+
+/* Image update/remove buttons */
+.image-item__btn-wrapper {
+  display: flex;
+  gap: 10px;
+  margin-top: 1rem;
 }
 
 .image-item__btn-wrapper button {
-  margin-right: 0.5rem;
-  background-color: #1976d2;
-  color: white;
-  padding: 0.4rem 0.8rem;
-  border: none;
-  border-radius: 4px;
+  padding: 8px 15px;
+  border-radius: 8px;
+  font-size: 0.875rem;
   cursor: pointer;
+  transition: all 0.2s;
+}
+
+.image-item__btn-wrapper button:first-child {
+  background-color: #f0f8f0;
+  border: 1px solid #d7e6d7;
+  color: #4CAF50;
 }
 
 .image-item__btn-wrapper button:last-child {
-  background-color: #e53935;
+  background-color: #fff1f0;
+  border: 1px solid #ffccc7;
+  color: #f5222d;
 }
 
 .image-item__btn-wrapper button:hover {
-  opacity: 0.9;
+  transform: translateY(-2px);
 }
 
+/* Form Labels */
 .label {
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 600;
-  color: #555;
-  margin-top: 1rem;
-  margin-bottom: 0.4rem;
+  color: #4a5568;
+  margin-top: 1.75rem;
+  margin-bottom: 0.6rem;
   text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
 }
 
+.label::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: linear-gradient(135deg, #4CAF50, #8BC34A);
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* Input Fields */
 .text {
   width: 100%;
-  max-width: 400px;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  resize: vertical;
-  font-size: 14px;
-  background-color: #fff;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+  padding: 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 1rem;
+  resize: none;
+  background-color: #f8fafc;
+  height: 50px;
+  transition: all 0.3s ease;
 }
 
+.text:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+  background-color: #fff;
+}
+
+/* Save Button */
 .save {
-  background-color: #2196f3;
+  background: linear-gradient(135deg, #4CAF50, #8BC34A);
   color: white;
-  padding: 0.8rem 1.5rem;
   border: none;
-  border-radius: 6px;
-  font-weight: bold;
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  margin-top: 1rem;
-  max-width: 200px;
-  transition: background 0.3s ease;
+  margin-top: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(76, 175, 80, 0.25);
+  width: 100%;
+  letter-spacing: 0.5px;
 }
 
 .save:hover {
-  background-color: #1976d2;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(76, 175, 80, 0.35);
 }
 
-.profileview {
-  background-color: #f1f8e9;
-  border-radius: 10px;
-  border: 1px solid #c5e1a5;
-  padding: 1.5rem;
-  margin-top: 2rem;
-  max-width: 600px;
+.save:active {
+  transform: translateY(1px);
 }
 
+.save::before {
+  content: "💾";
+  font-size: 1.25rem;
+}
+
+/* Profile View Labels */
 .label1 {
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 600;
-  color: #2e7d32;
-  margin-top: 1rem;
+  color: #4a5568;
+  margin-top: 1.5rem;
+  margin-bottom: 0.6rem;
   text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+}
+
+.label1::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: linear-gradient(135deg, #4CAF50, #8BC34A);
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.label1:first-child {
+  margin-top: 0;
+}
+
+/* Profile View Values */
+.profileview p:not(.label1) {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  height: 50px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.profileview p:not(.label1)::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #4CAF50, #8BC34A);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.profileview p:not(.label1):hover::after {
+  transform: scaleX(1);
+}
+
+/* Add profile picture placeholder in view panel */
+.profileview::after {
+  content: "👤";
+  position: absolute;
+  top: 2.5rem;
+  right: 2.5rem;
+  font-size: 2.5rem;
+  color: #cbd5e0;
+  background-color: #f8fafc;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #e2e8f0;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 1024px) {
+  .container {
+    padding: 2rem 1.5rem;
+    gap: 2rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .container > div:first-child,
+  .profileview {
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  .profileview {
+    margin-top: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 1.5rem 1rem;
+  }
+  
+  .container > div:first-child,
+  .profileview {
+    padding: 1.5rem;
+  }
+  
+  .upload__image-wrapper button:first-child {
+    width: 140px;
+  }
+  
+  .image-item img {
+    width: 120px;
+    height: 120px;
+  }
 }

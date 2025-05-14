@@ -8,6 +8,14 @@
     border-radius: 3px;
 }
 
+
+.container p {
+    text-align: center;
+    font-weight: bold;
+    font-size: 2rem;
+    margin-top: 250px;
+}
+
 .output_box {
     width: 96%;
     border-radius: 3px;
