@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import CustomUserViewSet, CourseViewSet, IssuesViewSet, RegisterView, LoginView, LogoutView,CreateIssueView, RegistrarIssueListView, AssignIssueView, StudentIssueHistoryView, LecturerIssueListView, UpdateIssueStatusView, UserprofileView
+from .views import CustomUserViewSet, CourseViewSet, IssuesViewSet, RegisterView, LoginView, LogoutView,CreateIssueView, RegistrarIssueListView, AssignIssueView, StudentIssueHistoryView, LecturerIssueListView, UpdateIssueStatusView, UserprofileView, GetCoursesView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 
@@ -27,6 +27,7 @@ urlpatterns = [
     path('Lecturer/issues/',LecturerIssueListView.as_view(), name='lecturer-issue-list'),
     path('issues/update_status/<int:pk>/', UpdateIssueStatusView.as_view(), name='update_issue_status'),
     path('profile/', UserprofileView.as_view(), name='user-profile'),
+    path('courses/', GetCoursesView.as_view(), name='get-courses'), 
 ]
 
 
