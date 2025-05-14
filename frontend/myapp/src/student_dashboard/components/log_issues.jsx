@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styles from './log_issues.module.css';
-import axios from 'axios';
 import axiosInstance from '../../axioscomponent';
 
 function Log() {
