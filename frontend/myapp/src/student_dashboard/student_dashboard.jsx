@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Log from './components/log_issues.jsx';
 import His from './components/log_history.jsx';
 import Profile from './components/profile.jsx';
@@ -14,7 +14,17 @@ function Student() {
   // State to track which component to render
   const [currentView, setCurrentView] = useState('logForm'); // Default view is 'logForm'
   const [clickedButton, setClickedButton] = useState('logForm');
+  const [profilePic, setProfilePic] = useState(null);
 
+  useEffect(() =>{
+    axiosInstance.get('/profile/')
+    .then(res => {
+      setProfilePic(res.data.profile_picture);
+    })
+    .catch(err => {
+      console.error('Failed to fetch profile picture',err)
+    });
+  }, []);
   // Components to display
   const LogForm = () => (
     <div>
@@ -52,7 +62,11 @@ function Student() {
       <div className='left_container'>
         <div className='circle-container'>
           <FaUserCircle size={100} className='pp'/>
-          <img src='./logo/martha.jpg' />
+          {profilePic ? (
+            <img src={profilePic} alt="Profile" />
+          ) : (
+            <img src="/logo/martha.jpg" alt="Default Profile" />
+          )}
         </div>
         <button
           className={`mybuttons ${clickedButton === 'logForm' ? 'clicked' : ''}`}
