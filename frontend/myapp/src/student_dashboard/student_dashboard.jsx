@@ -68,7 +68,6 @@ function Student() {
       <ToastContainer position="top-right" autoClose={3000} />
       <div className='left_container'>
         <div className='circle-container'>
-          <FaUserCircle size={100} className='pp'/>
           {profilePic ? (
             <img
             src={getProfilePicUrl(profilePic)}

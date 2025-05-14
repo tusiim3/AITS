@@ -32,8 +32,8 @@ function Student() {
       <ToastContainer position="top-right" autoClose={3000} />
       <div className='left_container'>
           <div className='pp_container'>
-            <FaUserCircle size={100} className='pp'/>
-            <img src='./logo/martha.jpg' />
+            
+            <img src='http://127.0.0.1:8000/profile_pictures/Screenshot_20241108-162026_YouTube.jpg'/>
           </div>
         <div className='nav'>
         <button
