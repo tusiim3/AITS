@@ -36,6 +36,8 @@ class CustomUser(AbstractUser):
     lecturer_number = models.CharField(max_length=10, unique=True, null=True, blank=False)
     registrar_number = models.CharField(max_length=10, unique=True, null=True, blank=False)
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, null=True, blank=True)
+    contact = models.CharField(max_length=15, null=True, blank=True)
+    profile_picture = models.ImageField(upload_to='profile_pictures/', null=True, blank=True)
     year_of_study = models.IntegerField(choices=YEAR_OF_STUDY_CHOICES, null=True, blank=True)
     
     def save(self, *args, **kwargs):
