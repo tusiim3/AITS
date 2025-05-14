@@ -253,3 +253,19 @@ class PendingIssuesView(APIView):
         issues = Issues.objects.filter(status='Pending')
         serializer = IssuesSerializer(issues, many=True)
         return Response(serializer.data)
+
+class AssignedIssuesView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        issues = Issues.objects.filter(status='Assigned')
+        serializer = IssuesSerializer(issues, many=True)
+        return Response(serializer.data)
+
+class ResolvedIssuesView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        issues = Issues.objects.filter(status='Resolved')
+        serializer = IssuesSerializer(issues, many=True)
+        return Response(serializer.data)
