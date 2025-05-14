@@ -7,6 +7,7 @@ import './logo/martha.jpg';
 import axiosInstance from '../axioscomponent.jsx';
 import { FiLogOut,FiUser,FiClock } from "react-icons/fi";
 import {FaBug, FaUserCircle} from "react-icons/fa";
+import { ToastContainer } from 'react-toastify';
 
 
 function Student() {
@@ -47,6 +48,7 @@ function Student() {
 
   return (
     <div className='student-dashboard-container'>
+      <ToastContainer position="top-right" autoClose={3000} />
       <div className='left_container'>
         <div className='circle-container'>
           <FaUserCircle size={100} className='pp'/>

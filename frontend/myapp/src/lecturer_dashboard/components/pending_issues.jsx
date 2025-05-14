@@ -65,7 +65,7 @@ export default function Pend() {
                     {notification.message}
                 </div>
             )}
-            <div>
+            <div className="header">
                 {complaints.length > 0 ? (
                     complaints.map((complaint, index) => (
                         <div key={complaint.id} className={style.output_box}>

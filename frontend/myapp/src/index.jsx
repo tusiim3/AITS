@@ -8,6 +8,7 @@ import Lecturer from './lecturer_dashboard/lecturer_dashboard.jsx'
 import NotFoundPage from './notfoundpage.jsx';
 import './index.css';
 import 'reactjs-popup/dist/index.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 const router = createBrowserRouter([
   {

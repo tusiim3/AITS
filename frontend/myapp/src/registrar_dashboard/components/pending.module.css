@@ -25,6 +25,14 @@
     margin-top: 10px;
 }
 
+
+.container p {
+    text-align: center;
+    font-weight: bold;
+    font-size: 2rem;
+    margin-top: 250px;
+}
+
 .pe {
 
     font-family: Arial, sans-serif;  /* Sets the font family */

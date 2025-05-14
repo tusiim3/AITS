@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "./manage.module.css";
 import axiosInstance from "../../axioscomponent";
+import { ToastContainer, toast } from 'react-toastify';
+
 
 export default function Manage() {
   const [courses, getCourse] = useState([])
@@ -24,8 +26,9 @@ export default function Manage() {
         course_code: "",
         lecturer: "",
       });
-      alert("alert successful");
+      toast.success("Course added successfully!");
     } catch (error) {
+      toast.error("Error adding lecturer")
       console.error("Error adding lecturer");
     }
   };
@@ -62,6 +65,7 @@ export default function Manage() {
 
   return (
     <div className={styles.container}>
+      <ToastContainer position="top-right" autoClose={3000} />
       <div className={styles.lecturers}>
         <h4>Lecturers List</h4>
         <ul>
