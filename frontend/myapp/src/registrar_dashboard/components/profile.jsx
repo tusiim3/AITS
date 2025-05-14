@@ -59,9 +59,9 @@ export default function Profile() {
           )}
         </ImageUploading>
         <p className={style.label}>CONTACT:</p><textarea className={style.text}></textarea>
+        <p className={style.label}>OTHER CONTACT:</p><textarea className={style.text}></textarea>
         <p className={style.label}>NEXT OF KIN:</p><textarea className={style.text}></textarea>
-        <p className={style.label}>RESIDENCE:</p><textarea className={style.text}></textarea>
-        <p className={style.label}>NIN NO:</p><textarea className={style.text}></textarea>
+        <p className={style.label}>COLLEGE:</p><textarea className={style.text}></textarea>
         <button className={style.save}><FaSave size={18}/>save</button>
       </div>
       <div className={style.green_form}>

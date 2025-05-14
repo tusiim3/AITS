@@ -81,10 +81,10 @@ export default function Pend() {
         {complaints.length > 0 ? (
           complaints.map((complaint) => (
             <div key={complaint.id} className={style.output_box}>
-              <p className={style.pe}>Course Unit: {complaint.course.course_code}</p>
-              <p className={style.pe}>Complaint type: {complaint.complaint_type}</p>
-              <p className={style.pe}>Complaint: {complaint.complaint}</p>
-              <p className={style.pe}>Description: {complaint.custom_complaint}</p>
+              <p1 className={style.pa}>Course Unit: {complaint.course.course_code}</p1>
+              <p1 className={style.pa}>Complaint type: {complaint.complaint_type}</p1>
+              <p1 className={style.pa}>Complaint: {complaint.complaint}</p1>
+              <p1 className={style.pa}>Description: {complaint.custom_complaint}</p1>
               <button 
                 className={style.thebut} 
                 onClick={() => openPopup(complaint.id)}
