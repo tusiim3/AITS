@@ -9,12 +9,19 @@ import { FiLogOut,FiUser,FiClock } from "react-icons/fi";
 import {FaBug, FaUserCircle} from "react-icons/fa";
 import { ToastContainer } from 'react-toastify';
 
+const BACKEND_URL = "http://127.0.0.1:8000";
+function getProfilePicUrl(path) {
+  if (!path) return "/logo/martha.jpg"; // fallback image
+  return path.startsWith("http") ? path : BACKEND_URL + path;
+}
+
 
 function Student() {
   // State to track which component to render
   const [currentView, setCurrentView] = useState('logForm'); // Default view is 'logForm'
   const [clickedButton, setClickedButton] = useState('logForm');
   const [profilePic, setProfilePic] = useState(null);
+  
 
   useEffect(() =>{
     axiosInstance.get('/profile/')
@@ -63,10 +70,14 @@ function Student() {
         <div className='circle-container'>
           <FaUserCircle size={100} className='pp'/>
           {profilePic ? (
-            <img src={profilePic} alt="Profile" />
-          ) : (
-            <img src="/logo/martha.jpg" alt="Default Profile" />
-          )}
+            <img
+            src={getProfilePicUrl(profilePic)}
+            alt="Profile"
+            className="sidebar-profile-pic"
+            />
+          ) : ( 
+          <FaUserCircle size={100} className='pp'/>
+        )}
         </div>
         <button
           className={`mybuttons ${clickedButton === 'logForm' ? 'clicked' : ''}`}
