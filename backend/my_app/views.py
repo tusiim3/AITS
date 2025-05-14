@@ -245,3 +245,11 @@ class GetCoursesView(APIView):
         courses = Course.objects.all()
         serializer = CourseSerializer(courses, many=True)
         return Response(serializer.data)
+
+class PendingIssuesView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        issues = Issues.objects.filter(status='Pending')
+        serializer = IssuesSerializer(issues, many=True)
+        return Response(serializer.data)
