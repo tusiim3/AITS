@@ -72,7 +72,7 @@ function Log() {
       }
     } catch (error) {
       console.error("Error during submission", error);
-      alert("Submission failed, try again");
+      toast.error("Submission failed, try again");
     } finally {
       setIsSubmitting(false);
     }
