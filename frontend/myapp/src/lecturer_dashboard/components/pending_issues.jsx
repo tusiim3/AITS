@@ -75,6 +75,27 @@ export default function Pend() {
                                             <span className={style.metaValue}>{complaint.student.email}</span>
                                         </div>
                                     </div>
+                                    <div className={style.actionArea}>
+                                        <button 
+                                            className={style.resolveButton}
+                                            onClick={(e) => handleStatusUpdate(e, complaint.id, "resolved")}
+                                        >
+                                            Mark as Resolved
+                                        </button>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    ))}
+                </div>
+            ) : (
+                <div className={style.emptyState}>
+                    <p>No issues found</p>
+                </div>
+            )}
+        </div>
+    );
+}
                                     
 
                             
