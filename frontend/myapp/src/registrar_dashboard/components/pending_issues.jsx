@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import style from './pending.module.css';
 import axiosInstance from "../../axioscomponent";
 import Select from 'react-select';
+import { toast } from "react-toastify";
 
 export default function Pend() {
   const [complaints, setComplaints] = useState([]);
@@ -36,7 +37,8 @@ export default function Pend() {
   const fetchComplaints = async () => {
     try {
       const response = await axiosInstance.get("/registrar/issues/");
-      setComplaints(response.data);
+      const pendingComplaints = response.data.filter(c => c.status === "pending");
+      setComplaints(pendingComplaints);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -60,14 +62,14 @@ export default function Pend() {
 
   const handleForward = async () => {
     if (!selectedLecturer) {
-      alert("Please select a lecturer before forwarding!");
+      toast.error("Please select a lecturer before forwarding!");
       return;
     }
 
     try {
       await axiosInstance.patch(`/issues/${selectedComplaintId}/assign/`,{
         lecturer_username: selectedLecturer.label
-      });
+      }); 
       alert("Complaint forwarded successfully!");
       closePopup();
       // Optionally refresh complaints list after forwarding
