@@ -8,7 +8,7 @@ function His() {
 
     const fetchComplaints = async () => {
         try {
-            const response = await fetch("#"); // this is where we get our api for history, all issues with a status of solved are viewed on this page*/}
+            const response = await fetch("issues/resolved/"); // this is where we get our api for history, all issues with a status of solved are viewed on this page*/}
             const data = await response.json();
             setComplaints(data);
         } catch (error) {
