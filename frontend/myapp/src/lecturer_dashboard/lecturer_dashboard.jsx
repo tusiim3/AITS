@@ -18,8 +18,8 @@ function getProfilePicUrl(path) {
 
 function Lecturer() {
   // State to track which component to render
-  const [currentView, setCurrentView] = useState('Home'); // Default view is 'logForm'
-  const [clickedButton, setClickedButton] = useState('Home');
+  const [currentView, setCurrentView] = useState('Pending'); // Default view is 'Pending Issues'
+  const [clickedButton, setClickedButton] = useState('Pending');
   const [profilePic, setProfilePic] = useState(null);
 
   useEffect(() =>{
