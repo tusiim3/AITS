@@ -142,13 +142,13 @@ class CustomUserSerializer(serializers.ModelSerializer):
         model = CustomUser
         fields = ['id', 'username', 'number_type', 'student_number', 'email', 'role','year_of_study']
 
-        def validate(self, data):
-            role = data.get('role')
+    def validate(self, data):
+        role = data.get('role')
 
-            if role != "student":
-                data.pop("year_of_study", None)
+        if role != "student":
+            data.pop("year_of_study", None)
 
-            return data    
+        return data
 
 
 class CourseSerializer(serializers.ModelSerializer):
