@@ -70,7 +70,7 @@ export default function Pend() {
       await axiosInstance.patch(`/issues/${selectedComplaintId}/assign/`,{
         lecturer_username: selectedLecturer.label
       }); 
-      alert("Complaint forwarded successfully!");
+      toast.success("Complaint forwarded successfully!");
       closePopup();
       // Optionally refresh complaints list after forwarding
       fetchComplaints();
