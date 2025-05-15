@@ -10,7 +10,10 @@ export default function Pend() {
         const fetchComplaints = async () => {
             try {
                 const response = await axiosInstance.get("/Lecturer/issues/");
-                setComplaints(response.data);
+
+                // Filter out resolved complaints
+                const unresolvedComplaints = response.data.filter(complaint => complaint.status !== "resolved");
+                setComplaints(unresolvedComplaints);
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
@@ -28,9 +31,11 @@ export default function Pend() {
             setComplaints(complaints.filter(c => c.id !== complaintId));
             if (expandedId === complaintId) {
                 setExpandedId(null);
-            }
+            };
+            alert("Complaint marked as resolved");
         } catch (error) {
             console.error("Error updating status:", error);
+            alert("Failed to update status");
         }
     };
 
