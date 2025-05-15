@@ -51,7 +51,7 @@ export default function Pend() {
                                     <span className={style.complaintType}>{complaint.complaint_type}</span>
                                 </div>
                                 <div className={style.headerRight}>
-                                    <span className={style.status}>{complaint.status}</span>
+                                    <span className={style.date}>{formatDate(complaint.created_at)}</span>
                                 </div>
                             </div>
 
@@ -68,7 +68,7 @@ export default function Pend() {
                                         </div>
                                         <div className={style.metaItem}>
                                             <span className={style.metaLabel}>Submitted By:</span>
-                                            <span className={style.metaValue}>{complaint.student.name}</span>
+                                            <span className={style.metaValue}>{complaint.student.username}</span>
                                         </div>
                                         <div className={style.metaItem}>
                                             <span className={style.metaLabel}>Email:</span>
