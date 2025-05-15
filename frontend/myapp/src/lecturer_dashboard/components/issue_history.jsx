@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
 import style from './issue_his.module.css';
-import axiosInstance from "../../axioscomponent"; // Adjust the path as needed
+import axiosInstance from "../../axioscomponent";
 
 function His() {
     const [complaints, setComplaints] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [expandedId, setExpandedId] = useState(null);
 
     const fetchComplaints = async () => {
         try {
             const response = await axiosInstance.get("/issues/resolved/");
-            setComplaints(response.data);
+            // Filter resolved complaints
+            const resolvedComplaints = response.data.filter(complaint => complaint.status === "resolved");
+            setComplaints(resolvedComplaints);
         } catch (error) {
             console.error("Error fetching data:", error);
         } finally {
@@ -20,6 +23,15 @@ function His() {
     useEffect(() => {
         fetchComplaints();
     }, []);
+
+     const toggleExpand = (complaintId) => {
+        setExpandedId(expandedId === complaintId ? null : complaintId);
+    };
+
+    const formatDate = (dateString) => {
+        const options = { year: 'numeric', month: 'short', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+    };
 
     return (
         <div className={style.container}>
