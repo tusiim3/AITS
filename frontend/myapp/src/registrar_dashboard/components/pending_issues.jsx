@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import style from './pending.module.css';
 import axiosInstance from "../../axioscomponent";
 import Select from 'react-select';
+import { toast } from "react-toastify";
 
 export default function Pend() {
   const [complaints, setComplaints] = useState([]);
@@ -11,10 +12,13 @@ export default function Pend() {
   const [selectedLecturer, setSelectedLecturer] = useState(null);
 
 
-  const lecturerOptions = lecturers.map(lecturer => ({
+  const lecturerOptions = lecturers
+  .filter(lecturer => lecturer.number_type === "lecturer_number")
+  .map(lecturer => ({
     value: lecturer.id,
     label: lecturer.username
   }));
+
 
      {/* retrieve data from the lecturerlist api */}
   const fetchLecturer = async () => {
@@ -33,7 +37,8 @@ export default function Pend() {
   const fetchComplaints = async () => {
     try {
       const response = await axiosInstance.get("/registrar/issues/");
-      setComplaints(response.data);
+      const pendingComplaints = response.data.filter(c => c.status === "pending");
+      setComplaints(pendingComplaints);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -57,21 +62,21 @@ export default function Pend() {
 
   const handleForward = async () => {
     if (!selectedLecturer) {
-      alert("Please select a lecturer before forwarding!");
+      toast.error("Please select a lecturer before forwarding!");
       return;
     }
 
     try {
       await axiosInstance.patch(`/issues/${selectedComplaintId}/assign/`,{
         lecturer_username: selectedLecturer.label
-      });
-      alert("Complaint forwarded successfully!");
+      }); 
+      toast.success("Complaint forwarded successfully!");
       closePopup();
       // Optionally refresh complaints list after forwarding
       fetchComplaints();
     } catch (error) {
       console.error("Error forwarding complaint:", error);
-      alert("Failed to forward complaint.");
+      toast.error("Error forwarding complaint. Please try again.");
     }
   };
 
@@ -81,10 +86,10 @@ export default function Pend() {
         {complaints.length > 0 ? (
           complaints.map((complaint) => (
             <div key={complaint.id} className={style.output_box}>
-              <p className={style.pe}>Course Unit: {complaint.course.course_code}</p>
-              <p className={style.pe}>Complaint type: {complaint.complaint_type}</p>
-              <p className={style.pe}>Complaint: {complaint.complaint}</p>
-              <p className={style.pe}>Description: {complaint.custom_complaint}</p>
+              <p1 className={style.pa} >Course Unit: {complaint.course.course_code}</p1>
+              <p1 className={style.pa}>Complaint type: {complaint.complaint_type}</p1>
+              <p1 className={style.pa}>Complaint: {complaint.complaint}</p1>
+              <p1 className={style.pa}>Description: {complaint.custom_complaint}</p1>
               <button 
                 className={style.thebut} 
                 onClick={() => openPopup(complaint.id)}
@@ -102,15 +107,15 @@ export default function Pend() {
         <>
             <div className={style.popupBackdrop} onClick={closePopup}></div>
             <div className={style.popup}>
-            <p>select a lecturer</p>
-            <Select 
-                options={lecturerOptions}
-                onChange={(selected) => setSelectedLecturer(selected)}
-                placeholder="Search Lecturers"
-                className={style.select}
-            />
-            <button  className={style.forwardbut} onClick={() => handleForward(selectedComplaintId)}>Forward</button>
-            <button className={style.cancelbut} onClick={closePopup}>Cancel</button>
+              <p2>select a lecturer</p2>
+              <Select 
+                  options={lecturerOptions}
+                  onChange={(selected) => setSelectedLecturer(selected)}
+                  placeholder="Search Lecturers"
+                  className={style.select}
+              />
+              <button  className={style.forwardbut} onClick={() => handleForward(selectedComplaintId)}>Forward</button>
+              <button className={style.cancelbut} onClick={closePopup}>Cancel</button>
             </div>
         </>
         )}

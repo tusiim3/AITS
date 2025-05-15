@@ -1,18 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import style from './issue_his.module.css';
-import { useState, useEffect } from "react";
-
+import axiosInstance from "../../axioscomponent";
 
 function His() {
     const [complaints, setComplaints] = useState([]);
+    const [loading, setLoading] = useState(true);
 
+    // Fetch complaints from the API
     const fetchComplaints = async () => {
         try {
-            const response = await fetch("#"); // this is where we get our api for history, all issues with a status of solved are viewed on this page*/}
-            const data = await response.json();
-            setComplaints(data);
+            const response = await axiosInstance.get("/registrar/issues/");
+            // Filter for complaints with status "assigned" or "resolved"
+            const filtered = response.data.filter(
+                complaint => complaint.status === "assigned" || complaint.status === "resolved"
+            );
+            setComplaints(filtered);
         } catch (error) {
-            console.error("error fetching data:", error);
+            console.error("Error fetching data:", error);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -20,23 +26,36 @@ function His() {
         fetchComplaints();
     }, []);
 
-    return(
+    return (
         <div className={style.container}>
             <div>
-                {complaints.length > 0 ? (
-                    complaints.map((complaint, index) => (
-                        <div className={style.output_box}>
-                            <p>Course Unit: {complaints.coursenit}</p>
-                            <p>Complaint type: {complaints.complaint_type}</p>
-                            <p>Complaint: {complaints.complaint}</p>
-                            <p>Lecturer: {complaints.lecturer}</p>
-                            <div>
-                                status
-                            </div>
+                {loading ? (
+                    <p>Loading history...</p>
+                ) : complaints.length > 0 ? (
+                    complaints.map((complaint) => (
+                        <div className={style.output_box} key={complaint.id}>
+                            <p>
+                                <strong>Course Unit:</strong> {complaint.course?.course_code || "N/A"}
+                            </p>
+                            <p>
+                                <strong>Complaint type:</strong> {complaint.complaint_type}
+                            </p>
+                            <p>
+                                <strong>Complaint:</strong> {complaint.complaint}
+                            </p>
+                            <p>
+                                <strong>Description:</strong> {complaint.custom_complaint}
+                            </p>
+                            <p>
+                                <strong>Lecturer:</strong> {complaint.lecturer ? complaint.lecturer.username : "N/A"}
+                            </p>
+                            <p>
+                                <strong>Status:</strong> {complaint.status}
+                            </p>
                         </div>
-                    )) 
-                ):(
-                    <p>loading history...</p>
+                    ))
+                ) : (
+                    <p>No assigned or resolved complaints found.</p>
                 )}
             </div>
         </div>

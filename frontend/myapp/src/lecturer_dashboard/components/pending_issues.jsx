@@ -1,90 +1,111 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import style from './pending.module.css';
-import { useState, useEffect } from "react";
-import axios from "axios";
 import axiosInstance from "../../axioscomponent";
 
 export default function Pend() {
     const [complaints, setComplaints] = useState([]);
-    const [notification, setNotification] = useState(null);
-
-    const fetchComplaints = async () => {
-        try {
-            const response = await axiosInstance.get("/registrar/issues/") // this is where we get our api for the pending issues,all issues with a status of pending are viewed on this page*/}
-            setComplaints(response.data);
-        } catch (error) {
-            console.error("error fetching data:", error);
-        }
-    };
+    const [expandedId, setExpandedId] = useState(null);
 
     useEffect(() => {
+        const fetchComplaints = async () => {
+            try {
+                const response = await axiosInstance.get("/Lecturer/issues/");
+
+                // Filter out resolved complaints
+                const unresolvedComplaints = response.data.filter(complaint => complaint.status !== "resolved");
+                setComplaints(unresolvedComplaints);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
         fetchComplaints();
     }, []);
 
-    const handleResolve = async (complaintId, studentEmail, registrarEmail) => {
+    const handleStatusUpdate = async (e, complaintId, newStatus) => {
+        e.stopPropagation();
         try {
-            await axiosInstance.patch(`/registrar/issues/${complaintId}/`, {
-                status: "resolved"
+            await axiosInstance.patch(`/issues/update_status/${complaintId}/`, {
+                status: newStatus
             });
-
-            await axiosInstance.post(`/registrar/issues/${complaintId}/notify/`, {
-                message: "Your issue has been resolved",
-                student_email: studentEmail,
-                registrar_email: registrarEmail
-            });
-
-            setComplaints(complaints.filter(complaint => complaint.id !== complaintId));
-        
-            setNotification({
-                type: "success",
-                message: "Issue resolved and notifications sent."
-            });
-
-            setTimeout(() => {
-                setNotification(null);
-            }, 3000); // Clear notification after 3 seconds
-
+            // Update UI by removing the resolved complaint
+            setComplaints(complaints.filter(c => c.id !== complaintId));
+            if (expandedId === complaintId) {
+                setExpandedId(null);
+            };
+            alert("Complaint marked as resolved");
         } catch (error) {
-            console.error("Error resolving issue:", error);
-            setNotification({
-                type: "error",
-                message: "Failed to resolve issue. Please try again."
-            });
-            setTimeout(() => {
-                setNotification(null);
-            }, 3000);
+            console.error("Error updating status:", error);
+            alert("Failed to update status");
         }
     };
-    
 
-    return(
+    const toggleExpand = (complaintId) => {
+        setExpandedId(expandedId === complaintId ? null : complaintId);
+    };
+
+    const formatDate = (dateString) => {
+        const options = { year: 'numeric', month: 'short', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+    };
+
+    return (
         <div className={style.container}>
-            {/* Notification Banner */}
-            {notification && (
-                <div className={`${style.notification} ${style[notification.type]}`}>
-                    {notification.message}
+            <h1 className={style.pageTitle}>Pending Issues ({complaints.length})</h1>
+            {complaints.length > 0 ? (
+                <div className={style.complaintsGrid}>
+                    {complaints.map((complaint) => (
+                        <div key={complaint.id} className={`${style.output_box} ${expandedId === complaint.id ? style.expanded : ""}`} onClick={() => toggleExpand(complaint.id)}>
+                            <div className={style.complaintHeader}>
+                                <div className={style.headerLeft}>
+                                                                        <h3 className={style.courseCode}>{complaint.course.course_code}</h3>
+                                    <span className={style.complaintType}>{complaint.complaint_type}</span>
+                                </div>
+                                <div className={style.headerRight}>
+                                    <span className={style.date}>{formatDate(complaint.created_at)}</span>
+                                </div>
+                            </div>
+
+                            {expandedId === complaint.id && (
+                                <div className={style.complaintContent}>
+                                    <div className={style.infoGroup}>
+                                        <div className={style.infoLabel}>Description:</div>
+                                        <p className={style.infoValue}>{complaint.complaint}</p>
+                                    </div>
+                                     <div className={style.metaInfo}>
+                                        <div className={style.metaItem}>
+                                            <span className={style.metaLabel}>Status:</span>
+                                            <span className={style.metaValue}>{complaint.status}</span>
+                                        </div>
+                                        <div className={style.metaItem}>
+                                            <span className={style.metaLabel}>Submitted By:</span>
+                                            <span className={style.metaValue}>{complaint.student.username}</span>
+                                        </div>
+                                        <div className={style.metaItem}>
+                                            <span className={style.metaLabel}>Email:</span>
+                                            <span className={style.metaValue}>{complaint.student.email}</span>
+                                        </div>
+                                    </div>
+                                    <div className={style.actionArea}>
+                                        <button 
+                                            className={style.resolveButton}
+                                            onClick={(e) => handleStatusUpdate(e, complaint.id, "resolved")}
+                                        >
+                                            Mark as Resolved
+                                        </button>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    ))}
+                </div>
+            ) : (
+                <div className={style.emptyState}>
+                    <p>No issues found</p>
                 </div>
             )}
-            <div className="header">
-                {complaints.length > 0 ? (
-                    complaints.map((complaint, index) => (
-                        <div key={complaint.id} className={style.output_box}>
-                            <p className={style.pe}>Course Unit: {complaint.course.course_code}</p>
-                            <p className={style.pe}>Complaint type: {complaint.complaint_type}</p>
-                            <p className={style.pe}>Complaint: {complaint.complaint}</p>
-                            <p className={style.pe}>Lecturer: {complaint.lecturer}</p>
-                            <p className={style.pe}>Description:{complaint.custom_complaint}</p>
-                            <p className={style.pe}>Status: {complaint.status}</p>
-                            <p className={style.pe}>Date: {complaint.date}</p>
-                            <p className={style.pe}>Student Email: {complaint.student_email}</p>  
-                           
-                            <button className={style.thebut} onClick={() => handleResolve(complaint.id, complaint.student_email, complaint.registrar_email)}>Mark as Resolved</button>
-                        </div>
-                    )) 
-                ):(
-                    <p>No pending issues found</p>
-                )}
-            </div>
         </div>
     );
 }
+                                    
+
+                            
