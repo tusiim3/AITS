@@ -44,27 +44,49 @@ function His() {
             )}
                 {!loading && complaints.length > 0 ? (
                     <div className={style.complaintsGrid}>
-                    {complaints.map((complaint) => (
-                        <div key={complaint.id} className={`${style.output_box} ${expandedId === complaint.id ? style.expanded : ""}`} onClick={() => toggleExpand(complaint.id)}>
-                            <div className={style.complaintHeader}>
-                                <div className={style.headerLeft}>
-                                                                        <h3 className={style.courseCode}>{complaint.course.course_code}</h3>
-                                    <span className={style.complaintType}>{complaint.complaint_type}</span>
+                        {complaints.map((complaint) => (
+                            <div key={complaint.id} className={`${style.output_box} ${expandedId === complaint.id ? style.expanded : ""}`} onClick={() => toggleExpand(complaint.id)}>
+                                <div className={style.complaintHeader}>
+                                    <div className={style.headerLeft}>
+                                                                            <h3 className={style.courseCode}>{complaint.course.course_code}</h3>
+                                        <span className={style.complaintType}>{complaint.complaint_type}</span>
+                                    </div>
+                                    <div className={style.headerRight}>
+                                        <span className={style.date}>{formatDate(complaint.created_at)}</span>
+                                    </div>
                                 </div>
-                                <div className={style.headerRight}>
-                                    <span className={style.date}>{formatDate(complaint.created_at)}</span>
-                                </div>
-                            </div>
 
-                            
-                                Status
+                                {expandedId === complaint.id && (
+                                    <div className={style.complaintContent}>
+                                        <div className={style.infoGroup}>
+                                            <div className={style.infoLabel}>Description:</div>
+                                            <p className={style.infoValue}>{complaint.complaint}</p>
+                                        </div>
+                                        <div className={style.metaInfo}>
+                                            <div className={style.metaItem}>
+                                                <span className={style.metaLabel}>Status:</span>
+                                                <span className={style.metaValue}>{complaint.status}</span>
+                                            </div>
+                                            <div className={style.metaItem}>
+                                                <span className={style.metaLabel}>Submitted By:</span>
+                                                <span className={style.metaValue}>{complaint.student.username}</span>
+                                            </div>
+                                            <div className={style.metaItem}>
+                                                <span className={style.metaLabel}>Email:</span>
+                                                <span className={style.metaValue}>{complaint.student.email}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
-                        </div>
-                    ))
-                ) : (
-                    <p>No history found.</p>
+                        ))}
+                    </div>
+                ) : !loading && (
+                    <div className={style.emptyState}>
+                        <p>No history found.</p>
+                    </div>
                 )}
-            </div>
+            
         </div>
     );
 }
