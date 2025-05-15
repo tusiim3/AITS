@@ -34,27 +34,33 @@ export default function Pend() {
         }
     };
 
+    const toggleExpand = (complaintId) => {
+        setExpandedId(expandedId === complaintId ? null : complaintId);
+    };
+
     return (
         <div className={style.container}>
-            <div className="header">
-                {complaints.length > 0 ? (
-                    complaints.map((complaint) => (
-                        <div key={complaint.id} className={style.output_box}>
-                            <p className={style.pe}>Course Unit: {complaint.course.course_code}</p>
-                            <p className={style.pe}>Complaint type: {complaint.complaint_type}</p>
-                            <p className={style.pe}>Status: {complaint.status}</p>
-                            <button
-                                className={style.thebut}
-                                onClick={() => handleStatusUpdate(complaint.id, "resolved")}
-                            >
-                                Mark as Resolved
-                            </button>
-                        </div>
-                    ))
-                ) : (
-                    <p>No issues found</p>
-                )}
-            </div>
-        </div>
-    );
-}
+            <h1 className={style.pageTitle}>Pending Issues ({complaints.length})</h1>
+            {complaints.length > 0 ? (
+                <div className={style.complaintsGrid}>
+                    {complaints.map((complaint) => (
+                        <div key={complaint.id} className={`${style.output_box} ${expandedId === complaint.id ? style.expanded : ""}`} onClick={() => toggleExpand(complaint.id)}>
+                            <div className={style.complaintHeader}>
+                                <div className={style.headerLeft}>
+                                                                        <h3 className={style.courseCode}>{complaint.course.course_code}</h3>
+                                    <span className={style.complaintType}>{complaint.complaint_type}</span>
+                                </div>
+                                <div className={style.headerRight}>
+                                    <span className={style.status}>{complaint.status}</span>
+                                </div>
+                            </div>
+
+                            {expandedId === complaint.id && (
+                                <div className={style.complaintContent}>
+                                    <div className={style.infoGroup}>
+                                        <div className={style.infoLabel}>Description:</div>
+                                        <p className={style.infoValue}>{complaint.complaint}</p>
+                                    </div>
+                                    
+
+                            
