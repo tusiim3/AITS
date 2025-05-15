@@ -109,29 +109,6 @@
   font-size: 18px;
 }
 
-/* Pending counter badge */
-.pending-counter {
-  position: absolute;
-  right: 15px;
-  background: #ff4444;
-  color: white;
-  border-radius: 50%;
-  min-width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.75rem;
-  font-weight: bold;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  padding: 0 4px;
-}
-
-/* Hide counter when empty */
-.pending-counter:empty {
-  display: none;
-}
-
 /* Logout button special styling */
 .logout-button {
   margin-top: auto;
