@@ -11,10 +11,13 @@ export default function Pend() {
   const [selectedLecturer, setSelectedLecturer] = useState(null);
 
 
-  const lecturerOptions = lecturers.map(lecturer => ({
+  const lecturerOptions = lecturers
+  .filter(lecturer => lecturer.number_type === "lecturer_number")
+  .map(lecturer => ({
     value: lecturer.id,
     label: lecturer.username
   }));
+
 
      {/* retrieve data from the lecturerlist api */}
   const fetchLecturer = async () => {
