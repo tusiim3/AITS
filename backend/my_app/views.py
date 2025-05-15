@@ -142,10 +142,11 @@ class AssignIssueView(APIView):
         lecturer = get_object_or_404(CustomUser, username=lecturer_username, role="lecturer")
 
         issue = get_object_or_404(Issues, pk=pk)
-        issue.lecturer = lecturer  
-        issue.status = "assigned"
+        issue.lecturer = lecturer
+        issue.status = 'Assigned'
         issue.save()
 
+        
         return Response({
             "Message": "Issue assigned successfully",
             "issue": IssuesSerializer(issue).data
