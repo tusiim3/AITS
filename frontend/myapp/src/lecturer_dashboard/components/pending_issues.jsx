@@ -4,6 +4,7 @@ import axiosInstance from "../../axioscomponent";
 
 export default function Pend() {
     const [complaints, setComplaints] = useState([]);
+    const [expandedId, setExpandedId] = useState(null);
 
     useEffect(() => {
         const fetchComplaints = async () => {
@@ -17,13 +18,17 @@ export default function Pend() {
         fetchComplaints();
     }, []);
 
-    const handleStatusUpdate = async (complaintId, newStatus) => {
+    const handleStatusUpdate = async (e, complaintId, newStatus) => {
+        e.stopPropagation();
         try {
             await axiosInstance.patch(`/issues/update_status/${complaintId}/`, {
                 status: newStatus
             });
             // Update UI by removing the resolved complaint
             setComplaints(complaints.filter(c => c.id !== complaintId));
+            if (expandedId === complaintId) {
+                setExpandedId(null);
+            }
         } catch (error) {
             console.error("Error updating status:", error);
         }
