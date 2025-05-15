@@ -61,6 +61,20 @@ export default function Pend() {
                                         <div className={style.infoLabel}>Description:</div>
                                         <p className={style.infoValue}>{complaint.complaint}</p>
                                     </div>
+                                     <div className={style.metaInfo}>
+                                        <div className={style.metaItem}>
+                                            <span className={style.metaLabel}>Status:</span>
+                                            <span className={style.metaValue}>{complaint.status}</span>
+                                        </div>
+                                        <div className={style.metaItem}>
+                                            <span className={style.metaLabel}>Submitted By:</span>
+                                            <span className={style.metaValue}>{complaint.student.name}</span>
+                                        </div>
+                                        <div className={style.metaItem}>
+                                            <span className={style.metaLabel}>Email:</span>
+                                            <span className={style.metaValue}>{complaint.student.email}</span>
+                                        </div>
+                                    </div>
                                     
 
                             
