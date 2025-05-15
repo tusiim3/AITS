@@ -1,0 +1,187 @@
+.registrar-dashboard-container{
+  background-image: url(../assets/background-images/Mak-Senate-Building.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  position: relative;
+}
+
+.profedit{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    position: absolute;
+    width: 50%;
+    height: 87%;
+    border-radius: 5px;
+    top: 10%;
+}
+
+.label {
+    font-family: Arial, sans-serif;  /* Sets the font family */
+    font-size: 12px;                 /* Sets the font size */
+    font-weight: bold;               /* Makes the text bold */
+    color: #333;                     /* Sets the text color */
+    text-align: left;              /* Centers the text horizontally */
+    line-height: 1.5;                /* Adjusts the line height for readability */
+    text-transform: uppercase;       /* Transforms text to uppercase */
+    letter-spacing: 1px;             /* Adjusts space between letters */
+    text-decoration:wavy;  /* Underlines the text */
+    position: relative;
+    padding: 0px;
+    left: 2%;
+    
+  }
+
+.text{
+    height: 5%;
+    width: 90%;
+    position: relative;
+    left: 2%;
+    border-color: black;
+    border: 2px solid;
+    border-radius: 3px;
+}
+
+.profileview{
+    background-color: rgb(178, 211, 179);
+    border-radius: 3px;
+    border-color: black;
+    border: 1px solid;
+    position: absolute;
+    width: 53%;
+    height: 96%;
+    
+}
+
+.label1 {
+    font-family: Arial, sans-serif;  /* Sets the font family */
+    font-size: 12px;                 /* Sets the font size */
+    font-weight: bold;               /* Makes the text bold */
+    color: #aa2424;                     /* Sets the text color */
+    text-align: left;              /* Centers the text horizontally */
+    line-height: 1.5;                /* Adjusts the line height for readability */
+    text-transform: uppercase;       /* Transforms text to uppercase */
+    letter-spacing: 1px;             /* Adjusts space between letters */
+    text-decoration:wavy;  /* Underlines the text */
+    position: relative;
+    padding: 0px;
+    left: 2%;
+    
+  }
+
+  .green_form {
+    background-color: #e6f5e6; /* soft green */
+    border-left: 6px solid #2e8b57; /* darker green border */
+    border-radius: 5px;
+    padding: 20px 24px;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 100%;
+    max-width: 400px;
+    position: absolute;
+    left: 53%;
+    top: 6%;
+    height: 80%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .green_form .field_label {
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: block;
+    color: #222;
+    font-size: 16px;
+  }
+  
+  .upload__image_wrapper button {
+    position: relative;
+    top: 5%;
+    left: 2%;
+    background-color: #2e8b57;
+    color: white;
+    border: none;
+    padding: 4px 10px;
+    margin-right: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s ease;
+  }
+  
+  .upload__image_wrapper button:hover {
+    background-color: #256b45;
+  }
+  
+  .image_preview {
+    margin-top: 16px;
+
+  }
+  
+  .image_preview img {
+    position: relative;
+    left: 2%;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .image_buttons {
+    margin-top: 8px;
+  }
+  
+  .image_buttons button {
+    background-color: #444;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    margin-right: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.3s ease;
+  }
+  
+  .image_buttons button:hover {
+    background-color: #222;
+  }
+
+  .save {
+    position: relative;
+    top: 6%;
+    left: 2%;
+    background-color: #56a478;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+    
+  }
+
+.pp_container {
+    width: 100px;  /* Set the container size */
+    height: 100px;
+    position: absolute;
+    left :30%;
+    overflow: hidden;
+    border-radius: 50%; /* Makes it circular */
+    border: 1px solid black; /*Optional border */
+  }
+  
+.pp_container img {
+    width: 100%;  /* Ensures image covers the container */
+    height: 100%;
+    object-fit: cover; /* Ensures image fills the circle */
+  }
+
+.mybuttons.clicked {
+  background-color: rgb(114, 197, 114) !important;
+  font-weight: 600;
+  padding-left: 25px; /* Compensate for border width */
+  margin-left: -3px; /* Prevent layout shift */
+} 
+  
+.nav {
+  position: absolute;
+  top:30%;
+}

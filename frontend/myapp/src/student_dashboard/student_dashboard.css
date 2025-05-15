@@ -1,0 +1,149 @@
+/* General Styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f5f5f5;
+}
+
+/* Main Dashboard Container */
+.student-dashboard-container {
+  background-image: url('../assets/background-images/ivorytower.jpeg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  position: relative;
+  display: flex;
+}   
+
+.student-dashboard-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 0;
+}
+
+/* Left Sidebar */
+.left_container {
+  background-color: rgba(255, 255, 255, 0.95);
+  width: 280px;
+  height: 100vh;
+  position: relative;
+  box-shadow: 2px 0px 15px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  top: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
+}
+
+/* Profile Picture */
+.circle-container {
+  width: 120px;
+  height: 120px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 3px solid #4CAF50;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+  
+.circle-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pp {
+  width: 100%;
+  height: 100%;
+  color: #555;
+}
+
+/* Navigation Buttons */
+.mybuttons {
+  width: 80%;
+  height: 45px;
+  border-radius: 8px;
+  background-color: #f8f8f8;
+  color: #333;
+  border: none;
+  cursor: pointer;
+  margin-top: 0px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  font-size: 16px;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.mybuttons svg {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.mybuttons:hover {
+  background-color: #4CAF50;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mybuttons.clicked {
+  background-color: #4CAF50;
+  color: white;
+  box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+}
+
+/* Logout Button */
+.logout_button {
+  width: 80%;
+  height: 45px;
+  background-color: #f44336;
+  color: white;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  margin-top: auto;
+  margin-bottom: 30px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logout_button svg {
+  margin-right: 8px;
+  font-size: 18px;
+}
+
+.logout_button:hover {
+  background-color: #d32f2f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(211, 47, 47, 0.3);
+}
+
+/* Right Content Container */
+.right_container {
+  flex: 1;
+  margin: 20px;
+  margin-left: 20px;
+  position: relative;
+  z-index: 5;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  overflow: auto;
+  padding: 20px;
+}

@@ -1,0 +1,180 @@
+/* Log History Page Styles */
+.container {
+  background-color: #ffffff;
+  position: relative;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  z-index: 10; 
+  width: calc(100% - 40px);
+  height: 550px;
+  border-radius: 12px;
+  overflow-y: auto;
+  padding: 20px;
+  margin: 20px;
+  scrollbar-width: thin;
+  scrollbar-color: #c1c1c1 #f1f1f1;
+}
+
+.container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 10px;
+}
+
+.container::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+.complaint {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  height: 80%;
+  border: 1px solid #e0e0e0;
+  padding: 16px;
+  background-color: #f9f9f9;
+  position: relative;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.complaint:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pe {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #444;
+  line-height: 1.4;
+  margin: 4px 0;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.pe::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: #4CAF50;
+  border-radius: 50%;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+/* Status styling */
+.pe:last-child {
+  grid-column: 1 / -1;
+  margin-top: 6px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  display: inline-flex;
+  width: auto;
+  font-weight: 600;
+  color: white;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Status colors - maintained from original code but styled better */
+.pe[style*="background-color:grey"] {
+  background-color: #757575 !important;
+  border: 1px solid #616161;
+}
+
+.pe[style*="background-color:green"] {
+  background-color: #4CAF50 !important;
+  border: 1px solid #3d8b40;
+}
+
+/* Empty state styling */
+.container > p {
+  text-align: center;
+  font-size: 2rem;
+  color: black;
+  font-weight: bold;
+  margin-top:  220px;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Animation for new complaints */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.complaint {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .complaint {
+    grid-template-columns: 1fr;
+    gap: 5px;
+    padding: 12px;
+  }
+  
+  .pe {
+    font-size: 13px;
+  }
+  
+  .container {
+    padding: 15px;
+    width: calc(100% - 30px);
+    height: calc(100% - 30px);
+    margin: 15px;
+  }
+}
+
+/* Enhance typography and layout for better readability */
+.complaint {
+  position: relative;
+  overflow: visible;
+}
+
+.complaint:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 5px;
+  background-color: #4CAF50;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+
+/* Additional styling for specific items */
+.pe:nth-child(1) {
+  font-weight: 600;
+  font-size: 15px;
+  color: #333;
+}
+
+/* Style for status text */
+.pe:last-child::before {
+  display: none;
+}

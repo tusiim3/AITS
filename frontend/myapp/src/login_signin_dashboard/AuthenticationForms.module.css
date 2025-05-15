@@ -1,0 +1,123 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing:border-box;
+}
+
+html, body {
+  height: 100%;
+}
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    min-height: 100vh;
+    background-image: url('../assets/background-images/ivorytower.jpeg'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    padding: 20px;
+}
+  
+  
+  .form_container {
+    
+    background-color: #b0e2e6; /* Light Blue-Green */
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    margin: 20px;
+  }
+  
+  .logo {
+    width: 80px;
+    height: 60px;
+    margin: -20px auto 0px;
+    display: block;
+    position: relative; 
+  }
+  
+  h2 {
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Input Styles */
+  input[type="text"],
+  input[type="password"],
+  input[type='email'],
+  .select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 15px;
+    border: none;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+  
+  .lselect {
+    appearance: none; /* Remove default arrow */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right .75rem center;
+    background-size: 8px 10px;
+  }
+  
+  /* Button Styles */
+  .lbutton[type="submit"] {
+    background-color: #222; /* Black */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100px;
+    margin-top: 15px;
+    margin-left: 60px;
+  }
+  
+  .lbutton[type="submit"]:hover {
+    opacity: 0.8;
+  }
+  
+  /* Form Switch Styles */
+  .form_switch {
+    margin-top: 20px;
+  }
+  
+  .form_switch p {
+    margin-bottom: 5px;
+  }
+  
+  .form_switch button {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .form_switch button:hover {
+    text-decoration: underline;
+  }
+  
+  /* Forgot Password Link */
+  a {
+    color: #007bff;
+    text-decoration: none;
+    display: block;
+    margin-top: 10px;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  

@@ -1,0 +1,278 @@
+/* Log Issues Page Styles */
+.container {
+  background-color: #ffffff;
+  width: 46%;
+  position: absolute;
+  left: 2%;
+  top: 5%;
+  height: 87%;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.myform {
+  background-color: #ffffff;
+  width: 46%;
+  height: 87%;
+  position: absolute;
+  right: 2%;
+  top: 5%;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.myform h5 {
+  position: relative;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+.issue {
+  background-color: #f8fbf8;
+  position: relative;
+  width: 100%;
+  height: calc(100% - 120px);
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  box-sizing: border-box;
+  padding: 15px;
+  overflow-y: auto;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Form Controls */
+.label {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 8px;
+  margin-top: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: block;
+}
+
+.select {
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: white;
+  margin-bottom: 15px;
+  color: #333;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+}
+
+.select:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+.textarea {
+  width: 100%;
+  height: 60px;
+  min-height: 120px;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  resize: none;
+  margin-bottom: 20px;
+  font-family: 'Roboto', sans-serif;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+/* Buttons */
+.lsubmit_button, .lclear_button, .rsubmit_buttons {
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  bottom: 20px;
+  height: 48px;
+}
+
+.lsubmit_button {
+  background-color: #4CAF50;
+  color: white;
+  right: 2px;
+  width: calc(50% - 25px);
+  bottom: -10px;
+}
+
+.lsubmit_button:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+}
+
+.lclear_button {
+  background-color: #666;
+  color: white;
+  left: 2px;
+  width: calc(50% - 25px);
+  bottom: -10px;
+  
+}
+
+.lclear_button:hover {
+  background-color: #555;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.rsubmit_buttons {
+  background-color: #4CAF50;
+  color: white;
+  width: calc(100% - 2px);
+  margin-bottom: -30px;
+
+}
+
+.rsubmit_buttons:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+}
+
+/* Issue display formatting */
+.label2 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 5px;
+  margin-top: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.par {
+  background-color: white;
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #444;
+  min-height: 24px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  word-break: break-word;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .container, .myform {
+    width: 95%;
+    position: relative;
+    left: 0;
+    right: 0;
+    margin: 20px auto;
+    height: auto;
+    min-height: 500px;
+  }
+  
+  .container {
+    margin-bottom: 20px;
+  }
+  
+  .myform {
+    margin-top: 20px;
+  }
+  
+  .textarea {
+    height: 150px;
+  }
+  
+  .lsubmit_button, .lclear_button {
+    position: static;
+    width: calc(50% - 5px);
+    margin-top: 20px;
+  }
+  
+  .lsubmit_button {
+    float: right;
+  }
+  
+  .lclear_button {
+    float: left;
+  }
+  
+  .issue {
+    height: auto;
+    min-height: 250px;
+    margin-bottom: 70px;
+  }
+  
+  .rsubmit_buttons {
+    width: 100%;
+    left: 0;
+    right: 0;
+    margin: 20px auto 0;
+  }
+}
+
+/* Additional styling enhancements */
+form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+
+select option {
+  font-size: 16px;
+  padding: 8px;
+}
+
+/* Custom styles for the form heading */
+h5 {
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 25px;
+  position: relative;
+  text-align: center;
+}
+
+h5:after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: #4CAF50;
+  border-radius: 2px;
+}

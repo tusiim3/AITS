@@ -1,0 +1,206 @@
+/* Main container styling */
+.container {
+  display: flex;
+  background-image: url(../assets/background-images/Makerere-Main-Building-15thMar2013.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Left sidebar container */
+.leftcontainer {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  width: 20%;
+  min-width: 220px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 3px 0px 10px rgba(0, 0, 0, 0.2);
+  padding: 30px 15px;
+  box-sizing: border-box;
+  z-index: 10;
+  position: relative;
+}
+
+/* Profile picture container */
+.pp_container {
+  width: 120px;
+  height: 120px;
+  left: 0px;
+  margin: 20px auto 40px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 3px solid #4CAF50;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.pp_container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Navigation section */
+.nav_section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* Right content container */
+.rightcontainer {
+  background-color: rgba(255, 255, 255, 0.92);
+  position: absolute;
+  top: 2%;
+  left: 22%;
+  width: 75%;
+  height: 96vh;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Navigation buttons */
+.mybuttons {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  width: 90%;
+  padding: 12px 15px;
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  text-align: left;
+  font-weight: 500;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.mybuttons:hover {
+  background-color: #f5f5f5;
+  transform: translateX(3px);
+}
+
+.mybuttons.active {
+  background-color: #4CAF50;
+  color: white;
+  font-weight: 600;
+  border-color: #4CAF50;
+  box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+}
+
+/* Icons in buttons */
+.mybuttons svg {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+/* Pending counter badge */
+.pending-counter {
+  position: absolute;
+  right: 15px;
+  background: #ff4444;
+  color: white;
+  border-radius: 50%;
+  min-width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 0 4px;
+}
+
+/* Hide counter when empty */
+.pending-counter:empty {
+  display: none;
+}
+
+/* Logout button special styling */
+.logout-button {
+  margin-top: auto;
+  background-color: #f8f8f8;
+  border: 1px solid #e0e0e0;
+  color: #555;
+}
+
+.logout-button:hover {
+  background-color: #ffebee;
+  color: #d32f2f;
+  border-color: #ffcdd2;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 1200px) {
+  .rightcontainer {
+    width: 72%;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .leftcontainer {
+    min-width: 200px;
+  }
+  
+  .rightcontainer {
+    left: 23%;
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  
+  .leftcontainer {
+    width: 100%;
+    height: auto;
+    min-height: 80px;
+    flex-direction: row;
+    padding: 10px;
+    justify-content: space-between;
+  }
+  
+  .pp_container {
+    width: 60px;
+    height: 60px;
+    margin: 0;
+  }
+  
+  .nav_section {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .mybuttons {
+    width: auto;
+    margin: 5px;
+  }
+  
+  .rightcontainer {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 100px);
+    margin-top: 10px;
+  }
+}
