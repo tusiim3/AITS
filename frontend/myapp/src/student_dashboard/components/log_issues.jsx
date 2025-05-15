@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './log_issues.module.css';
 import axiosInstance from '../../axioscomponent';
+import { toast } from 'react-toastify';
 
 function Log() {
   const [formData, setFormData] = useState({
@@ -66,7 +67,7 @@ function Log() {
     try {
       const response = await axiosInstance.post("/issues/", submitPayload);
       if (response.status === 201) {
-        alert("Issue submitted successfully!");
+        toast.success("Issue submitted successfully!");
         setDisplayValue({ select1: "", select2: "", select3: "", text: "" });
       }
     } catch (error) {
