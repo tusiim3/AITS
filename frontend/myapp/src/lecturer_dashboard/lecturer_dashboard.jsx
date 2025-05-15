@@ -49,15 +49,6 @@ function Lecturer() {
       alert("Failed to logout. Please try again.");
     }
   };
-  // Live pending issues counter badge
-  // Existing state
-  const [pendingCount, setPendingCount] = useState(0);
-
-    fetchPendingCount();
-    const interval = setInterval(fetchPendingCount, 30000); // Refresh every 30 seconds
-
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <div className ='container'>{/* Main container for the dashboard */}
