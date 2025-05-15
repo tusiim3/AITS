@@ -67,7 +67,7 @@ function Lecturer() {
         </div>
         <div className='nav'>
           <button className={`mybuttons ${clickedButton === 'Home' ? 'active' : ''}`} onClick={() => handleNavigation('Home')}> <FiHome/> Home</button>
-          <button className={`mybuttons ${clickedButton === 'Pending' ? 'active' : ''}`} onClick={() => handleNavigation('Pending')}><FaBug/> Pending Issues <span className="pending-counter">{pendingCount}</span></button>
+          <button className={`mybuttons ${clickedButton === 'Pending' ? 'active' : ''}`} onClick={() => handleNavigation('Pending')}><FaBug/> Pending Issues</button>
           <button className={`mybuttons ${clickedButton === 'IssueHistory' ? 'active' : ''}`} onClick={() => handleNavigation('IssueHistory')}><FiClock/> Issue History</button>
           <button className={`mybuttons ${clickedButton === 'Profile' ? 'active' : ''}`} onClick={() => handleNavigation('Profile')}> <FiUser/> Profile</button>
         </div>
