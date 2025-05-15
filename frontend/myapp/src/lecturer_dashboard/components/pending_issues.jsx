@@ -4,8 +4,6 @@ import axiosInstance from "../../axioscomponent";
 
 export default function Pend() {
     const [complaints, setComplaints] = useState([]);
-    const [expandedId, setExpandedId] = useState(null);
-//    const [isResolved, setIsResolved] = useState(false);
 
     useEffect(() => {
         const fetchComplaints = async () => {
@@ -20,30 +18,16 @@ export default function Pend() {
     }, []);
 
     const handleStatusUpdate = async (complaintId, newStatus) => {
-       e.stopPropagation();
-       
         try {
             await axiosInstance.patch(`/issues/update_status/${complaintId}/`, {
                 status: newStatus
             });
             // Update UI by removing the resolved complaint
             setComplaints(complaints.filter(c => c.id !== complaintId));
-            // If the expanded complaint is resolved, reset expandedId
-            if (expandedId === complaintId) {
-                setExpandedId(null);
-            }
         } catch (error) {
             console.error("Error updating status:", error);
         }
     };
-
-    const toggleExpand = (complaintId) => {
-        if (expandedId === complaintId) {
-            setExpandedId(null);
-        } else {
-            setExpandedId(complaintId);
-        }
-    }; 
 
     return (
         <div className={style.container}>
