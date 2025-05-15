@@ -76,7 +76,7 @@ export default function Pend() {
       fetchComplaints();
     } catch (error) {
       console.error("Error forwarding complaint:", error);
-      alert("Failed to forward complaint.");
+      toast.error("Error forwarding complaint. Please try again.");
     }
   };
 
