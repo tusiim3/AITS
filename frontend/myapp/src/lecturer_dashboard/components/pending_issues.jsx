@@ -4,10 +4,12 @@ import axiosInstance from "../../axioscomponent";
 
 export default function Pend() {
     const [complaints, setComplaints] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [expandedId, setExpandedId] = useState(null);
 
     useEffect(() => {
         const fetchComplaints = async () => {
+            setLoading(true); // Start loading
             try {
                 const response = await axiosInstance.get("/Lecturer/issues/");
 
@@ -16,6 +18,8 @@ export default function Pend() {
                 setComplaints(unresolvedComplaints);
             } catch (error) {
                 console.error("Error fetching data:", error);
+            } finally {
+                setLoading(false); // Done loading
             }
         };
         fetchComplaints();
@@ -51,7 +55,14 @@ export default function Pend() {
     return (
         <div className={style.container}>
             <h1 className={style.pageTitle}>Pending Issues ({complaints.length})</h1>
-            {complaints.length > 0 ? (
+            {loading && (
+                <div className={style.loading}>
+                    <div className={style.spinner}></div>
+                    <p className={style.loadingText}>Loading Issues...</p>   
+                </div>
+            )}
+            
+            {!loading && complaints.length > 0 ? (
                 <div className={style.complaintsGrid}>
                     {complaints.map((complaint) => (
                         <div key={complaint.id} className={`${style.output_box} ${expandedId === complaint.id ? style.expanded : ""}`} onClick={() => toggleExpand(complaint.id)}>
@@ -98,7 +109,7 @@ export default function Pend() {
                         </div>
                     ))}
                 </div>
-            ) : (
+            ) : !loading && (
                 <div className={style.emptyState}>
                     <p>No issues found</p>
                 </div>
