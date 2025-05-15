@@ -53,19 +53,6 @@ function Lecturer() {
   // Existing state
   const [pendingCount, setPendingCount] = useState(0);
 
-  // Fetch pending count
-  useEffect(() => {
-    const fetchPendingCount = async () => {
-      try {
-        const response = await axiosInstance.get('/issues/pending-count');
-        setPendingCount(response.data.count);
-      } catch (error) {
-        console.error('Error fetching pending count:', error);
-        setPendingCount(0); // Fallback to 0 on error
-      }
-    };
-    
-
     fetchPendingCount();
     const interval = setInterval(fetchPendingCount, 30000); // Refresh every 30 seconds
 
