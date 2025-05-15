@@ -1,18 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import style from './issue_his.module.css';
-import { useState, useEffect } from "react";
-
+import axiosInstance from "../../axioscomponent"; // Adjust the path as needed
 
 function His() {
     const [complaints, setComplaints] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const fetchComplaints = async () => {
         try {
-            const response = await fetch("issues/resolved/"); // this is where we get our api for history, all issues with a status of solved are viewed on this page*/}
-            const data = await response.json();
-            setComplaints(data);
+            const response = await axiosInstance.get("/issues/resolved/");
+            setComplaints(response.data);
         } catch (error) {
-            console.error("error fetching data:", error);
+            console.error("Error fetching data:", error);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -20,23 +21,25 @@ function His() {
         fetchComplaints();
     }, []);
 
-    return(
+    return (
         <div className={style.container}>
             <div>
-                {complaints.length > 0 ? (
+                {loading ? (
+                    <p>Loading history...</p>
+                ) : complaints.length > 0 ? (
                     complaints.map((complaint, index) => (
-                        <div className={style.output_box}>
-                            <p>Course Unit: {complaints.coursenit}</p>
-                            <p>Complaint type: {complaints.complaint_type}</p>
-                            <p>Complaint: {complaints.complaint}</p>
-                            <p>Lecturer: {complaints.lecturer}</p>
+                        <div className={style.output_box} key={complaint.id || index}>
+                            <p>Course Unit: {complaint.coursenit}</p>
+                            <p>Complaint type: {complaint.complaint_type}</p>
+                            <p>Complaint: {complaint.complaint}</p>
+                            <p>Lecturer: {complaint.lecturer}</p>
                             <div>
-                                status
+                                Status
                             </div>
                         </div>
-                    )) 
-                ):(
-                    <p>loading history...</p>
+                    ))
+                ) : (
+                    <p>No history found.</p>
                 )}
             </div>
         </div>
