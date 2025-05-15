@@ -143,6 +143,7 @@ class AssignIssueView(APIView):
 
         issue = get_object_or_404(Issues, pk=pk)
         issue.lecturer = lecturer  
+        issue.status = "assigned"
         issue.save()
 
         return Response({
