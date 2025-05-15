@@ -38,6 +38,11 @@ export default function Pend() {
         setExpandedId(expandedId === complaintId ? null : complaintId);
     };
 
+    const formatDate = (dateString) => {
+        const options = { year: 'numeric', month: 'short', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+    };
+
     return (
         <div className={style.container}>
             <h1 className={style.pageTitle}>Pending Issues ({complaints.length})</h1>
