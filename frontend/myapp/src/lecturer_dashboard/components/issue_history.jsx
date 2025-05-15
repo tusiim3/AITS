@@ -35,17 +35,28 @@ function His() {
 
     return (
         <div className={style.container}>
-            <div>
-                {loading ? (
-                    <p>Loading history...</p>
-                ) : complaints.length > 0 ? (
-                    complaints.map((complaint, index) => (
-                        <div className={style.output_box} key={complaint.id || index}>
-                            <p>Course Unit: {complaint.coursenit}</p>
-                            <p>Complaint type: {complaint.complaint_type}</p>
-                            <p>Complaint: {complaint.complaint}</p>
-                            <p>Lecturer: {complaint.lecturer}</p>
-                            <div>
+            <h1 className={style.pageTitle}>Issue History ({complaints.length})</h1>
+            {loading && (
+                <div className={style.loading}>
+                    <div className={style.spinner}></div>
+                    <p className={style.loadingText}>Loading History...</p>   
+                </div>
+            )}
+                {!loading && complaints.length > 0 ? (
+                    <div className={style.complaintsGrid}>
+                    {complaints.map((complaint) => (
+                        <div key={complaint.id} className={`${style.output_box} ${expandedId === complaint.id ? style.expanded : ""}`} onClick={() => toggleExpand(complaint.id)}>
+                            <div className={style.complaintHeader}>
+                                <div className={style.headerLeft}>
+                                                                        <h3 className={style.courseCode}>{complaint.course.course_code}</h3>
+                                    <span className={style.complaintType}>{complaint.complaint_type}</span>
+                                </div>
+                                <div className={style.headerRight}>
+                                    <span className={style.date}>{formatDate(complaint.created_at)}</span>
+                                </div>
+                            </div>
+
+                            
                                 Status
                             </div>
                         </div>
