@@ -256,3 +256,9 @@ class IssueStatusUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Issues
         fields = ['status'] 
+
+class UserprofileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['username', 'email', 'contact', 'profile_picture', 'number_type', 'student_number', 'lecturer_number', 'registrar_number', 'role', 'year_of_study']
+        

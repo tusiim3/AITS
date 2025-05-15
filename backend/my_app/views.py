@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from rest_framework import viewsets, status, generics
 from .models import CustomUser, Course, Issues
-from .serializers import CustomUserSerializer, CourseSerializer, IssuesSerializer ,RegisterSerializer, LoginSerializer, LogoutSerializer, CreateIssue, AssignIssueSerializer
+from .serializers import CustomUserSerializer, CourseSerializer, IssuesSerializer ,RegisterSerializer, LoginSerializer, LogoutSerializer, CreateIssue, AssignIssueSerializer, UserprofileSerializer
 from .permissions import IsOwnerOrIslecturerOrRegistrar,IsIssueOwner,IsRegistrar,IsLecturer,IsStudent
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.views import APIView
@@ -224,3 +224,48 @@ class UpdateIssueStatusView(APIView):
             }, status=200)
         return Response(serializer.errors, status=400)
                            
+class UserprofileView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        serializer = UserprofileSerializer(request.user)
+        return Response(serializer.data)
+    
+    def put(self, request):
+        serializer = UserprofileSerializer(request.user, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class GetCoursesView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        courses = Course.objects.all()
+        serializer = CourseSerializer(courses, many=True)
+        return Response(serializer.data)
+
+class PendingIssuesView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        issues = Issues.objects.filter(status='Pending')
+        serializer = IssuesSerializer(issues, many=True)
+        return Response(serializer.data)
+
+class AssignedIssuesView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        issues = Issues.objects.filter(status='Assigned')
+        serializer = IssuesSerializer(issues, many=True)
+        return Response(serializer.data)
+
+class ResolvedIssuesView(APIView):
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request):
+        issues = Issues.objects.filter(status='Resolved')
+        serializer = IssuesSerializer(issues, many=True)
+        return Response(serializer.data)
