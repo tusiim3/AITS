@@ -36,6 +36,30 @@
   animation: slideIn 0.3s ease-out;
 }
 
+.output_box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #ffffff;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.output_box:hover {
+  background-color: #f5f5f5;
+}
+
+.output_box.expanded {
+  display: block;
+  padding: 0;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
 @keyframes slideIn {
   from {
     transform: translateX(100%);
