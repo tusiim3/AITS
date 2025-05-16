@@ -150,6 +150,22 @@ export default function Pend() {
           </div>
         )}
       </div>
-      
-    </div>   
-            
+      {isPopupOpen && (
+         <>
+          <div className={style.popupBackdrop} onClick={closePopup}></div>
+          <div className={style.popup}>
+            <p>Select a lecturer</p>
+            <Select
+              options={lecturerOptions}
+              onChange={setSelectedLecturer}
+              placeholder="Search Lecturers"
+              className={style.select}
+            />
+            <button className={style.forwardbut} onClick={handleForward}>Forward</button>
+            <button className={style.cancelbut} onClick={closePopup}>Cancel</button>
+          </div>
+        </>
+      )}
+    </div>
+  );
+} 
