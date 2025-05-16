@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 
 export default function Pend() {
   const [complaints, setComplaints] = useState([]);
+  const [expandedId, setExpandedId] = useState(null);
   const [selectedComplaintId, setSelectedComplaintId] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [lecturers, setLecturer] = useState([]);
@@ -79,6 +80,12 @@ export default function Pend() {
       toast.error("Error forwarding complaint. Please try again.");
     }
   };
+
+  const toggleExpand = (complaintId) => {
+    setExpandedId(expandedId === complaintId ? null : complaintId);
+  };
+
+  
 
   return (
     <div className={style.container}>
