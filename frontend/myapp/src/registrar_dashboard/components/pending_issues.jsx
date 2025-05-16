@@ -85,49 +85,71 @@ export default function Pend() {
     setExpandedId(expandedId === complaintId ? null : complaintId);
   };
 
-  
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
 
   return (
     <div className={style.container}>
       <div className={isPopupOpen ? style.blurBackground : ""}>
+        <h1 className={style.pageTitle}>Pending Issues ({complaints.length})</h1>
         {complaints.length > 0 ? (
-          complaints.map((complaint) => (
-            <div key={complaint.id} className={style.output_box}>
-              <p1 className={style.pa} >Course Unit: {complaint.course.course_code}</p1>
-              <p1 className={style.pa}>Complaint type: {complaint.complaint_type}</p1>
-              <p1 className={style.pa}>Complaint: {complaint.complaint}</p1>
-              <p1 className={style.pa}>Description: {complaint.custom_complaint}</p1>
-              <button 
-                className={style.thebut} 
-                onClick={() => openPopup(complaint.id)}
-              >
-                Forward to Lecturer
-              </button>
-            </div>
-          ))
+          <div className={style.complaintGrid}>
+            {complaints.map((complaint) => (
+              <div key={complaint.id} className={`${style.output_box} ${expandedId === complaint.id ? style.expanded : ""}`} onClick={() => toggleExpand(complaint.id)}>
+                 <div className={style.complaintHeader}>
+                   <div className={style.headerLeft}>
+                     <h3 className={style.courseCode}>{complaint.course.course_code}</h3>
+                     <span className={style.complaintType}>{complaint.complaint_type}</span>
+                   </div> 
+                   <div className={style.headerRight}>
+                    <span className={style.date}>{formatDate(complaint.created_at)}</span>
+                   </div>                 
+                 </div> 
+                 {expandedId === complaint.id && (
+                   <div className={style.complaintContent}>
+                    <div className={style.infoGroup}>
+                      <div className={style.infoLabel}>Complaint:</div>
+                      <p className={style.infoValue}>{complaint.complaint}</p>
+                    </div>
+                    <div className={style.infoGroup}>
+                      <div className={style.infoLabel}>Description:</div>
+                      <p className={style.infoValue}>{complaint.custom_complaint}</p>
+                    </div>   
+                    <div className={style.metaInfo}>
+                      <div className={style.metaItem}>
+                        <span className={style.metaLabel}>Status:</span>
+                        <span className={style.metaValue}>{complaint.status}</span>
+                      </div>
+                      <div className={style.metaItem}>
+                        <span className={style.metaLabel}>Submitted By:</span>
+                        <span className={style.metaValue}>{complaint.student?.username}</span>                      
+                      </div>
+                      <div className={style.metaItem}>
+                         <span className={style.metaLabel}>Email:</span>
+                         <span className={style.metaValue}>{complaint.student?.email}</span>
+                      </div>
+                    </div>
+                    <div className={style.actionArea}>
+                      <button
+                        className={style.resolveButton}
+                        onClick={e => { e.stopPropagation(); openPopup(complaint.id); }}
+                      >
+                        Forward to Lecturer
+                      </button>
+                    </div>
+                   </div>   
+                 )}
+              </div>
+            ))}
+          </div>
         ) : (
-          <p>Loading complaints...</p>
+          <div className={style.emptyState}>
+            <h2>No pending issues to display.</h2>
+          </div>
         )}
-        </div>
-        <div>
-        {isPopupOpen && (
-        <>
-            <div className={style.popupBackdrop} onClick={closePopup}></div>
-            <div className={style.popup}>
-              <p2>select a lecturer</p2>
-              <Select 
-                  options={lecturerOptions}
-                  onChange={(selected) => setSelectedLecturer(selected)}
-                  placeholder="Search Lecturers"
-                  className={style.select}
-              />
-              <button  className={style.forwardbut} onClick={() => handleForward(selectedComplaintId)}>Forward</button>
-              <button className={style.cancelbut} onClick={closePopup}>Cancel</button>
-            </div>
-        </>
-        )}
-
       </div>
-    </div>
-  );
-}
+      
+    </div>   
+            
