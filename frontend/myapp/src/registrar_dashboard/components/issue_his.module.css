@@ -152,3 +152,44 @@
   height: 250px;
 }
 
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 18px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 0;
+  text-align: center;
+  color: #757575;
+}
+
+.emptyState p {
+  font-size: 1.2rem;
+  color: #757575;
+}
+
+@media (max-width: 768px) {
+  .complaintHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .headerLeft, .headerRight {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
