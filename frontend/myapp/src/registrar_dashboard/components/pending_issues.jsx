@@ -42,6 +42,8 @@ export default function Pend() {
       setComplaints(pendingComplaints);
     } catch (error) {
       console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -94,61 +96,66 @@ export default function Pend() {
     <div className={style.container}>
       <div className={isPopupOpen ? style.blurBackground : ""}>
         <h1 className={style.pageTitle}>Pending Issues ({complaints.length})</h1>
-        {complaints.length > 0 ? (
-          <div className={style.complaintGrid}>
-            {complaints.map((complaint) => (
-              <div key={complaint.id} className={`${style.output_box} ${expandedId === complaint.id ? style.expanded : ""}`} onClick={() => toggleExpand(complaint.id)}>
-                 <div className={style.complaintHeader}>
-                   <div className={style.headerLeft}>
-                     <h3 className={style.courseCode}>{complaint.course.course_code}</h3>
-                     <span className={style.complaintType}>{complaint.complaint_type}</span>
-                   </div> 
-                   <div className={style.headerRight}>
-                    <span className={style.date}>{formatDate(complaint.created_at)}</span>
-                   </div>                 
-                 </div> 
-                 {expandedId === complaint.id && (
-                   <div className={style.complaintContent}>
-                    <div className={style.infoGroup}>
-                      <div className={style.infoLabel}>Complaint:</div>
-                      <p className={style.infoValue}>{complaint.complaint}</p>
-                    </div>
-                    <div className={style.infoGroup}>
-                      <div className={style.infoLabel}>Description:</div>
-                      <p className={style.infoValue}>{complaint.custom_complaint}</p>
+          {loading ? (
+              <div className={style.loading}>
+                  <div className={style.spinner}></div>
+                  <p>Loading Pending Issues...</p>
+              </div>        
+          ) : complaints.length > 0 ? (
+              <div className={style.complaintGrid}>
+              {complaints.map((complaint) => (
+                <div key={complaint.id} className={`${style.output_box} ${expandedId === complaint.id ? style.expanded : ""}`} onClick={() => toggleExpand(complaint.id)}>
+                  <div className={style.complaintHeader}>
+                    <div className={style.headerLeft}>
+                      <h3 className={style.courseCode}>{complaint.course.course_code}</h3>
+                      <span className={style.complaintType}>{complaint.complaint_type}</span>
+                    </div> 
+                    <div className={style.headerRight}>
+                      <span className={style.date}>{formatDate(complaint.created_at)}</span>
+                    </div>                 
+                  </div> 
+                  {expandedId === complaint.id && (
+                    <div className={style.complaintContent}>
+                      <div className={style.infoGroup}>
+                        <div className={style.infoLabel}>Complaint:</div>
+                        <p className={style.infoValue}>{complaint.complaint}</p>
+                      </div>
+                      <div className={style.infoGroup}>
+                        <div className={style.infoLabel}>Description:</div>
+                        <p className={style.infoValue}>{complaint.custom_complaint}</p>
+                      </div>   
+                      <div className={style.metaInfo}>
+                        <div className={style.metaItem}>
+                          <span className={style.metaLabel}>Status:</span>
+                          <span className={style.metaValue}>{complaint.status}</span>
+                        </div>
+                        <div className={style.metaItem}>
+                          <span className={style.metaLabel}>Submitted By:</span>
+                          <span className={style.metaValue}>{complaint.student?.username}</span>                      
+                        </div>
+                        <div className={style.metaItem}>
+                          <span className={style.metaLabel}>Email:</span>
+                          <span className={style.metaValue}>{complaint.student?.email}</span>
+                        </div>
+                      </div>
+                      <div className={style.actionArea}>
+                        <button
+                          className={style.resolveButton}
+                          onClick={e => { e.stopPropagation(); openPopup(complaint.id); }}
+                        >
+                          Forward to Lecturer
+                        </button>
+                      </div>
                     </div>   
-                    <div className={style.metaInfo}>
-                      <div className={style.metaItem}>
-                        <span className={style.metaLabel}>Status:</span>
-                        <span className={style.metaValue}>{complaint.status}</span>
-                      </div>
-                      <div className={style.metaItem}>
-                        <span className={style.metaLabel}>Submitted By:</span>
-                        <span className={style.metaValue}>{complaint.student?.username}</span>                      
-                      </div>
-                      <div className={style.metaItem}>
-                         <span className={style.metaLabel}>Email:</span>
-                         <span className={style.metaValue}>{complaint.student?.email}</span>
-                      </div>
-                    </div>
-                    <div className={style.actionArea}>
-                      <button
-                        className={style.resolveButton}
-                        onClick={e => { e.stopPropagation(); openPopup(complaint.id); }}
-                      >
-                        Forward to Lecturer
-                      </button>
-                    </div>
-                   </div>   
-                 )}
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className={style.emptyState}>
-            <p>No pending issues to display.</p>
-          </div>
-        )}
+                  )}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className={style.emptyState}>
+              <p>No pending issues to display.</p>
+            </div>
+          )}
       </div>
       {isPopupOpen && (
          <>
