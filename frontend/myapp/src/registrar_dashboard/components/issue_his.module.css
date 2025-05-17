@@ -108,3 +108,47 @@
   margin-bottom: 12px;
 }
 
+.infoLabel {
+  font-size: 0.98rem;
+  color: #718096;
+  margin-bottom: 3px;
+  font-weight: 500;
+}
+
+.infoValue {
+  font-size: 1rem;
+  color: #2d3748;
+  line-height: 1.5;
+}
+
+.metaInfo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+  margin: 15px 0 0 0;
+}
+
+.metaItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.metaLabel {
+  font-size: 0.9rem;
+  color: #718096;
+}
+
+.metaValue {
+  font-size: 1rem;
+  color: #2d3748;
+  font-weight: 500;
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 250px;
+}
+
