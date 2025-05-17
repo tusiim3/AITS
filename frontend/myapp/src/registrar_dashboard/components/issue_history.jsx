@@ -5,12 +5,11 @@ import axiosInstance from "../../axioscomponent";
 function His() {
     const [complaints, setComplaints] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [expandedId, setExpandedId] = useState(null);
 
-    // Fetch complaints from the API
     const fetchComplaints = async () => {
         try {
             const response = await axiosInstance.get("/registrar/issues/");
-            // Filter for complaints with status "assigned" or "resolved"
             const filtered = response.data.filter(
                 complaint => complaint.status === "assigned" || complaint.status === "resolved"
             );
