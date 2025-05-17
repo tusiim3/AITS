@@ -11,7 +11,7 @@ export default function Pend() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [lecturers, setLecturer] = useState([]);
   const [selectedLecturer, setSelectedLecturer] = useState(null);
-
+  const [loading, setLoading] = useState(true);
 
   const lecturerOptions = lecturers
   .filter(lecturer => lecturer.number_type === "lecturer_number")
@@ -146,7 +146,7 @@ export default function Pend() {
           </div>
         ) : (
           <div className={style.emptyState}>
-            <h2>No pending issues to display.</h2>
+            <p>No pending issues to display.</p>
           </div>
         )}
       </div>
