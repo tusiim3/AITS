@@ -19,16 +19,41 @@
 }
 
 .output_box {
-    width: 96%;
-    border-radius: 3px;
-    height: 60px;
-    border: 2px solid rgb(107, 105, 105);
-    padding: 10px;
-    background-color: #f8f8f8;
-    text-align: center;
-    line-height: 100px; 
-    font-weight: bold;
-    overflow-y: auto;
-    position: relative;
-    left: 4px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+  border: 1px solid #e2e8f0;
+  padding: 12px 15px;
+  cursor: pointer;
+  transition: box-shadow 0.2s, padding 0.3s;
+  outline: none;
+}
+
+.output_box:hover,
+.output_box:focus {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.13);
+}
+
+.expanded {
+  padding: 18px 18px 24px 18px;
+}
+
+.complaintHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.courseCode {
+  font-size: 1.07rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 0;
 }
