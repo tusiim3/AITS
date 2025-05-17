@@ -9,7 +9,7 @@ function His() {
 
     const fetchComplaints = async () => {
         try {
-            const response = await axiosInstance.get("/issues/resolved/");
+            const response = await axiosInstance.get("/Lecturer/issues/");
             // Filter resolved complaints
             const resolvedComplaints = response.data.filter(complaint => complaint.status === "resolved");
             setComplaints(resolvedComplaints);

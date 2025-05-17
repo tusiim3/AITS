@@ -6,11 +6,12 @@ import { toast } from "react-toastify";
 
 export default function Pend() {
   const [complaints, setComplaints] = useState([]);
+  const [expandedId, setExpandedId] = useState(null);
   const [selectedComplaintId, setSelectedComplaintId] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [lecturers, setLecturer] = useState([]);
   const [selectedLecturer, setSelectedLecturer] = useState(null);
-
+  const [loading, setLoading] = useState(true);
 
   const lecturerOptions = lecturers
   .filter(lecturer => lecturer.number_type === "lecturer_number")
@@ -41,6 +42,8 @@ export default function Pend() {
       setComplaints(pendingComplaints);
     } catch (error) {
       console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -80,47 +83,96 @@ export default function Pend() {
     }
   };
 
+  const toggleExpand = (complaintId) => {
+    setExpandedId(expandedId === complaintId ? null : complaintId);
+  };
+
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+
   return (
     <div className={style.container}>
       <div className={isPopupOpen ? style.blurBackground : ""}>
-        {complaints.length > 0 ? (
-          complaints.map((complaint) => (
-            <div key={complaint.id} className={style.output_box}>
-              <p1 className={style.pa} >Course Unit: {complaint.course.course_code}</p1>
-              <p1 className={style.pa}>Complaint type: {complaint.complaint_type}</p1>
-              <p1 className={style.pa}>Complaint: {complaint.complaint}</p1>
-              <p1 className={style.pa}>Description: {complaint.custom_complaint}</p1>
-              <button 
-                className={style.thebut} 
-                onClick={() => openPopup(complaint.id)}
-              >
-                Forward to Lecturer
-              </button>
+        <h1 className={style.pageTitle}>Pending Issues ({complaints.length})</h1>
+          {loading ? (
+              <div className={style.loading}>
+                  <div className={style.spinner}></div>
+                  <p>Loading Pending Issues...</p>
+              </div>        
+          ) : complaints.length > 0 ? (
+              <div className={style.complaintGrid}>
+              {complaints.map((complaint) => (
+                <div key={complaint.id} className={`${style.output_box} ${expandedId === complaint.id ? style.expanded : ""}`} onClick={() => toggleExpand(complaint.id)}>
+                  <div className={style.complaintHeader}>
+                    <div className={style.headerLeft}>
+                      <h3 className={style.courseCode}>{complaint.course.course_code}</h3>
+                      <span className={style.complaintType}>{complaint.complaint_type}</span>
+                    </div> 
+                    <div className={style.headerRight}>
+                      <span className={style.date}>{formatDate(complaint.created_at)}</span>
+                    </div>                 
+                  </div> 
+                  {expandedId === complaint.id && (
+                    <div className={style.complaintContent}>
+                      <div className={style.infoGroup}>
+                        <div className={style.infoLabel}>Complaint:</div>
+                        <p className={style.infoValue}>{complaint.complaint}</p>
+                      </div>
+                      <div className={style.infoGroup}>
+                        <div className={style.infoLabel}>Description:</div>
+                        <p className={style.infoValue}>{complaint.custom_complaint}</p>
+                      </div>   
+                      <div className={style.metaInfo}>
+                        <div className={style.metaItem}>
+                          <span className={style.metaLabel}>Status:</span>
+                          <span className={style.metaValue}>{complaint.status}</span>
+                        </div>
+                        <div className={style.metaItem}>
+                          <span className={style.metaLabel}>Submitted By:</span>
+                          <span className={style.metaValue}>{complaint.student?.username}</span>                      
+                        </div>
+                        <div className={style.metaItem}>
+                          <span className={style.metaLabel}>Email:</span>
+                          <span className={style.metaValue}>{complaint.student?.email}</span>
+                        </div>
+                      </div>
+                      <div className={style.actionArea}>
+                        <button
+                          className={style.resolveButton}
+                          onClick={e => { e.stopPropagation(); openPopup(complaint.id); }}
+                        >
+                          Forward to Lecturer
+                        </button>
+                      </div>
+                    </div>   
+                  )}
+                </div>
+              ))}
             </div>
-          ))
-        ) : (
-          <p>Loading complaints...</p>
-        )}
-        </div>
-        <div>
-        {isPopupOpen && (
-        <>
-            <div className={style.popupBackdrop} onClick={closePopup}></div>
-            <div className={style.popup}>
-              <p2>select a lecturer</p2>
-              <Select 
-                  options={lecturerOptions}
-                  onChange={(selected) => setSelectedLecturer(selected)}
-                  placeholder="Search Lecturers"
-                  className={style.select}
-              />
-              <button  className={style.forwardbut} onClick={() => handleForward(selectedComplaintId)}>Forward</button>
-              <button className={style.cancelbut} onClick={closePopup}>Cancel</button>
+          ) : (
+            <div className={style.emptyState}>
+              <p>No pending issues to display.</p>
             </div>
-        </>
-        )}
-
+          )}
       </div>
+      {isPopupOpen && (
+         <>
+          <div className={style.popupBackdrop} onClick={closePopup}></div>
+          <div className={style.popup}>
+            <p>Select a lecturer</p>
+            <Select
+              options={lecturerOptions}
+              onChange={setSelectedLecturer}
+              placeholder="Search Lecturers"
+              className={style.select}
+            />
+            <button className={style.forwardbut} onClick={handleForward}>Forward</button>
+            <button className={style.cancelbut} onClick={closePopup}>Cancel</button>
+          </div>
+        </>
+      )}
     </div>
   );
-}
+} 

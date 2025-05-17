@@ -68,7 +68,7 @@ export default function Pend() {
                         <div key={complaint.id} className={`${style.output_box} ${expandedId === complaint.id ? style.expanded : ""}`} onClick={() => toggleExpand(complaint.id)}>
                             <div className={style.complaintHeader}>
                                 <div className={style.headerLeft}>
-                                                                        <h3 className={style.courseCode}>{complaint.course.course_code}</h3>
+                                <h3 className={style.courseCode}>{complaint.course.course_code}</h3>
                                     <span className={style.complaintType}>{complaint.complaint_type}</span>
                                 </div>
                                 <div className={style.headerRight}>

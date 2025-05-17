@@ -1,125 +1,271 @@
 .container {
-    background-color: rgba(255, 255, 255, 0);
-    position: absolute;
-    box-shadow: 0px 10px 20px #718c8e;
-    z-index: 10; 
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    overflow-y: auto;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  height: 100vh;
+  overflow-y: auto;
+  background-color: #f9fafb;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(113, 140, 142, 0.3);
 }
 
+.pageTitle {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #2d3748;
+}
+
+.complaintsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 250px;
+}
+
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 18px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Card styles */
 .output_box {
-    width: 96%;
-    border-radius: 3px;
-    height: 100px;
-    border: 2px solid rgb(107, 105, 105);
-    padding: 10px;
-    background-color: #f8f8f8;
-    text-align: center;
-    line-height: 100px; 
-    font-weight: bold;
-    overflow-y: auto;
-    position: relative;
-    left: 4px;
-    margin-top: 10px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+  padding: 12px 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
 }
 
-
-.container p {
-    text-align: center;
-    font-weight: bold;
-    font-size: 2rem;
-    margin-top: 250px;
+.output_box:hover,
+.output_box:focus {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-.pa{
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 18px;
-  margin-right: 40px;
+.expanded {
+  padding: 15px;
 }
 
-.thebut {
-    color: white;
-    background-color: red;
-    border: none;
-    font-weight: bold;
-    border-radius: 3px;
-    height: 35px;
-    width: 90px;
-    position: absolute;
-    right: 10px;
-    top: 15px;
+.complaintHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
- 
-.popupBackdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(3px);
-    z-index: 1000;
-  }
-  .popup {
-    position: fixed;
-    z-index: 1001;
-    background: rgb(255, 255, 255);
-    padding: 20px;
-    border-radius: 8px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    height:50%;
-    width:40%;
-  }
-  
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.courseCode {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.complaintType {
+  font-size: 13px;
+  color: #4a5568;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.date {
+  font-size: 12px;
+  color: #718096;
+}
+
+.complaintContent {
+  padding-top: 15px;
+  margin-top: 15px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.infoGroup {
+  margin-bottom: 12px;
+}
+
+.infoLabel {
+  font-size: 13px;
+  color: #718096;
+  margin-bottom: 5px;
+}
+
+.infoValue {
+  font-size: 14px;
+  color: #2d3748;
+  line-height: 1.5;
+}
+
+.metaInfo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+  margin: 15px 0;
+}
+
+.metaItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.metaLabel {
+  font-size: 12px;
+  color: #718096;
+}
+
+.metaValue {
+  font-size: 13px;
+  color: #2d3748;
+  font-weight: 500;
+}
+
+.actionArea {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 15px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.resolveButton {
+  background: #48bb78;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.resolveButton:hover {
+  background: #38a169;
+}
+
+/* Popup and blur background */
 .blurBackground {
-    filter: blur(5px);
-    transition: filter 0.3s ease;
-  }
+  filter: blur(5px);
+  transition: filter 0.3s ease;
+}
 
-/* In your module.css */
+.popupBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(3px);
+  z-index: 1000;
+}
+
+.popup {
+  position: fixed;
+  z-index: 1001;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  width: 400px;
+  max-width: 90vw;
+}
+
+.popup p {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
 .select {
   width: 100%;
   margin: 15px 0;
 }
 
-.react-select__control {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.react-select__menu {
-  z-index: 2; 
+.forwardbut,
+.cancelbut {
+  border-radius: 5px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  color: white;
+  padding: 10px 15px;
+  margin-right: 10px;
+  transition: background-color 0.2s ease;
 }
 
 .forwardbut {
   background-color: rgb(92, 173, 92);
-  position: relative;
-  top: 10%;
-  left: 30%;
-  width: 20%;
-  height: 20%;
-  border-radius: 5px;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-  color: white;
+}
+
+.forwardbut:hover {
+  background-color: rgb(72, 138, 72);
 }
 
 .cancelbut {
   background-color: rgb(236, 113, 113);
-  position: relative;
-  top: 10%;
-  left: 35%;
-  width: 20%;
-  height: 20%;
-  border-radius: 5px;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-  color: white;
+}
+
+.cancelbut:hover {
+  background-color: rgb(190, 80, 80);
+}
+
+/* Empty state */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 0;
+  text-align: center;
+  color: #757575;
+}
+
+.emptyState p {
+  font-size: 1.2rem;
+  color: #757575;
+}
+/* Responsive */
+@media (max-width: 768px) {
+  .complaintHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .headerLeft, .headerRight {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .popup {
+    width: 90vw;
+  }
 }
