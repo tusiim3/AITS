@@ -7,7 +7,7 @@ import './logo/martha.jpg';
 import axiosInstance from '../axioscomponent.jsx';
 import { FiLogOut,FiUser,FiClock } from "react-icons/fi";
 import {FaBug, FaUserCircle} from "react-icons/fa";
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 
 const BACKEND_URL = "http://127.0.0.1:8000";
 function getProfilePicUrl(path) {
@@ -62,10 +62,11 @@ function Student() {
       console.log(response.data);
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken")
-      window.location.href = '/'; // Corrected this line
+      window.location.href = '/';
+      toast.success("logout")
     } catch (error) {
       console.error("Error during logout:", error);
-      alert("Failed to logout. Please try again.");
+      toast.error("Failed to logout. Please try again.");
     }
   };
 
