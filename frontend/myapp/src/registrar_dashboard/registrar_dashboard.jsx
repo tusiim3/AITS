@@ -8,7 +8,7 @@ import axiosInstance from '../axioscomponent.jsx';
 import Home from './components/Home.jsx';
 import { FiHome,FiLogOut,FiUser, FiClock } from 'react-icons/fi';
 import { FaBug, FaUniversity,FaUserCircle } from 'react-icons/fa';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 
 const BACKEND_URL = "http://127.0.0.1:8000";
 function getProfilePicUrl(path) {
