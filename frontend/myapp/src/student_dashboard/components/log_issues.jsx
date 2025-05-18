@@ -145,23 +145,28 @@ function Log() {
       </div>
       
       {showPopup && (
-        <div className={styles.myform}>
-        <form onSubmit={handleFormSubmit}>
-          <h5>Issue Form</h5>
-          <div className={styles.issue}>
-            <h3 className={styles.label2}>COURSE UNIT:</h3>
-            <p className={styles.par}>{displayValue.select1 || "N/A"}</p>
-            <h3 className={styles.label2}>COMPLAINT:</h3>
-            <p className={styles.par}>{displayValue.select2 || "N/A"}</p>
-            <h3 className={styles.label2}>TYPE:</h3>
-            <p className={styles.par}>{displayValue.select3 || "N/A"}</p>
-            <h3 className={styles.label2}>CUSTOM COMPLAINT:</h3>
-            <p className={styles.par}>{displayValue.text || "N/A"}</p>
+        <div>
+          <div>
+            <div className={styles.myform}>
+            <button className={styles.closeButton} onClick={() => setShowPopup(false)}>×</button>
+            <form onSubmit={handleFormSubmit}>
+              <h5>Issue Form</h5>
+              <div className={styles.issue}>
+                <h3 className={styles.label2}>COURSE UNIT:</h3>
+                <p className={styles.par}>{displayValue.select1 || "N/A"}</p>
+                <h3 className={styles.label2}>COMPLAINT:</h3>
+                <p className={styles.par}>{displayValue.select2 || "N/A"}</p>
+                <h3 className={styles.label2}>TYPE:</h3>
+                <p className={styles.par}>{displayValue.select3 || "N/A"}</p>
+                <h3 className={styles.label2}>CUSTOM COMPLAINT:</h3>
+                <p className={styles.par}>{displayValue.text || "N/A"}</p>
+              </div>
+              <button type="submit" className={styles.rsubmit_buttons} disabled={isSubmitting}>
+                {isSubmitting ? "Submitting..." : "Submit Form"}
+              </button>
+            </form>
           </div>
-          <button type="submit" className={styles.rsubmit_buttons} disabled={isSubmitting}>
-            {isSubmitting ? "Submitting..." : "Submit Form"}
-          </button>
-        </form>
+        </div>
       </div>
     )}
     </div>
