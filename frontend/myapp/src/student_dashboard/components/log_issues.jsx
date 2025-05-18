@@ -20,6 +20,7 @@ function Log() {
 
   const [courses, setCourses] = useState([]); // State to hold courses from API
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
 
   // Fetch courses from API on component mount
   useEffect(() => {
@@ -47,6 +48,7 @@ function Log() {
   const handleSubmit = (event) => {
     event.preventDefault();
     setDisplayValue(formData);
+    setShowPopup(true);
   };
 
   const handleClear = () => {
@@ -141,8 +143,9 @@ function Log() {
           <button type="submit" className={styles.lsubmit_button}>Submit</button>
         </form>
       </div>
-
-      <div className={styles.myform}>
+      
+      {showPopup && (
+        <div className={styles.myform}>
         <form onSubmit={handleFormSubmit}>
           <h5>Issue Form</h5>
           <div className={styles.issue}>
@@ -160,6 +163,7 @@ function Log() {
           </button>
         </form>
       </div>
+    )}
     </div>
   );
 }
