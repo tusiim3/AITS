@@ -117,7 +117,7 @@
   transition: all 0.3s ease;
   border: none;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: relative;
+  position: absolute;
   bottom: 20px;
   height: 40px;
 }
@@ -125,9 +125,9 @@
 .lsubmit_button {
   background-color: #4CAF50;
   color: white;
-  right: -30%;
+  right: 2px;
   width: calc(50% - 25px);
-  bottom: 20px;
+  bottom: -10px;
 }
 
 .lsubmit_button:hover {

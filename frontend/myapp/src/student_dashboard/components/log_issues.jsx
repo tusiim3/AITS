@@ -48,6 +48,7 @@ function Log() {
   const handleSubmit = (event) => {
     event.preventDefault();
     setDisplayValue(formData);
+    setFormData({ select1: "", select2: "", select3: "", text: "" });
     setShowPopup(true);
   };
 
