@@ -145,8 +145,8 @@ function Log() {
       </div>
       
       {showPopup && (
-        <div>
-          <div>
+        <div className={styles.popupOverlay}>
+          <div className={styles.popupContent}>
             <div className={styles.myform}>
             <button className={styles.closeButton} onClick={() => setShowPopup(false)}>×</button>
             <form onSubmit={handleFormSubmit}>
