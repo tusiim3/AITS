@@ -55,9 +55,13 @@ function Student() {
   const handleLogout = async (e) => {
     try {
       const refreshtoken = localStorage.getItem("refreshToken")
-      const response = await axiosInstance.post("/Logout/");
+      const response = await axiosInstance.post("/Logout/",{
+        refresh_token : refreshtoken
+
+      });
       console.log(response.data);
-      localStorage.removeItem("token");
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken")
       window.location.href = '/'; // Corrected this line
     } catch (error) {
       console.error("Error during logout:", error);
