@@ -148,7 +148,6 @@ function Log() {
       {showPopup && (
         <div className={styles.popupOverlay}>
           <div className={styles.popupContent}>
-            <div className={styles.myform}>
             <button className={styles.closeButton} onClick={() => setShowPopup(false)}>×</button>
             <form onSubmit={handleFormSubmit}>
               <h5>Issue Form</h5>
@@ -166,7 +165,6 @@ function Log() {
                 {isSubmitting ? "Submitting..." : "Submit Form"}
               </button>
             </form>
-          </div>
         </div>
       </div>
     )}
