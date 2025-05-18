@@ -7,7 +7,7 @@ import Profile from "./components/profile.jsx";
 import axiosInstance from '../axioscomponent.jsx';
 import { FiHome, FiLogOut, FiUser, FiClock } from 'react-icons/fi';
 import { FaBug, FaUserCircle } from 'react-icons/fa';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 
 const BACKEND_URL = "http://127.0.0.1:8000";
 function getProfilePicUrl(path) {
@@ -40,13 +40,19 @@ function Lecturer() {
 
   const handleLogout = async (e) => {
     try {
-      const response = await axiosInstance.post("/Logout/");
+      const refreshtoken = localStorage.getItem("refreshToken")
+      const response = await axiosInstance.post("/Logout/",{
+        refresh_token : refreshtoken
+
+      });
       console.log(response.data);
-      localStorage.removeItem("token");
-      window.location.href = '/'; 
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken")
+      window.location.href = '/';
+      toast.success("logout")
     } catch (error) {
       console.error("Error during logout:", error);
-      alert("Failed to logout. Please try again.");
+      toast.error("Failed to logout. Please try again.");
     }
   };
 
