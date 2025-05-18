@@ -40,13 +40,19 @@ function Lecturer() {
 
   const handleLogout = async (e) => {
     try {
-      const response = await axiosInstance.post("/Logout/");
+      const refreshtoken = localStorage.getItem("refreshToken")
+      const response = await axiosInstance.post("/Logout/",{
+        refresh_token : refreshtoken
+
+      });
       console.log(response.data);
-      localStorage.removeItem("token");
-      window.location.href = '/'; 
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken")
+      window.location.href = '/';
+      toast.success("logout")
     } catch (error) {
       console.error("Error during logout:", error);
-      alert("Failed to logout. Please try again.");
+      toast.error("Failed to logout. Please try again.");
     }
   };
 
