@@ -71,6 +71,7 @@ function Log() {
       if (response.status === 201) {
         toast.success("Issue submitted successfully!");
         setDisplayValue({ select1: "", select2: "", select3: "", text: "" });
+        setShowPopup(false)
       }
     } catch (error) {
       console.error("Error during submission", error);
