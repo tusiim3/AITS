@@ -54,6 +54,7 @@ function Student() {
 
   const handleLogout = async (e) => {
     try {
+      const refreshtoken = localStorage.getItem("refreshToken")
       const response = await axiosInstance.post("/Logout/");
       console.log(response.data);
       localStorage.removeItem("token");
