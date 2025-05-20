@@ -7,6 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 const AuthenticationForms = () => {
   const [isSignUp, setIsSignUp] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     username: '',
@@ -29,10 +30,11 @@ const AuthenticationForms = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+    setIsLoading(true)
     if (isSignUp) {
       if (formData.password !== formData.confirmPassword) {
         alert("Passwords do not match");
+        setIsLoading(false)
         return;
       }
 
@@ -60,13 +62,16 @@ const AuthenticationForms = () => {
       } catch (error) {
         console.error("Error during registration", error);
         toast.error("Failed to register");
-      } 
+      } finally {
+        setIsLoading(false);
+      }
     } else {
       handleSignIn(e);
     }
   };
 
   const handleSignIn = async (e) => {
+    setIsLoading(true)
     try {
       const signInPayLoad = {
         number_type: formData.number_type,
@@ -94,6 +99,8 @@ const AuthenticationForms = () => {
     } catch (error) {
       console.error("Error during signin", error);
       toast.error("Signin failed. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -193,7 +200,14 @@ const AuthenticationForms = () => {
             )}
 
 
-            <button className={styles.lbutton} type="submit">Enter</button>
+            <button 
+            className={styles.lbutton} 
+            type="submit"
+            disabled={isLoading}>{isLoading?(
+              <span className={styles.spinner}></span>
+            ): ("Enter")}
+
+            </button>
           </form>
 
           <div className={styles.form_switch}>
