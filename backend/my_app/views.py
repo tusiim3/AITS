@@ -20,14 +20,6 @@ class RegisterView(APIView):
     def post(self, request):
         serializer = RegisterSerializer(data=request.data)
         if serializer.is_valid():
-            number_type = serializer.validated_data.get("number_type")
-
-            role_mapping = {
-                'student_number': 'student',
-                'lecturer_number': 'lecturer',
-                'registrar_number': 'registrar'
-            }
-            serializer.validated_data['role'] = role_mapping.get("number_type")
             
             user = serializer.save()
             return Response(
