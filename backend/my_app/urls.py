@@ -8,9 +8,9 @@ from .views import (
 )
 
 router = DefaultRouter()
-router.register(r'users', CustomUserViewSet, basename='user')
+'''router.register(r'users', CustomUserViewSet, basename='user')
 router.register(r'courses', CourseViewSet, basename='course')
-router.register(r'issues', IssuesViewSet, basename='issue')
+router.register(r'issues', IssuesViewSet, basename='issue')'''
 
 urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
