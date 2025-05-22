@@ -13,15 +13,10 @@ router.register(r'courses', CourseViewSet, basename='course')
 router.register(r'issues', IssuesViewSet, basename='issue')
 
 urlpatterns = [
-    # Auth
     path('register/', RegisterView.as_view(), name='register'),
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
-
-    # ViewSets routed by DRF router
     path('', include(router.urls)),
-
-    # Issue-related views
     path('issues/create/', CreateIssueView.as_view(), name='create-issue'),
     path('issues/registrar-pending/', RegistrarIssueListView.as_view(), name='registrar-pending-issues'),
     path('issues/assign/<int:pk>/', AssignIssueView.as_view(), name='assign-issue'),
@@ -29,8 +24,6 @@ urlpatterns = [
     path('issues/lecturer-list/', LecturerlistView.as_view(), name='lecturer-list'),
     path('issues/lecturer-issues/', LecturerIssueListView.as_view(), name='lecturer-issues'),
     path('issues/update-status/<int:pk>/', UpdateIssueStatusView.as_view(), name='update-issue-status'),
-
-    # Course and User profile views
     path('courses/add/', AddCourseView.as_view(), name='add-course'),
     path('courses/list/', CoursesListView.as_view(), name='courses-list'),
     path('profile/', UserprofileView.as_view(), name='user-profile'),
