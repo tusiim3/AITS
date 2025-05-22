@@ -34,8 +34,6 @@ urlpatterns = [
     path('courses/add/', AddCourseView.as_view(), name='add-course'),
     path('courses/list/', CoursesListView.as_view(), name='courses-list'),
     path('profile/', UserprofileView.as_view(), name='user-profile'),
-
-    # Issue status filtered views
     path('issues/pending/', PendingIssuesView.as_view(), name='pending-issues'),
     path('issues/assigned/', AssignedIssuesView.as_view(), name='assigned-issues'),
     path('issues/resolved/', ResolvedIssuesView.as_view(), name='resolved-issues'),
