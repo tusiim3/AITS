@@ -142,4 +142,24 @@ html, body {
     text-decoration: underline;
   }
   
-  
+  .passwordInputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.passwordInput {
+  width: 100%;
+  padding-right: 2.5rem;
+}
+
+.showPasswordButton {
+  position: absolute;
+  right: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #888;
+  outline: none;
+}

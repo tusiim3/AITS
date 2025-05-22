@@ -5,6 +5,41 @@ import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../axioscomponent';
 import { ToastContainer, toast } from 'react-toastify';
 
+// PasswordInput component for show/hide password
+const PasswordInput = ({
+  name,
+  value,
+  onChange,
+  placeholder,
+  required = false,
+}) => {
+  const [show, setShow] = useState(false);
+
+  return (
+    <div className={styles.passwordInputWrapper}>
+      <input
+        type={show ? "text" : "password"}
+        name={name}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        required={required}
+        className={styles.passwordInput}
+        autoComplete="new-password"
+      />
+      <button
+        type="button"
+        onClick={() => setShow((prev) => !prev)}
+        className={styles.showPasswordButton}
+        tabIndex={-1}
+        aria-label={show ? "Hide password" : "Show password"}
+      >
+        {show ? "🙈" : "👁️"}
+      </button>
+    </div>
+  );
+};
+
 const AuthenticationForms = () => {
   const [isSignUp, setIsSignUp] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -57,11 +92,10 @@ const AuthenticationForms = () => {
         if (response.status === 201) {
           toast.success("Registration successful");
           navigate('/'); 
-          
         }
       } catch (error) {
         console.error("Error during registration", error);
-        toast.error("Failed to register");
+        toast.error(error.response?.data?.detail || "Failed to register");
       } finally {
         setIsLoading(false);
       }
@@ -98,7 +132,7 @@ const AuthenticationForms = () => {
 
     } catch (error) {
       console.error("Error during signin", error);
-      toast.error("Signin failed. Please try again.");
+      toast.error(error.response?.data?.detail || "Signin failed. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -132,21 +166,19 @@ const AuthenticationForms = () => {
 
           <form onSubmit={handleSubmit}>
             {isSignUp && (
-              <>
-                <input
-                  type="text"
-                  name="username"
-                  placeholder="Name"
-                  value={formData.username}
-                  onChange={handleChange}
-                  required
-                />
-              </>
+              <input
+                type="text"
+                name="username"
+                placeholder="Name"
+                value={formData.username}
+                onChange={handleChange}
+                required
+              />
             )}
 
             <select
-              name="number_type"  // Ensure this matches the state (number_type)
-              value={formData.number_type}  // Ensure this matches the state
+              name="number_type"
+              value={formData.number_type}
               onChange={handleChange}
               required
               className={styles.select}
@@ -167,6 +199,7 @@ const AuthenticationForms = () => {
                 required
               />
             )}
+
             {isSignUp && (
               <input
                 type="email"
@@ -176,11 +209,9 @@ const AuthenticationForms = () => {
                 onChange={handleChange}
                 required
               />
-
             )}
 
-            <input
-              type="password"
+            <PasswordInput
               name="password"
               placeholder="Password"
               value={formData.password}
@@ -189,8 +220,7 @@ const AuthenticationForms = () => {
             />
 
             {isSignUp && (
-              <input
-                type="password"
+              <PasswordInput
                 name="confirmPassword"
                 placeholder="Confirm Password"
                 value={formData.confirmPassword}
@@ -199,14 +229,16 @@ const AuthenticationForms = () => {
               />
             )}
 
-
             <button 
-            className={styles.lbutton} 
-            type="submit"
-            disabled={isLoading}>{isLoading?(
-              <span className={styles.spinner}></span>
-            ): ("Enter")}
-
+              className={styles.lbutton} 
+              type="submit"
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <span className={styles.spinner}></span>
+              ) : (
+                isSignUp ? "Sign Up" : "Sign In"
+              )}
             </button>
           </form>
 
