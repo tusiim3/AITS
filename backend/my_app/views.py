@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from rest_framework import viewsets, status, generics
 from .models import CustomUser, Course, Issues
-from .serializers import CustomUserSerializer, CourseSerializer, IssuesSerializer ,RegisterSerializer, LoginSerializer, LogoutSerializer, CreateIssue, AssignIssueSerializer, UserprofileSerializer
+from .serializers import CustomUserSerializer, CourseSerializer, IssuesSerializer ,RegisterSerializer, LoginSerializer, LogoutSerializer, CreateIssue, AssignIssueSerializer, UserprofileSerializer,IssueStatusUpdateSerializer
 from .permissions import IsOwnerOrIslecturerOrRegistrar,IsIssueOwner,IsRegistrar,IsLecturer,IsStudent
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.views import APIView
@@ -9,6 +9,8 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from django.core.mail import send_mail
+
 
 
 
@@ -132,9 +134,11 @@ class AssignIssueView(APIView):
         lecturer = get_object_or_404(CustomUser, username=lecturer_username, role="lecturer")
 
         issue = get_object_or_404(Issues, pk=pk)
-        issue.lecturer = lecturer  
+        issue.lecturer = lecturer
+        issue.status = 'Assigned'
         issue.save()
 
+        
         return Response({
             "Message": "Issue assigned successfully",
             "issue": IssuesSerializer(issue).data
@@ -179,19 +183,17 @@ class LecturerIssueListView(generics.ListAPIView):
             return Issues.objects.filter(lecturer=user) 
         return Issues.objects.none()    
 
-class UpdateIssueStatusView(APIView):   
-    permission_classes = [IsAuthenticated, IsLecturer]   
+class UpdateIssueStatusView(APIView):
+    permission_classes = [IsAuthenticated, IsLecturer]
 
-    def patch(self, request, pk):   
+    def patch(self, request, pk):
         user = request.user
-        issue = Issues.objects.get(pk=pk)
-
+        issue = get_object_or_404(Issues, pk=pk)
         if user.role != 'lecturer':
             return Response({"error": "Only lecturers can update issue status"}, status=403)
         if issue.lecturer != user:
             return Response({"error": "You are not assigned to this issue"}, status=403)
-
-        serializer = IssuesSerializer(issue, data=request.data, partial=True)
+        serializer = IssueStatusUpdateSerializer(issue, data=request.data, partial=True)
         if serializer.is_valid():
             updated_issue = serializer.save()
             student_email = updated_issue.student.email

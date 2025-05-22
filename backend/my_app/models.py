@@ -102,7 +102,7 @@ class Issues(models.Model):
     STATUS_CHOICES = [
         ('pending', 'Pending'),
         ('resolved', 'Resolved'),
-        ('in progress', 'In progress'),
+        ('assigned', 'Assigned'),
     ]
 
     student = models.ForeignKey(
