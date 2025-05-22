@@ -9,7 +9,7 @@ import { FiHome, FiLogOut, FiUser, FiClock } from 'react-icons/fi';
 import { FaBug, FaUserCircle } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
 
-const BACKEND_URL = "http://127.0.0.1:8000";
+const BACKEND_URL = "https://aits-groupl-90wo.onrender.com/api/";
 function getProfilePicUrl(path) {
   if (!path) return "/logo/martha.jpg"; // fallback image
   return path.startsWith("http") ? path : BACKEND_URL + path;
