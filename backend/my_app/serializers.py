@@ -7,9 +7,9 @@ from django.core.mail import send_mail
 
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True) 
-    password2 = serializers.CharField(write_only=True)#this is the password confirmation field
-    student_number = serializers.CharField(required=False, allow_blank=True)#it is not required for all users
-    lecturer_number = serializers.CharField(required=False, allow_blank=True)#it handles the lecturer number
+    password2 = serializers.CharField(write_only=True)
+    student_number = serializers.CharField(required=False, allow_blank=True)
+    lecturer_number = serializers.CharField(required=False, allow_blank=True)
     registrar_number = serializers.CharField(required=False, allow_blank=True)
 
     class Meta:
