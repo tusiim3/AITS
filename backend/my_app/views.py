@@ -261,3 +261,10 @@ class AssignedIssuesView(APIView):
         serializer = IssuesSerializer(issues, many=True)
         return Response(serializer.data)
 
+class ResolvedIssuesView(APIView):
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request):
+        issues = Issues.objects.filter(status='Resolved')
+        serializer = IssuesSerializer(issues, many=True)
+        return Response(serializer.data)
