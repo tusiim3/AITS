@@ -10,7 +10,7 @@ class RegisterSerializer(serializers.ModelSerializer):
     password2 = serializers.CharField(write_only=True)#this is the password confirmation field
     student_number = serializers.CharField(required=False, allow_blank=True)#it is not required for all users
     lecturer_number = serializers.CharField(required=False, allow_blank=True)#it handles the lecturer number
-    registrar_number = serializers.CharField(required=False, allow_blank=True)#it handles the registrar number
+    registrar_number = serializers.CharField(required=False, allow_blank=True)
 
     class Meta:
         model = CustomUser
