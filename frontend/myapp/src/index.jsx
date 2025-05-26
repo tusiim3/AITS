@@ -8,7 +8,8 @@ import Lecturer from './lecturer_dashboard/lecturer_dashboard.jsx'
 import NotFoundPage from './notfoundpage.jsx';
 import './index.css';
 import 'reactjs-popup/dist/index.css';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
 
 const router = createBrowserRouter([
   {
@@ -33,5 +34,6 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <RouterProvider router={router} />
+    <ToastContainer position="top-right" autoClose={3000} />
   </React.StrictMode>
 )

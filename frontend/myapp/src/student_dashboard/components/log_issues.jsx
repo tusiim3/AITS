@@ -94,13 +94,20 @@ function Log() {
             onChange={handleChange}
             className={styles.select}
           >
-            <option value="">Select Course</option>
-            {courses.map((course) => (
-              <option key={course.course_code} value={course.course_code}>
-                {course.course_code}
-              </option>
-            ))}
+            {courses.length === 0 ? (
+              <option disabled>Fetching courses...</option>
+            ) : (
+              <>
+                <option value="">Select Course</option>
+                {courses.map((course) => (
+                  <option key={course.id} value={course.course_code}>
+                    {course.course_code} - {course.course_name}
+                  </option>
+                ))}
+              </>
+            )}
           </select>
+
 
           <label htmlFor="complaint" className={styles.label}>Complaint</label>
           <select
