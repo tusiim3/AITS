@@ -247,7 +247,7 @@ class LecturerlistSerializer(serializers.ModelSerializer):
 
     def get_courses(self, obj):
         courses = Course.objects.filter(lecturer=obj) 
-        return [course.name for course in courses]
+        return [course.course_name for course in courses]
 
 class AssignIssueSerializer(serializers.Serializer):
     lecturer_username = serializers.CharField(max_length=150)
