@@ -7,7 +7,7 @@ export default function Pend() {
 
     const fetchComplaints = async () => {
         try {
-            const response = await axiosInstance.get("/issues/history/");
+            const response = await axiosInstance.get("issues/student-history/");
             setComplaints(response.data);
         } catch (error) {
             console.error("Error fetching data:", error);

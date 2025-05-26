@@ -7,9 +7,9 @@ import './logo/martha.jpg';
 import axiosInstance from '../axioscomponent.jsx';
 import { FiLogOut,FiUser,FiClock } from "react-icons/fi";
 import {FaBug, FaUserCircle} from "react-icons/fa";
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 
-const BACKEND_URL = "http://127.0.0.1:8000";
+const BACKEND_URL = "https://aits-groupl-90wo.onrender.com/api/";
 function getProfilePicUrl(path) {
   if (!path) return "/logo/martha.jpg"; // fallback image
   return path.startsWith("http") ? path : BACKEND_URL + path;
@@ -52,17 +52,30 @@ function Student() {
     </div>
   );
 
-  const handleLogout = async (e) => {
+  const handleLogout = async () => {
     try {
-      const response = await axiosInstance.post("/Logout/");
+      const accessToken = localStorage.getItem("accessToken");
+      const refreshToken = localStorage.getItem("refreshToken");
+
+      const response = await axiosInstance.post("/logout/", {
+        refresh_token: refreshToken
+      }, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      });
+
       console.log(response.data);
-      localStorage.removeItem("token");
-      window.location.href = '/'; // Corrected this line
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      toast.success("Logout successful");
+      window.location.href = '/';
     } catch (error) {
       console.error("Error during logout:", error);
-      alert("Failed to logout. Please try again.");
+      toast.error("Failed to logout. Please try again.");
     }
   };
+
 
   return (
     <div className='student-dashboard-container'>

@@ -18,7 +18,7 @@ export default function Manage() {
     e.preventDefault();
 
     try {
-      const response = await axiosInstance.post("/registrar/courses/", formData);
+      const response = await axiosInstance.post("courses/add/", formData);
 
       fetchLecturers();
       setFormData({
@@ -48,7 +48,7 @@ export default function Manage() {
 
   const fetchCourses = async () => {
     try {
-      const response = await axiosInstance.get("/Courselist/");
+      const response = await axiosInstance.get("courses/list/");
       getCourse(response.data);
     } catch(error) {
       console.error("Error fetching data", error)

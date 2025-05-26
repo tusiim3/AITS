@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 // Create an Axios instance
 const axiosInstance = axios.create({
@@ -41,9 +42,10 @@ axiosInstance.interceptors.response.use(
         return axiosInstance(originalRequest); // Retry the original request with the new token
       } catch (err) {
         console.error('Refresh token expired or invalid', err);
+        toast.info("Session timeout")
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
-        window.location.href = '/login'; // Redirect to login page
+        window.location.href = '/'; // Redirect to login page
       }
     }
     return Promise.reject(error);

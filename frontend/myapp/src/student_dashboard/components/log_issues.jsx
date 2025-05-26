@@ -20,6 +20,7 @@ function Log() {
 
   const [courses, setCourses] = useState([]); // State to hold courses from API
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
 
   // Fetch courses from API on component mount
   useEffect(() => {
@@ -47,6 +48,8 @@ function Log() {
   const handleSubmit = (event) => {
     event.preventDefault();
     setDisplayValue(formData);
+    setFormData({ select1: "", select2: "", select3: "", text: "" });
+    setShowPopup(true);
   };
 
   const handleClear = () => {
@@ -65,10 +68,11 @@ function Log() {
     };
 
     try {
-      const response = await axiosInstance.post("/issues/", submitPayload);
+      const response = await axiosInstance.post("/issues/create/", submitPayload);
       if (response.status === 201) {
         toast.success("Issue submitted successfully!");
         setDisplayValue({ select1: "", select2: "", select3: "", text: "" });
+        setShowPopup(false)
       }
     } catch (error) {
       console.error("Error during submission", error);
@@ -141,25 +145,30 @@ function Log() {
           <button type="submit" className={styles.lsubmit_button}>Submit</button>
         </form>
       </div>
-
-      <div className={styles.myform}>
-        <form onSubmit={handleFormSubmit}>
-          <h5>Issue Form</h5>
-          <div className={styles.issue}>
-            <h3 className={styles.label2}>COURSE UNIT:</h3>
-            <p className={styles.par}>{displayValue.select1 || "N/A"}</p>
-            <h3 className={styles.label2}>COMPLAINT:</h3>
-            <p className={styles.par}>{displayValue.select2 || "N/A"}</p>
-            <h3 className={styles.label2}>TYPE:</h3>
-            <p className={styles.par}>{displayValue.select3 || "N/A"}</p>
-            <h3 className={styles.label2}>CUSTOM COMPLAINT:</h3>
-            <p className={styles.par}>{displayValue.text || "N/A"}</p>
-          </div>
-          <button type="submit" className={styles.rsubmit_buttons} disabled={isSubmitting}>
-            {isSubmitting ? "Submitting..." : "Submit Form"}
-          </button>
-        </form>
+      
+      {showPopup && (
+        <div className={styles.popupOverlay}>
+          <div className={styles.popupContent}>
+            <button className={styles.closeButton} onClick={() => setShowPopup(false)}>×</button>
+            <form onSubmit={handleFormSubmit}>
+              <h5>Issue Form</h5>
+              <div className={styles.issue}>
+                <h3 className={styles.label2}>COURSE UNIT:</h3>
+                <p className={styles.par}>{displayValue.select1 || "N/A"}</p>
+                <h3 className={styles.label2}>COMPLAINT:</h3>
+                <p className={styles.par}>{displayValue.select2 || "N/A"}</p>
+                <h3 className={styles.label2}>TYPE:</h3>
+                <p className={styles.par}>{displayValue.select3 || "N/A"}</p>
+                <h3 className={styles.label2}>CUSTOM COMPLAINT:</h3>
+                <p className={styles.par}>{displayValue.text || "N/A"}</p>
+              </div>
+              <button type="submit" className={styles.rsubmit_buttons} disabled={isSubmitting}>
+                {isSubmitting ? "Submitting..." : "Submit Form"}
+              </button>
+            </form>
+        </div>
       </div>
+    )}
     </div>
   );
 }
