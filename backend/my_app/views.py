@@ -13,9 +13,6 @@ from django.core.mail import send_mail
 
 
 
-
-
-
 class RegisterView(APIView): 
     permission_classes = [AllowAny] 
     
@@ -240,7 +237,7 @@ class UserprofileView(APIView):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class GetCoursesView(APIView):
+class CoursesListView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
