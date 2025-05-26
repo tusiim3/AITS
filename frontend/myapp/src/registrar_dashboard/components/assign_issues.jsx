@@ -10,9 +10,8 @@ function AssignPopup({ onClose, onAssign }) {
   useEffect(() => {
     const fetchLecturers = async () => {
       try {
-        const response = await fetch('/api/lecturers'); // Replace with your actual endpoint
-        const data = await response.json();
-        setLecturers(data); // Make sure API returns an array of lecturers with id and name
+        const response = await axiosInstance.get('/api/lecturers'); // Replace with your actual endpoint
+        setLecturers(response.data); // Make sure API returns an array of lecturers with id and name
       } catch (error) {
         console.error('Error fetching lecturers:', error);
       } finally {
@@ -60,18 +59,11 @@ function AssignIssueComponent({ issueId }) {
 
   const handleAssign = async (lecturer) => {
     try {
-      const response = await fetch('/api/assign-issue', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          lecturerId: lecturer.id,
-          issueId: issueId, // passed as prop
-        }),
+      const response = await axiosInstance.patch(`/issues/assign/${issueId}/`, {
+        lecturer_username: lecturer.name,
       });
 
-      if (response.ok) {
+      if (response.status === 200) {
         alert(`Issue assigned to ${lecturer.name}`);
       } else {
         alert('Failed to assign issue');

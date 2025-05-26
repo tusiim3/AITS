@@ -9,7 +9,8 @@ function His() {
 
     const fetchComplaints = async () => {
         try {
-            const response = await axiosInstance.get("/registrar/issues/");
+            const response = await axiosInstance.get("issues/assigned/");
+            const response2 = await axiosInstance.get("issues/resolved/");
             const filtered = response.data.filter(
                 complaint => complaint.status === "assigned" || complaint.status === "resolved"
             );
