@@ -158,7 +158,18 @@ const AuthenticationForms = () => {
 
   return (
     <div className={styles.body}>
-      <ToastContainer position="top-right"/>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+
       <div className={styles.container}>
         <div className={styles.form_container}>
           <img src={logo} alt="University Logo" className={styles.logo} />
