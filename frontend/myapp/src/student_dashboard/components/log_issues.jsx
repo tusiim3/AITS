@@ -68,7 +68,7 @@ function Log() {
     };
 
     try {
-      const response = await axiosInstance.post("/issues/", submitPayload);
+      const response = await axiosInstance.post("/issues/create/", submitPayload);
       if (response.status === 201) {
         toast.success("Issue submitted successfully!");
         setDisplayValue({ select1: "", select2: "", select3: "", text: "" });

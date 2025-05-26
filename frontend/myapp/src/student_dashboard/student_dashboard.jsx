@@ -52,23 +52,30 @@ function Student() {
     </div>
   );
 
-  const handleLogout = async (e) => {
+  const handleLogout = async () => {
     try {
-      const refreshtoken = localStorage.getItem("refreshToken")
-      const response = await axiosInstance.post("/Logout/",{
-        refresh_token : refreshtoken
+      const accessToken = localStorage.getItem("accessToken");
+      const refreshToken = localStorage.getItem("refreshToken");
 
+      const response = await axiosInstance.post("/logout/", {
+        refresh_token: refreshToken
+      }, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
       });
+
       console.log(response.data);
       localStorage.removeItem("accessToken");
-      localStorage.removeItem("refreshToken")
+      localStorage.removeItem("refreshToken");
+      toast.success("Logout successful");
       window.location.href = '/';
-      toast.success("logout")
     } catch (error) {
       console.error("Error during logout:", error);
       toast.error("Failed to logout. Please try again.");
     }
   };
+
 
   return (
     <div className='student-dashboard-container'>
