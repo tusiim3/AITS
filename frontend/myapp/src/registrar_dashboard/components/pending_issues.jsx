@@ -24,7 +24,7 @@ export default function Pend() {
      {/* retrieve data from the lecturerlist api */}
   const fetchLecturer = async () => {
     try {
-        const response = await axiosInstance.get("/Lecturerlist/")
+        const response = await axiosInstance.get("issues/lecturer-list/")
         setLecturer(response.data)
     } catch (error) {
         console.error("Error fetching data:", error);
@@ -37,7 +37,7 @@ export default function Pend() {
 
   const fetchComplaints = async () => {
     try {
-      const response = await axiosInstance.get("/registrar/issues/");
+      const response = await axiosInstance.get("issues/registrar-pending/");
       const pendingComplaints = response.data.filter(c => c.status === "pending");
       setComplaints(pendingComplaints);
     } catch (error) {

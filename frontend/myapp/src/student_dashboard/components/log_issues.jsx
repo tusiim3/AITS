@@ -26,7 +26,7 @@ function Log() {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await axiosInstance.get('/courses/');
+        const response = await axiosInstance.get('courses/list/');
         setCourses(response.data); // Assuming response.data is an array of course objects
       } catch (error) {
         console.error('Failed to fetch courses', error);
