@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 
 // Create an Axios instance
 const axiosInstance = axios.create({
-  baseURL: 'http://127.0.0.1:8000/api/', // Replace with your API base URL
+  baseURL: 'https://aits-groupl-90wo.onrender.com/api/', // Replace with your API base URL
   headers: { 'Content-Type': 'application/json' },
 });
 
@@ -36,7 +36,7 @@ axiosInstance.interceptors.response.use(
       originalRequest._retry = true;
       const refreshToken = localStorage.getItem('refreshToken');
       try {
-        const { data } = await axios.post('http://127.0.0.1:8000/api/token/refresh/', { refresh: refreshToken });
+        const { data } = await axios.post('https://aits-groupl-90wo.onrender.com/api/token/refresh/', { refresh: refreshToken });
         localStorage.setItem('accessToken', data.access);
         originalRequest.headers.Authorization = `Bearer ${data.access}`;
         return axiosInstance(originalRequest); // Retry the original request with the new token
