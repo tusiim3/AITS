@@ -4,6 +4,7 @@ import axiosInstance from "../../axioscomponent";
 
 export default function Pend() {
     const [complaints, setComplaints] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [expandedId, setExpandedId] = useState(null);
 
     const fetchComplaints = async () => {
@@ -12,6 +13,8 @@ export default function Pend() {
             setComplaints(response.data);
         } catch (error) {
             console.error("Error fetching data:", error);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -24,6 +27,7 @@ export default function Pend() {
             }
         }, 5000);
 
+        fetchComplaints();
         return () => clearInterval(intervalId);
 
     }, []);
@@ -43,7 +47,12 @@ export default function Pend() {
             <h1 className={style.pageTitle}>
                 Log History ({complaints.length})
             </h1>
-            {complaints.length > 0 ? (
+            {loading ? (
+                <div className={style.loading}>
+                    <div className={style.spinner}></div>
+                    <p>Loading history...</p>
+                </div>
+            ) : complaints.length > 0 ? (
                 <div className={style.complaintsGrid}>
                     {complaints.map((complaint) => (
                         <div
