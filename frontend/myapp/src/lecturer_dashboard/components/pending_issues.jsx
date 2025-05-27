@@ -11,7 +11,7 @@ export default function Pend() {
         const fetchComplaints = async () => {
             setLoading(true); // Start loading
             try {
-                const response = await axiosInstance.get("/Lecturer/issues/");
+                const response = await axiosInstance.get("issues/lecturer-issues/");
 
                 // Filter out resolved complaints
                 const unresolvedComplaints = response.data.filter(complaint => complaint.status !== "resolved");
