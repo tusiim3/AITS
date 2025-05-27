@@ -28,7 +28,7 @@ export default function Pend() {
     const handleStatusUpdate = async (e, complaintId, newStatus) => {
         e.stopPropagation();
         try {
-            await axiosInstance.patch(`/issues/update_status/${complaintId}/`, {
+            await axiosInstance.patch(`/issues/update-status/${complaintId}/`, {
                 status: newStatus
             });
             // Update UI by removing the resolved complaint
