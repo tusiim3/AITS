@@ -4,20 +4,30 @@
     height: 100vh;
     width: 100%;
   }
+
+  .metricCardsContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
   
   .metricCard {  
-    top: 2%;
     background-color: white;
-    position: absolute;
-    height: 30%;
-    width: 30%;
-    border-radius: 5px;
-    padding: 20px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  height: 200px;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   }
   
   .unassigned {  
@@ -25,12 +35,12 @@
   }
   
   .pending {  
-    left: 35%;
-  }
+    background-image: url('../../assets/background-images/pending.jpg');
+}
   
   .resolved {  
-    left: 68%;
-  }
+    background-image: url('../../assets/background-images/resolved.jpg');
+}
   
   .metricValue {
     font-size: 3rem;
