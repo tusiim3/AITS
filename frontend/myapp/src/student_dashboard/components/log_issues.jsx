@@ -26,7 +26,7 @@ function Log() {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await axiosInstance.get('/courses/');
+        const response = await axiosInstance.get('courses/list/');
         setCourses(response.data); // Assuming response.data is an array of course objects
       } catch (error) {
         console.error('Failed to fetch courses', error);
@@ -94,13 +94,20 @@ function Log() {
             onChange={handleChange}
             className={styles.select}
           >
-            <option value="">Select Course</option>
-            {courses.map((course) => (
-              <option key={course.course_code} value={course.course_code}>
-                {course.course_code}
-              </option>
-            ))}
+            {courses.length === 0 ? (
+              <option disabled>Fetching courses...</option>
+            ) : (
+              <>
+                <option value="">Select Course</option>
+                {courses.map((course) => (
+                  <option key={course.id} value={course.course_code}>
+                    {course.course_code} - {course.course_name}
+                  </option>
+                ))}
+              </>
+            )}
           </select>
+
 
           <label htmlFor="complaint" className={styles.label}>Complaint</label>
           <select

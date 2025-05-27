@@ -124,10 +124,13 @@
   background: #38a169;
 }
 
-.loading p {
-  text-align: center;
-  color: #718096;
-  padding: 40px 0;
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px; /* Ensures it fills the card vertically */
+  height: 100%;      /* Optional: fill parent if possible */
 }
 
 .spinner {
@@ -137,18 +140,36 @@
   width: 40px;
   height: 40px;
   animation: spin 1s linear infinite;
-  margin: 0 auto;
+  margin-bottom: 18px; /* space between spinner and text */
 }
+
+.loading p, .loadingText {
+  color: #718096;
+  font-size: 1.2rem;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
 
-.emptyState p {
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 0;
   text-align: center;
-  color: #718096;
-  padding: 40px 0;
+  color: #757575;
+}
+
+.emptyState p {
+  font-size: 1.2rem;
+  color: #757575;
 }
 
 @media (max-width: 768px) {

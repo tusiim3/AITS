@@ -2,25 +2,24 @@ import React, { useEffect, useState } from "react";
 import styles from "./manage.module.css";
 import axiosInstance from "../../axioscomponent";
 import { ToastContainer, toast } from 'react-toastify';
-
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Manage() {
-  const [courses, getCourse] = useState([])
-  const [lecturers, getLecturer] = useState([]);
-  const [lecturer, postLecturer] = useState([]);
+  const [courses, setCourses] = useState([]);
+  const [lecturers, setLecturers] = useState([]);
   const [formData, setFormData] = useState({
     course_name: "",
-    course_code: "", // fixed typo here
+    course_code: "",
     lecturer: "",
   });
 
-  const addLecturer = async (e) => {
+  const addCourse = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axiosInstance.post("courses/add/", formData);
+      await axiosInstance.post("courses/add/", formData);
 
-      fetchLecturers();
+      fetchCourses();
       setFormData({
         course_name: "",
         course_code: "",
@@ -28,32 +27,33 @@ export default function Manage() {
       });
       toast.success("Course added successfully!");
     } catch (error) {
-      toast.error("Error adding lecturer")
-      console.error("Error adding lecturer");
+      toast.error("Error adding course");
+      console.error("Error adding course:", error);
     }
   };
 
-  useEffect(() => {
-    fetchLecturers();
-  }, []);
-
   const fetchLecturers = async () => {
     try {
-      const response = await axiosInstance.get("/Lecturerlist/");
-      getLecturer(response.data);
+      const response = await axiosInstance.get("issues/lecturer-list/");
+      setLecturers(response.data);
     } catch (error) {
-      console.error("Error fetching data", error);
+      console.error("Error fetching lecturers:", error);
     }
   };
 
   const fetchCourses = async () => {
     try {
       const response = await axiosInstance.get("courses/list/");
-      getCourse(response.data);
-    } catch(error) {
-      console.error("Error fetching data", error)
+      setCourses(response.data);
+    } catch (error) {
+      console.error("Error fetching courses:", error);
     }
   };
+
+  useEffect(() => {
+    fetchLecturers();
+    fetchCourses();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -66,6 +66,7 @@ export default function Manage() {
   return (
     <div className={styles.container}>
       <ToastContainer position="top-right" autoClose={3000} />
+      
       <div className={styles.lecturers}>
         <h4>Lecturers List</h4>
         <ul>
@@ -76,6 +77,7 @@ export default function Manage() {
           ))}
         </ul>
       </div>
+
       <div className={styles.courses}>
         <h4>Course List</h4>
         <ul>
@@ -86,9 +88,10 @@ export default function Manage() {
           ))}
         </ul>
       </div>
-      <form onSubmit={addLecturer}>
+
+      <form onSubmit={addCourse}>
         <div className={styles.lecturer}>
-          <p className={styles.pe}>Add Course </p>
+          <p className={styles.pe}>Add Course</p>
           <p className={styles.pe}>
             Course Name:{" "}
             <input
@@ -111,13 +114,20 @@ export default function Manage() {
           </p>
           <p className={styles.pe}>
             Lecturer:{" "}
-            <input
+            <select
               name="lecturer"
               value={formData.lecturer}
               onChange={handleChange}
               className={styles.input}
               required
-            />
+            >
+              <option value="">Select Lecturer</option>
+              {lecturers.map((lect) => (
+                <option key={lect.id} value={lect.id}>
+                  {lect.username}
+                </option>
+              ))}
+            </select>
           </p>
           <button type="submit" className={styles.sub}>Add Course</button>
         </div>

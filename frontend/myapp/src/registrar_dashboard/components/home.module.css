@@ -1,23 +1,37 @@
 /* home.module.css */
 .container {
-    position: relative;
-    height: 100vh;
-    width: 100%;
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   }
+
+  .metricCardsContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
   
   .metricCard {  
-    top: 2%;
-    background-color: white;
-    position: absolute;
-    height: 30%;
-    width: 30%;
-    border-radius: 5px;
-    padding: 20px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  background-color: white;
+  height: 200px;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   }
   
   .unassigned {  
@@ -25,12 +39,12 @@
   }
   
   .pending {  
-    left: 35%;
-  }
+    background-image: url('../../assets/background-images/pending.jpg');
+}
   
   .resolved {  
-    left: 68%;
-  }
+    background-image: url('../../assets/background-images/resolved.jpg');
+}
   
   .metricValue {
     font-size: 3rem;
@@ -54,3 +68,29 @@
   .metricCard {
     transition: all 0.2s ease;
   }
+
+  .newsSection {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  margin-top: 40px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.newsSection h3 {
+  color: #2c3e50;
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+}
+
+.newsFeedIframe {
+  width: 100%;
+  height: 300px;
+  border: none;
+  border-radius: 4px;
+}

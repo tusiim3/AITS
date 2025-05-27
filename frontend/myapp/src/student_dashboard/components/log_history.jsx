@@ -4,6 +4,8 @@ import axiosInstance from "../../axioscomponent";
 
 export default function Pend() {
     const [complaints, setComplaints] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [expandedId, setExpandedId] = useState(null);
 
     const fetchComplaints = async () => {
         try {
@@ -11,6 +13,8 @@ export default function Pend() {
             setComplaints(response.data);
         } catch (error) {
             console.error("Error fetching data:", error);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -23,29 +27,88 @@ export default function Pend() {
             }
         }, 5000);
 
+        fetchComplaints();
         return () => clearInterval(intervalId);
 
     }, []);
 
+    const toggleExpand = (complaintId) => {
+        setExpandedId(expandedId === complaintId ? null : complaintId);
+    };
+
+    const formatDate = (dateString) => {
+        if (!dateString) return "N/A";
+        const options = { year: 'numeric', month: 'short', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+    };
+
     return (
         <div className={style.container}>
-            {complaints.length > 0 ? (
-                complaints.map((complaint, index) => (
-                    <div key={index} className={style.complaint}>
-                        <p className={style.pe}>Course Unit: {complaint.course?.course_code || "N/A"}</p>
-                        <p className={style.pe}>Complaint Type: {complaint.complaint_type || "N/A"}</p>
-                        <p className={style.pe}>Complaint: {complaint.custom_complaint || "N/A"}</p>
-                        <p className={style.pe}>Lecturer: {complaint.lecturer || "N/A"}</p>
-                        <p className={style.pe}
-                            style={{backgroundColor:
-                                complaint.status.toLowerCase() === 'pending'?'grey':
-                                complaint.status.toLowerCase() === 'resolved'?'green':'transparent'
-                            }}>
-                            Status: {complaint.status || "N/A"}</p>
-                    </div>
-                ))
+            <h1 className={style.pageTitle}>
+                Log History ({complaints.length})
+            </h1>
+            {loading ? (
+                <div className={style.loading}>
+                    <div className={style.spinner}></div>
+                    <p>Loading history...</p>
+                </div>
+            ) : complaints.length > 0 ? (
+                <div className={style.complaintsGrid}>
+                    {complaints.map((complaint) => (
+                        <div
+                            className={`${style.output_box} ${expandedId === complaint.id ? style.expanded : ""}`}
+                            key={complaint.id}
+                            onClick={() => toggleExpand(complaint.id)}
+                            role="button"
+                            tabIndex={0}
+                            onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && toggleExpand(complaint.id)}
+                            aria-expanded={expandedId === complaint.id}
+                        >
+                            <div className={style.complaintHeader}>
+                                <div className={style.headerLeft}>
+                                    <h3 className={style.courseCode}>{complaint.course?.course_code || "N/A"}</h3>
+                                    <span className={style.complaintType}>{complaint.complaint_type || "N/A"}</span>
+                                    <span className={`${style.statusBadge} ${
+                                        complaint.status?.toLowerCase() === "resolved"
+                                            ? style.resolved
+                                            : style.assigned
+                                    }`}>
+                                        {complaint.status || "N/A"}
+                                    </span>
+                                </div>
+                                <div className={style.headerRight}>
+                                    <span className={style.date}>{formatDate(complaint.created_at)}</span>
+                                </div>
+                            </div>
+                            {expandedId === complaint.id && (
+                                <div className={style.complaintContent}>
+                                    <div className={style.infoGroup}>
+                                        <div className={style.infoLabel}>Complaint:</div>
+                                        <div className={style.infoValue}>{complaint.complaint || "N/A"}</div>
+                                    </div>
+                                    <div className={style.infoGroup}>
+                                        <div className={style.infoLabel}>Description:</div>
+                                        <div className={style.infoValue}>{complaint.custom_complaint || "N/A"}</div>
+                                    </div>
+                                    <div className={style.metaInfo}>
+                                        <div className={style.metaItem}>
+                                            <span className={style.metaLabel}>Lecturer:</span>
+                                            <span className={style.metaValue}>{complaint.lecturer?.username || "N/A"}</span>
+                                        </div>
+                                        <div className={style.metaItem}>
+                                            <span className={style.metaLabel}>Status:</span>
+                                            <span className={style.metaValue}>{complaint.status || "N/A"}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    ))}
+                </div>
             ) : (
-                <p>No complaints found.</p>
+                <div className={style.emptyState}>
+                    <p>No complaints found.</p>
+                </div>
             )}
         </div>
     );
