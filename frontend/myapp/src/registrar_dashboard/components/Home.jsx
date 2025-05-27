@@ -1,15 +1,3 @@
-/*import styles from "./home.module.css";
-
-export default function Home() {
-    return(
-        <div>
-            <div className={styles.assigned}>yet to be assigned issues</div>
-            <div className={styles.issues}>The resolved issues count</div>
-            <div className={styles.pending}>The pending issues count</div>
-        </div>
-    )
-}
-*/
 
 import React, { useState, useEffect } from 'react';
 import styles from "./home.module.css";
@@ -49,6 +37,19 @@ const MetricCard = ({ title, value, className, onClick }) => {
   );
 };
 
+const NewsFeed = () => {
+  return (
+    <div className={styles.newsSection}>
+      <h3>Happening Around Campus</h3>
+      <iframe
+        src="https://news.mak.ac.ug/"
+        title="University News Feed"
+        className={styles.newsFeedIframe}
+      />
+    </div> 
+  );
+};
+
 export default function Home({ onNavigate }) {
   // Mock data - replace with real data from your API
   const [metrics] = useState({
@@ -59,25 +60,28 @@ export default function Home({ onNavigate }) {
 
   return(
     <div className={styles.container}>
-      <MetricCard 
-        title="Yet to be assigned issues" 
-        value={metrics.unassigned} 
-        className={styles.unassigned}
-        onClick={() => onNavigate('Manage')}
-      />
-      <MetricCard 
-        title="Pending issues count" 
-        value={metrics.pending}
-        className={styles.pending}
-        onClick={() => onNavigate('Pending')}
-      />
-      <MetricCard 
-        title="Resolved issues count" 
-        value={metrics.resolved}
-        className={styles.resolved}
-        onClick={() => onNavigate('IssueHistory')}
-      />
+      <div className={styles.metricCardsContainer}>  
+        <MetricCard 
+          title="Yet to be assigned issues" 
+          value={metrics.unassigned} 
+          className={styles.unassigned}
+          onClick={() => onNavigate('Manage')}
+        />
+        <MetricCard 
+          title="Pending issues count" 
+          value={metrics.pending}
+          className={styles.pending}
+          onClick={() => onNavigate('Pending')}
+        />
+        <MetricCard 
+          title="Resolved issues count" 
+          value={metrics.resolved}
+          className={styles.resolved}
+          onClick={() => onNavigate('IssueHistory')}
+        />
+      </div>
+      <NewsFeed />  
     </div>
-  )
+  );
 }
 
