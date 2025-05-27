@@ -1,13 +1,13 @@
 # Academic Issue Tracking System (AITS)
-A web based platform for Makerere University students to log, track, and have their academic issues like missing marks, appeals, and corrections resolved. The system will include role-based access for students, lecturers, heads of departments, and the Academic Registrar.
+A web based platform for Makerere University students to log, track, and have their academic issues like missing marks, appeals, and corrections resolved. The system includes role-based access for students, lecturers, and the Academic Registrar.
 ## Features
 1. User Roles and Permissions:
-   - Students can log issues and view their status.
-   - Academic Registrar can review issues, resolve them, or assign them to relevant lecturers or department heads.
-   - Lecturers/Heads of Departments can resolve assigned issues and update statuses.
+   - Students can log issues and view their statuses.
+   - Academic Registrar can review issues and assign them to relevant lecturers.
+   - Lecturers can resolve assigned issues and update statuses.
 2. Issue Management:
-   - Students must provide relevant details, such as course code and issue type.
-   - Issues must be categorized into "missing marks," "appeals", or "corrections."
+   - Students provide relevant details, such as course code and issue type.
+   - Issues are categorized into "missing marks," "appeals", or "corrections."
 3. Notifications:
    - Email or in-app notifications for status changes.
    - Alerts for overdue or unresolved issues.
@@ -18,15 +18,15 @@ A web based platform for Makerere University students to log, track, and have th
 ## Tech Stack
 1. Backend:
    - Framework: Django
-   - Database: PostgreSQL
+   - Database: SQLite
    - APIs: Django REST Framework
 2. Frontend:
    - Framework: React
    - State Management: Redux
    - Notifications: React Toastify
 3. Hosting and Deployment:
-   - Cloud Platform: Heroku $ Render
-   - Version Control: Git/HitHub
+   - Cloud Platform: Netlify $ Render
+   - Version Control: Git/GitHub
 4. Testing:
    - Backend: Pytest
    - Frontend: Jest and React Testing Library
