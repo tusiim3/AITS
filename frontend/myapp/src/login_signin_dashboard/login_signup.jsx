@@ -3,7 +3,7 @@ import styles from './AuthenticationForms.module.css';
 import logo from "./logo/logo.png";
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../axioscomponent';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 // PasswordInput component for show/hide password
 const PasswordInput = ({
@@ -125,7 +125,6 @@ const AuthenticationForms = () => {
         localStorage.setItem("refreshToken", response.data.refreshToken);
        
         toast.success("Signin Successfull", {
-          autoClose: 3000,
           onClose: () => navigateBasedOnRole(formData.number_type),
         });
       }
@@ -158,18 +157,6 @@ const AuthenticationForms = () => {
 
   return (
     <div className={styles.body}>
-      <ToastContainer
-        position="top-right"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-
       <div className={styles.container}>
         <div className={styles.form_container}>
           <img src={logo} alt="University Logo" className={styles.logo} />
