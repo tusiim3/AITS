@@ -4,6 +4,7 @@ import axiosInstance from "../../axioscomponent";
 
 export default function Pend() {
     const [complaints, setComplaints] = useState([]);
+    const [expandedId, setExpandedId] = useState(null);
 
     const fetchComplaints = async () => {
         try {
@@ -26,6 +27,10 @@ export default function Pend() {
         return () => clearInterval(intervalId);
 
     }, []);
+
+    const toggleExpand = (complaintId) => {
+        setExpandedId(expandedId === complaintId ? null : complaintId);
+    };
 
     return (
         <div className={style.container}>
