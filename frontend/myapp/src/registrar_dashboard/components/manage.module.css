@@ -1,12 +1,11 @@
 .container {
-  background-color: #f5f7fa;
   height: 100%;
   width: 100%;
-  padding: 24px;
+  padding: 10px;
   font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
+  gap: 10px;
 }
 
 /* Lists Section Styling */
