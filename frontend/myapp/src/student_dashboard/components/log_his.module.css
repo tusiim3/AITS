@@ -164,3 +164,14 @@
   color: #757575;
 }
 
+@media (max-width: 768px) {
+  .complaintHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .headerLeft, .headerRight {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
