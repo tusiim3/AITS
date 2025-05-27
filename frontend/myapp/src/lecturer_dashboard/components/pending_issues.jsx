@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import style from './pending.module.css';
 import axiosInstance from "../../axioscomponent";
+import { toast } from "react-toastify";
 
 export default function Pend() {
     const [complaints, setComplaints] = useState([]);
@@ -36,10 +37,10 @@ export default function Pend() {
             if (expandedId === complaintId) {
                 setExpandedId(null);
             };
-            alert("Complaint marked as resolved");
+            toast.success("complaint resolved")
         } catch (error) {
             console.error("Error updating status:", error);
-            alert("Failed to update status");
+            toast.error("Failed to update status")
         }
     };
 
