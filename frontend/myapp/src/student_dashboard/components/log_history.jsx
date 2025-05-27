@@ -30,20 +30,22 @@ export default function Pend() {
     return (
         <div className={style.container}>
             {complaints.length > 0 ? (
-                complaints.map((complaint, index) => (
-                    <div key={index} className={style.complaint}>
-                        <p className={style.pe}>Course Unit: {complaint.course?.course_code || "N/A"}</p>
-                        <p className={style.pe}>Complaint Type: {complaint.complaint_type || "N/A"}</p>
-                        <p className={style.pe}>Complaint: {complaint.custom_complaint || "N/A"}</p>
-                        <p className={style.pe}>Lecturer: {complaint.lecturer || "N/A"}</p>
-                        <p className={style.pe}
-                            style={{backgroundColor:
-                                complaint.status.toLowerCase() === 'pending'?'grey':
-                                complaint.status.toLowerCase() === 'resolved'?'green':'transparent'
-                            }}>
-                            Status: {complaint.status || "N/A"}</p>
-                    </div>
-                ))
+                complaints.map((complaint) => (
+  <div key={complaint.id} className={style.complaint}>
+    <p className={style.pe}>Course Unit: {complaint.course?.course_code || "N/A"}</p>
+    <p className={style.pe}>Complaint Type: {complaint.complaint_type || "N/A"}</p>
+    <p className={style.pe}>Complaint: {complaint.custom_complaint || "N/A"}</p>
+    <p className={style.pe}>Lecturer: {complaint.lecturer?.username || "N/A"}</p>
+    <p className={style.pe}
+      style={{backgroundColor:
+        complaint.status.toLowerCase() === 'pending' ? 'grey' :
+        complaint.status.toLowerCase() === 'resolved' ? 'green' : 'transparent'
+      }}>
+      Status: {complaint.status || "N/A"}
+    </p>
+  </div>
+))
+
             ) : (
                 <p>No complaints found.</p>
             )}
