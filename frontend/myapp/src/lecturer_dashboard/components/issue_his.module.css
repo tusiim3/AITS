@@ -123,10 +123,19 @@
   100% { transform: rotate(360deg); }
 }
 
-.emptyState p {
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 0;
   text-align: center;
-  color: #718096;
-  padding: 40px 0;
+  color: #757575;
+}
+
+.emptyState p {
+  font-size: 1.2rem;
+  color: #757575;
 }
 
 @media (max-width: 768px) {
