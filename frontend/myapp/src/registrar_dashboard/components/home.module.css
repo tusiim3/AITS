@@ -1,8 +1,12 @@
 /* home.module.css */
 .container {
-    position: relative;
-    height: 100vh;
-    width: 100%;
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   }
 
   .metricCardsContainer {
@@ -15,7 +19,7 @@
 }
   
   .metricCard {  
-    background-color: white;
+  background-color: white;
   height: 200px;
   border-radius: 5px;
   padding: 20px;
@@ -64,3 +68,29 @@
   .metricCard {
     transition: all 0.2s ease;
   }
+
+  .newsSection {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  margin-top: 40px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.newsSection h3 {
+  color: #2c3e50;
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+}
+
+.newsFeedIframe {
+  width: 100%;
+  height: 300px;
+  border: none;
+  border-radius: 4px;
+}
