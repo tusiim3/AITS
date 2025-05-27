@@ -10,8 +10,8 @@ function AssignPopup({ onClose, onAssign }) {
   useEffect(() => {
     const fetchLecturers = async () => {
       try {
-        const response = await axiosInstance.get('/api/lecturers'); // Replace with your actual endpoint
-        setLecturers(response.data); // Make sure API returns an array of lecturers with id and name
+        const response = await axiosInstance.get('/api/lecturers');
+        setLecturers(response.data);
       } catch (error) {
         console.error('Error fetching lecturers:', error);
       } finally {
